@@ -2,10 +2,21 @@
 
 :host {
   /**
-  * @prop --dct-accordian-padding: padding around accordian content container
+  * @prop --dct-accordian-padding-let: padding list item content container
   */
-  --dct-accordian-padding: 0.5rem 1.4rem 0.5rem 1rem;
-  --dct-accordian-padding-left: 1rem;
+  --dct-item-accordian-left: 0.5rem;
+  /**
+  * @prop --dct-accordian-padding-right: padding list item content container
+  */
+  --dct-item-accordian-right: 0.5rem;
+  /**
+  * @prop --dct-item-padding-top: padding list item content container
+  */
+  --dct-item-accordian-top: 1rem;
+  /**
+  * @prop --dct-item-padding-bottom: padding list item content container
+  */
+  --dct-item-accordian-bottom: 1rem;
 }
 
 :host(.accordian-container) {
@@ -42,7 +53,10 @@
       overflow: auto;
       flex-direction: column;
       justify-content: center;
-      padding: var(--dct-accordian-padding);
+      padding-left: var(--dct-accordian-padding-left);
+      padding-right: var(--dct-accordian-padding-right);
+      padding-top: var(--dct-accordian-padding-top);
+      padding-bottom: var(--dct-accordian-padding-bottom);
     }
   }
 }

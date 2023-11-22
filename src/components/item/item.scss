@@ -2,11 +2,21 @@
 
 :host {
   /**
-  * @prop --dct-item-padding: padding list item content container
+  * @prop --dct-item-padding-left: padding list item content container
   */
-  --dct-item-padding: 0.5rem 1rem 0.5rem 1rem;
   --dct-item-padding-left: 0.5rem;
+  /**
+  * @prop --dct-item-padding-right: padding list item content container
+  */
   --dct-item-padding-right: 0.5rem;
+  /**
+  * @prop --dct-item-padding-top: padding list item content container
+  */
+  --dct-item-padding-top: 1rem;
+  /**
+  * @prop --dct-item-padding-bottom: padding list item content container
+  */
+  --dct-item-padding-bottom: 1rem;
 }
 
 :host(.item-container) {
@@ -15,7 +25,10 @@
   display: flex;
   flex-direction: column;
   letter-spacing: common.$typography-letter-spacing;
-  padding: var(--dct-item-padding);
+  padding-left: var(--dct-item-padding-left);
+  padding-right: var(--dct-item-padding-right);
+  padding-top: var(--dct-item-padding-top);
+  padding-bottom: var(--dct-item-padding-bottom);
 
   > a {
     text-decoration: none;

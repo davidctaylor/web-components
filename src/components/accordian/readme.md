@@ -40,9 +40,12 @@ expannd and collapse events.
 
 ## CSS Custom Properties
 
-| Name                      | Description                                |
-| ------------------------- | ------------------------------------------ |
-| `--dct-accordian-padding` | padding around accordian content container |
+| Name                            | Description                         |
+| ------------------------------- | ----------------------------------- |
+| `--dct-accordian-padding-let`   | padding list item content container |
+| `--dct-accordian-padding-right` | padding list item content container |
+| `--dct-item-padding-bottom`     | padding list item content container |
+| `--dct-item-padding-top`        | padding list item content container |
 
 
 ----------------------------------------------
