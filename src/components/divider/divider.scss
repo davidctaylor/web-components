@@ -1,0 +1,28 @@
+:host {
+  --dct-divider-height: 1px;
+  --dct-divider-color: var(--dct-color-primary-200);
+}
+
+:host(.divider-container.active) {
+  display: flex;
+}
+:host(.divider-container) {
+  flex-direction: column;
+  align-items: center;
+  display: none;
+
+  .divider {
+    align-self: center;
+    border-bottom-color: var(--dct-divider-color);
+    border-bottom-style: solid;
+    border-bottom-width: var(--dct-divider-height);
+    display: flex;
+
+    &.partial {
+      width: 75%;
+    }
+    &.full {
+      width: calc(100% - 2rem);
+    }
+  }
+}

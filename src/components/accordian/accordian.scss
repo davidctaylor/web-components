@@ -1,0 +1,90 @@
+@use '../../styles' as common;
+
+:host {
+  /**
+  * @prop --dct-accordian-padding: padding around accordian content container
+  */
+  --dct-accordian-padding: 0.5rem 1.4rem 0.5rem 1rem;
+  --dct-accordian-padding-left: 1rem;
+}
+
+:host(.accordian-container) {
+  @include common.mixins-default-layout();
+  @include common.mixins-hover-event();
+  @include common.mixins-host-disabled();
+  display: flex;
+  flex-direction: column;
+
+  button {
+    border: none;
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    padding-block: 0;
+    padding-inline: 0;
+    pointer-events: auto;
+  }
+
+  .accordian-heading {
+    width: 100%;
+  }
+
+  .accordian-content {
+    overflow: hidden;
+    will-change: max-height;
+    width: 100%;
+    transition: max-height common.$animate-transition-duration
+      common.$animate-transition-easing;
+
+    .accordian-content-slot {
+      display: flex;
+      overflow: auto;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--dct-accordian-padding);
+    }
+  }
+}
+
+:host(.accordian-container.icon-start) {
+  .accordian-content {
+    .accordian-content-slot {
+      padding-left: calc(1rem + common.$animate-icon-width);
+    }
+  }
+}
+
+:host(.accordian-container:focus:not(.disabled)) {
+  background: common.$colors-background-focus;
+  border-color: common.$colors-border-focus;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+:host(.collapsed) {
+  .accordian-content {
+    max-height: 0;
+  }
+}
+:host(:not(:last-of-type).disabled),
+:host(:not(:last-of-type):not(:focus)) {
+  .accordion-divider {
+    display: none;
+    &.active {
+      display: inline-flex;
+      align-self: center;
+      border-bottom-color: common.$colors-accordian-border-color;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+
+      &.full {
+        width: 100%;
+      }
+
+      &.partial {
+        width: 75%;
+      }
+    }
+  }
+}

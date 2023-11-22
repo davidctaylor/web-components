@@ -1,0 +1,21 @@
+import { Markdown, Meta, Story, Canvas } from '@storybook/blocks';
+import readme from '../readme.md?raw';
+
+import * as AccordianControllerStories from './accordian-controller.stories';
+
+<Meta
+  title="DCTComponents/AccordianController"
+  of={AccordianControllerStories}
+/>
+
+## Accordian Controller Component
+
+<Canvas>
+  <Story>
+    <form>
+      <accordian-controller />
+    </form>
+  </Story>
+</Canvas>
+
+<Markdown>{readme}</Markdown>

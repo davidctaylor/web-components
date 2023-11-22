@@ -1,0 +1,52 @@
+@use '../../styles' as common;
+
+:host {
+  /**
+  * @prop --dct-item-padding: padding list item content container
+  */
+  --dct-item-padding: 0.5rem 1rem 0.5rem 1rem;
+  --dct-item-padding-left: 0.5rem;
+  --dct-item-padding-right: 0.5rem;
+}
+
+:host(.item-container) {
+  @include common.mixins-default-layout();
+  @include common.mixins-hover-event();
+  display: flex;
+  flex-direction: column;
+  letter-spacing: common.$typography-letter-spacing;
+  padding: var(--dct-item-padding);
+
+  > a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .item-separator {
+    display: none;
+    margin-left: 0;
+    margin-top: 0.5rem;
+
+    &.active {
+      display: inline-block;
+      border-width: 1px;
+      border-style: solid;
+      border-color: common.$colors-item-border-color;
+    }
+    &.full {
+      width: 100%;
+    }
+
+    &.partial {
+      margin-left: var(--dct-item-padding-left);
+      width: calc(
+        100% -
+          (#{var(--dct-item-padding-left)} + #{var(--dct-item-padding-right)})
+      );
+    }
+  }
+}
+:host(.disabled) {
+  pointer-events: none;
+  color: common.$colors-disabled;
+}

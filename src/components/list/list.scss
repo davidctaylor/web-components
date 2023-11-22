@@ -1,0 +1,13 @@
+@use '../../styles' as common;
+
+:host(.list-container) {
+  @include common.mixins-default-layout();
+  display: flex;
+  flex-direction: column;
+
+  .list-heading {
+    @include common.mixins-heading();
+    font-size: common.$typography-font-size-large;
+    line-height: common.$typography-line-height-large;
+  }
+}
