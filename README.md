@@ -10,7 +10,7 @@ A library of UI Web Components built using Stencil.js
 
 ### Documentation
 
-(Documentation)[https://davidctaylor.github.io/web-components/] is available for each of the components in the library
+[Documentation](https://davidctaylor.github.io/web-components/) is available for each of the components in the library
 
 ```bash
 npm install
