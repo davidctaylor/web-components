@@ -6,6 +6,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
+      isPrimaryPackageOutputTarget: true,
       esmLoaderPath: '../loader',
     },
     {
@@ -26,9 +27,6 @@ export const config: Config = {
   testing: {
     browserHeadless: 'new',
   },
-  plugins: [
-    sass({
-      // injectGlobalPaths: ['src/global/variables.scss'],
-    }),
-  ],
+  plugins: [sass()],
+  validatePrimaryPackageOutputTarget: true,
 };

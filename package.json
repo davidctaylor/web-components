@@ -20,12 +20,13 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
+    "build-prod": "stencil build --docs --prod",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006 -s dist",
+    "build-storybook": "storybook build -s dist"
   },
   "dependencies": {
     "@stencil/core": "^4.7.0",
