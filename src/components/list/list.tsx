@@ -27,7 +27,6 @@ export class List {
   @Prop() heading!: string;
 
   componentDidLoad() {
-    console.log('XXX ALL', this._allListItems());
     if (this.disabled) {
       this.disabledChanged();
     }
