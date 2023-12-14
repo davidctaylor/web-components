@@ -52,6 +52,20 @@ export namespace Components {
          */
         "displayMultiple": boolean;
     }
+    interface DctCard {
+        /**
+          * List is in a disabled state
+         */
+        "disabled": boolean;
+        "elevated": boolean;
+        /**
+          * Optional list heading
+         */
+        "heading": string;
+        "oulined": boolean;
+    }
+    interface DctCarousel {
+    }
     interface DctDivider {
         /**
           * How the divider element displayed.
@@ -148,6 +162,18 @@ declare global {
         prototype: HTMLDctAccordianControllerElement;
         new (): HTMLDctAccordianControllerElement;
     };
+    interface HTMLDctCardElement extends Components.DctCard, HTMLStencilElement {
+    }
+    var HTMLDctCardElement: {
+        prototype: HTMLDctCardElement;
+        new (): HTMLDctCardElement;
+    };
+    interface HTMLDctCarouselElement extends Components.DctCarousel, HTMLStencilElement {
+    }
+    var HTMLDctCarouselElement: {
+        prototype: HTMLDctCarouselElement;
+        new (): HTMLDctCarouselElement;
+    };
     interface HTMLDctDividerElement extends Components.DctDivider, HTMLStencilElement {
     }
     var HTMLDctDividerElement: {
@@ -184,6 +210,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "dct-accordian": HTMLDctAccordianElement;
         "dct-accordian-controller": HTMLDctAccordianControllerElement;
+        "dct-card": HTMLDctCardElement;
+        "dct-carousel": HTMLDctCarouselElement;
         "dct-divider": HTMLDctDividerElement;
         "dct-item": HTMLDctItemElement;
         "dct-item-heading": HTMLDctItemHeadingElement;
@@ -236,6 +264,20 @@ declare namespace LocalJSX {
           * Allows multilple Accordian elements be in an expanded state. If set to false, the first expanded Accordian element will remain expanded all subsequent Accordian's will be places in a collapsed state
          */
         "displayMultiple"?: boolean;
+    }
+    interface DctCard {
+        /**
+          * List is in a disabled state
+         */
+        "disabled"?: boolean;
+        "elevated"?: boolean;
+        /**
+          * Optional list heading
+         */
+        "heading": string;
+        "oulined"?: boolean;
+    }
+    interface DctCarousel {
     }
     interface DctDivider {
         /**
@@ -293,6 +335,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "dct-accordian": DctAccordian;
         "dct-accordian-controller": DctAccordianController;
+        "dct-card": DctCard;
+        "dct-carousel": DctCarousel;
         "dct-divider": DctDivider;
         "dct-item": DctItem;
         "dct-item-heading": DctItemHeading;
@@ -319,6 +363,8 @@ declare module "@stencil/core" {
              * - Allowing single or multiple (all) Accordians to be expanded
              */
             "dct-accordian-controller": LocalJSX.DctAccordianController & JSXBase.HTMLAttributes<HTMLDctAccordianControllerElement>;
+            "dct-card": LocalJSX.DctCard & JSXBase.HTMLAttributes<HTMLDctCardElement>;
+            "dct-carousel": LocalJSX.DctCarousel & JSXBase.HTMLAttributes<HTMLDctCarouselElement>;
             "dct-divider": LocalJSX.DctDivider & JSXBase.HTMLAttributes<HTMLDctDividerElement>;
             /**
              * Item are elements that can contain text, links or any other native elements and should

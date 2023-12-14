@@ -5,6 +5,17 @@ export const hasSlot = (el: HTMLElement, name: string): boolean => {
   return !!el.querySelector(`[slot="${name}"]`);
 };
 
+export const inSideContainer = (el: HTMLElement, child: HTMLElement) => {
+  const domRect: DOMRect = el.getBoundingClientRect();
+  const childDR: DOMRect = child.getBoundingClientRect();
+  return (
+    childDR.left >= domRect.left &&
+    domRect.right >= childDR.right &&
+    childDR.top >= domRect.top &&
+    childDR.bottom <= domRect.bottom
+  );
+};
+
 export const expandContent = async (el: HTMLElement, offsetHeight: number) => {
   if (offsetHeight === 0) {
     return;
@@ -19,7 +30,10 @@ export const expandContent = async (el: HTMLElement, offsetHeight: number) => {
   el.style.removeProperty('max-height');
 };
 
-export const collapseContent = async (el: HTMLElement, offsetHeight: number) => {
+export const collapseContent = async (
+  el: HTMLElement,
+  offsetHeight: number
+) => {
   if (offsetHeight === 0) {
     return;
   }
@@ -46,14 +60,19 @@ export const internalAnimationFrame = (cb: (v: unknown) => void) => {
 };
 
 export const transitionEndAsync = (el: HTMLElement) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
+    console.log('XXX end2');
     transitionEnd(el, resolve);
   });
 };
 
-export const transitionEnd = (el: HTMLElement, cb: (event?: TransitionEvent) => void) => {
+export const transitionEnd = (
+  el: HTMLElement,
+  cb: (event?: TransitionEvent) => void
+) => {
   const options: any = { passive: true };
   const onTransitionEndEvent = (e?: Event) => {
+    console.log('XXX end;;;');
     if (e === undefined || el === e.target) {
       remove();
       cb && cb(e as TransitionEvent);
@@ -65,6 +84,8 @@ export const transitionEnd = (el: HTMLElement, cb: (event?: TransitionEvent) => 
   };
 
   el.addEventListener('transitionend', onTransitionEndEvent, options);
+
+  console.log('XXX start.,,');
 
   return remove;
 };

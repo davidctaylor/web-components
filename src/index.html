@@ -31,10 +31,56 @@
         font-size: 32px;
         font-weight: bold;
       }
+
+      .carousel-card {
+        background-position: center;
+        background-size: cover;
+        width: 200px;
+        height: 125px;
+        // sbackground-color: aqua;
+      }
     </style>
   </head>
   <body>
-    <div style="width: 400px">
+    <div style="width: 1000px">
+      <dct-carousel>
+        <dct-card class="carousel-card">
+          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
+          <span slot="title">title1</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
+          <span slot="title">title2</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
+          <span slot="title">title3</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
+          <span slot="title">title4</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <span slot="title">5</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <span slot="title">title6</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <span slot="title">title7</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <span slot="title">title8</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <span slot="title">title9</span>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <span slot="title">10</span>
+        </dct-card>
+      </dct-carousel>
       <dct-list>
         <dct-item-heading slot="heading">
           <div slot="heading">List Heading</div>
