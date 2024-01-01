@@ -1,18 +1,79 @@
-import { h, Component, Element, Host } from '@stencil/core';
+import { h, forceUpdate, Component, Element, Event, EventEmitter, Host, Listen, Prop, Watch } from '@stencil/core';
+
+import { findSlottedElement } from '@utils/utils';
 import { CarouselEffect, CarouselState } from '../interfaces/carousel';
 import { CarouselMaterialEffect } from './carousel-material-effect';
+
+/**
+ * CarouselEventType
+ */
+export type CarouselEventType = { activeIndex: number, displayAll: boolean, card: HTMLElement };
 
 @Component({
   tag: 'dct-carousel',
   styleUrl: './carousel.scss',
-  shadow: {
-    delegatesFocus: true,
-  },
+  shadow: true,
+  // shadow: {
+  //   delegatesFocus: true,
+  // },
 })
-export class Card {
+export class Carousel {
+  private static _instanceCounter = 0;
+
   @Element() el!: HTMLDctCarouselElement;
 
+  @Prop() disabled = false;
+  /**
+   * If true, the carousel is in an render all state.
+   */
+  @Prop({ mutable: true }) displayAll = false;
+  @Watch('displayAll')
+  expandedChanged(newValue: boolean, oldValue: boolean) {
+    console.log('all', newValue);
+    if (newValue !== oldValue) {
+      if (newValue) {
+        this._carouselEffect.renderAll(this._carouselState, true);
+        this.carouselChange.emit({activeIndex: this._carouselState.activeIndex,
+          displayAll: this.displayAll,
+          card: this._carouselState.cards[this._carouselState.activeIndex]});
+
+        this._headingSlot.renderAll= true;
+      }
+      else {
+        this._headingSlot.renderAll= false;
+        this._carouselEffect.renderAll(this._carouselState, false);
+      }
+    }
+  }
+
+  @Listen('resize', { target: 'window' })
+  onResize() {
+    if (this._debounce) {
+      clearTimeout(this._debounce);
+      this._debounce = null;
+    }
+
+    this._debounce = setTimeout(() => {
+      if (this.el.offsetParent === null) {
+        return;
+      }
+
+      this._carouselState.width = this._carouselState.containerEl.getBoundingClientRect().width;
+
+      this._onScrollEvent();
+      forceUpdate(this);
+    }, 100);
+  }
+
+  /**
+   * Carousel change event emitter
+   */
+  @Event() carouselChange: EventEmitter<CarouselEventType>;
+
   private _abortController: AbortController = new AbortController();
+  private _buttonElement!: HTMLElement;
+  private _carouselId!: string;
+  private _carouselHeaderId!: string;
   private _carouselState: CarouselState = {
     activeIndex: 0,
     cards: [],
@@ -21,32 +82,33 @@ export class Card {
     cardWidthMin: 56,
     cardHeight: 0,
     position: {
+      active: false,
       startX: 0,
       startY: 0,
       currentX: 0,
       currentY: 0,
-      diff: 0,
+      previousX: 0,
+      previousY: 0,
     },
     width: 0,
     height: 0,
     containerEl: undefined,
   };
   private _carouselEffect: CarouselEffect = new CarouselMaterialEffect();
-
   private _contentEl!: HTMLElement;
+  private _debounce: ReturnType<typeof setTimeout> | null = null;
+  private _headingSlot: HTMLDctCarouselHeadingElement;
+
+  componentWillLoad() {
+    Carousel._instanceCounter += 1;
+    this._carouselId = `dct-carousel-${Carousel._instanceCounter}`;
+    this._carouselHeaderId = `dct-carousel-header-${Carousel._instanceCounter}`;
+  }
 
   componentDidLoad() {
     this._initializeCarousel();
     this._addEventListeners();
-
-    // setTimeout(() => {
-    //   this._carouselState.position.startX = 0;
-    //   this._carouselState.position.startY = 0;
-    //   this._carouselState.position.currentX = 1430;
-    //   this._carouselState.position.currentY = 0;
-
-    //   this._carouselEffect.update(this._carouselState);
-    // }, 2000);
+    this._headingSlot = this._slottedHeadingElement();
   }
 
   disconnectedCallback() {
@@ -57,16 +119,29 @@ export class Card {
     return (
       <Host
         class={{
-          'carousel-container': true,
-        }}
-      >
+        'carousel-container': true,
+      }}>
+        <button
+          id={this._carouselHeaderId}
+          aria-controls={this._carouselId}
+          aria-expanded={this.displayAll}
+          onClick={this._onClickHeading}
+          class={{
+            'carousel-heading': true,
+          }}
+          ref={(el) => (this._buttonElement = el)}
+        >
+          <slot name='heading'></slot>
+        </button>
+
         <div
           class={{
             carousel: true,
           }}
+          aria-labelledby={this._carouselHeaderId}
           ref={(el) => (this._contentEl = el)}
         >
-          <slot></slot>
+            <slot></slot>
         </div>
         <div
           class={{
@@ -99,7 +174,7 @@ export class Card {
       console.log(card, card.getBoundingClientRect());
     });
 
-    this._carouselEffect.update(this._carouselState);
+    this._carouselEffect.render(this._carouselState);
   }
 
   private _onClickNavigation(direction: 'prev' | 'next') {
@@ -114,81 +189,89 @@ export class Card {
     this._onClickPage(direction);
   }
 
+  private _onClickHeading = () => {
+    if (this.disabled) {
+      return;
+    }
+    this.displayAll = !this.displayAll;
+  };
+
   private _onClickPage(direction: 'prev' | 'next') {
     this._carouselEffect.next(this._carouselState, direction);
-    this._resetCarouselPosition();
+    this.carouselChange.emit({activeIndex: this._carouselState.activeIndex,
+      displayAll: this.displayAll,
+      card: this._carouselState.cards[this._carouselState.activeIndex]});
   }
 
   private _onScrollEvent() {
-    // const scrollX =
-    //   this._carouselState.position.currentX -
-    //   this._carouselState.position.startX;
-    // console.log('_onScrollEvent', scrollX);
-    // // if (scrollX > this._carouselState.cardWidth / 2) {
-    // //   this._carouselState.activeIndex += 1;
-    // //   this._resetCarouselPosition();
-    // //   console.log(
-    // //     'XXX new page',
-    // //     this._carouselState.activeIndex,
-    // //     this._carouselState.position
-    // //   );
-    // // }
-
-    this._carouselEffect.update(this._carouselState);
-    this._resetCarouselPosition();
+    // this._carouselEffect.scroll(this._carouselState);
+    this.carouselChange.emit({activeIndex: this._carouselState.activeIndex,
+      displayAll: this.displayAll,
+      card: this._carouselState.cards[this._carouselState.activeIndex]});
   }
 
-  private _resetCarouselPosition() {
-    this._carouselState.position.startX = 0;
-    this._carouselState.position.startY = 0;
-    this._carouselState.position.currentX = 0;
-    this._carouselState.position.startX = 0;
-    this._carouselState.position.currentY = 0;
+  private _slottedHeadingElement = () => {
+   return findSlottedElement(this._buttonElement, 'heading', 'DCT-CAROUSEL-HEADING') as HTMLDctCarouselHeadingElement;
   }
 
   private _addEventListeners() {
-    // this.el.addEventListener('scroll', (event) => {
-    //   console.log('XXX scroll', (event.target as HTMLElement).scrollLeft);
-    //   // this._intersecting((event.target as HTMLElement).scrollLeft);
-    // });
-    // this.el.addEventListener('scrollend', (event) => {
-    //   console.log('XXX scrollend', (event.target as HTMLElement).scrollLeft);
-    // });
-
     this._contentEl.addEventListener(
       'pointerdown',
       (event) => {
-        this._carouselState.position.startX = event.pageX;
-        this._carouselState.position.startY = event.pageY;
-        // console.log('XXX down', event, event.pageX, event.pageY);
+        // this._contentEl.setPointerCapture(event.pointerId);
+        if (event.isPrimary) {
+          if ((event.target as HTMLElement).hasPointerCapture(event.pointerId)) {
+            (event.target as HTMLElement).releasePointerCapture(event.pointerId);
+          }
+          this._carouselState.position.active = true;
+          this._carouselState.position.previousX =
+            this._carouselState.position.currentX;
+          this._carouselState.position.previousY =
+            this._carouselState.position.currentY;
+ 
+          this._carouselState.position.startX = event.pageX;
+          this._carouselState.position.startY = event.pageY;
+          console.log('XXX down:', this._carouselState.position.startX);
+          console.log('XXX down:', this._carouselState.position.currentX );
+        }
+      },
+      { signal: this._abortController.signal }
+    );
+    this._contentEl.addEventListener(
+      'pointerup',
+      (event) => {
+        this._carouselState.position.currentX = event.pageX;
+        this._carouselState.position.currentY = event.pageY;
+        console.log('XXX up1:', this._carouselState.position.startX );
+        console.log('XXX up2:', this._carouselState.position.currentX );
+        this._carouselState.position.active = false;
+        this._onScrollEvent();
+      },
+      { signal: this._abortController.signal }
+    );
+    this._contentEl.addEventListener(
+      'pointercancel',
+      () => {
+        console.log('XXXpointercancel ');
+        this._carouselState.position.active = false;
+        // this._resetCarouselPosition();
+        this._carouselState.position.startX = this._carouselState.position.previousX;
+        this._carouselState.position.startY = this._carouselState.position.previousY
+        this._onScrollEvent();
       },
       { signal: this._abortController.signal }
     );
     this._contentEl.addEventListener(
       'pointermove',
       (event) => {
-        // console.log('XXX pointermove', event, event.pageX, event.pageY);
-        // this._touch.currentX = event.pageX;
-        // this._touch.currentY = event.pageY;
-        // this._touch.diff = this._touch.currentX - this._touch.startX;
+        if (!this._carouselState.position.active) {
+          return;
+        }
         this._carouselState.position.currentX = event.pageX;
         this._carouselState.position.currentY = event.pageY;
-        // this._onScrollEvent();
+        this._onScrollEvent();
       },
       { signal: this._abortController.signal }
     );
   }
-
-  //   ['pointerup', 'mouseleave'].forEach(
-  //     (item) => {
-  //       this.el.addEventListener(item, () => {
-  //         // selectedItem = undefined;
-  //         // movement = false;
-  //         // document.querySelectorAll(`${config.carouselId} a`).forEach(function(item) {
-  //         //     item.style.pointerEvents = 'all';
-  //       });
-  //     },
-  //     { signal: this._abortController.signal }
-  //   );
-  // }
 }

@@ -1,5 +1,5 @@
 export default {
-  title: 'DCTComponents/List',
+  title: 'DCTComponents/Card',
   parameters: {
     actions: {},
   },

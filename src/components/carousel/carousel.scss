@@ -2,44 +2,103 @@
 
 :host(.carousel-container) {
   @include common.mixins-default-layout();
-  display: block;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
 
-  // position: relative;
+  display: flex;
+  flex-direction: column;
+  // background-color: aquamarine;
+  // display: block;
+  overflow: hidden;
+  height: auto;
+  width: auto;
+  position: relative;
   // top: 0;
   // left: 0;
   // z-index: 1;
   // overflow: hidden;
   // overflow-x: scroll;
-  // touch-action: pan-y;
+  touch-action: pan-y;
   // scroll-snap-type: x mandatory;
   // transition-property: transform;
+  // display: block;
+
+  .carousel-heading {
+    color: red;
+    background-color: yellow;
+    @include common.mixins-default-button();
+  }
+
 
   .carousel {
     display: flex;
-    list-style: none;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: 100%;
+    // flex-wrap: wrap;
+
+    row-gap: 16px;
+    background-color: paleturquoise;
+    width: auto;
+    height: auto;
+    box-sizing: content-box;
     position: relative;
     touch-action: pan-y;
+
+    // transition: all 100ms ease;
+
+    &.display-all {
+      flex-wrap: wrap;
+      // display: block;
+      // transition: all 100ms ease;
+    }
   }
 
-  slot {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-  }
+  // .carousel-wrapper {
+
+  //   display: flex;
+  //   // flex-wrap: wrap;
+  //   flex-flow: row wrap;
+  //   background-color: papayawhip;
+
+  //   ::part(wrapper) {
+  //     display: flex;
+  //     // flex-wrap: wrap;
+  //     flex-flow: row wrap;
+  //     background-color: green;
+  //     color: red;
+  //   }
+  // }
+
+  // .carousel-heading {
+  //   background-color: pink;
+  // }
+
+  // slot {
+  //   display: flex;
+  //   text-align: center;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
 
   ::slotted(dct-card) {
+    flex-shrink: 0;
     border-radius: 28px;
-    width: 0;
-    position: relative;
+    // position: absolute;
     overflow: hidden;
-    transition: all 1000ms ease;
+    transition: flex-basis 500ms ease;
+    // transition: all 500ms ease;
+    touch-action: none;
+  }
+
+  // ::slotted(.abc) {
+  //   // flex-shrink: 0;
+  //   // position: relative;
+  //   // flex-basis: 0;
+  //   // flex-grow: 1;
+  //   display: block;
+  // }
+}
+
+:host(.animate-rotation) {
+  slot[name='start'],
+  slot[name='end'] {
+    transform: rotate(90deg);
+    color: red;
   }
 }

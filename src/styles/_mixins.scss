@@ -1,4 +1,5 @@
 @use 'colors';
+@use 'components';
 @use 'typography';
 
 @mixin default-layout() {
@@ -16,6 +17,17 @@
   text-transform: inherit;
   text-align: inherit;
   white-space: inherit;
+}
+
+@mixin default-button() {
+  border: none;
+  background: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  padding-block: 0;
+  padding-inline: 0;
+  pointer-events: auto;
 }
 
 @mixin common-text($letter-spacing, $line-height) {
@@ -37,5 +49,8 @@
 }
 
 @mixin heading() {
-  padding: 0.5rem 1.4rem 0.5rem 1rem;
+  padding-top: components.$header-padding-top;
+  padding-right: components.$header-padding-right;
+  padding-bottom: components.$header-padding-bottom;
+  padding-left: components.$header-padding-left;
 }

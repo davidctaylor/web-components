@@ -1,0 +1,13 @@
+@use '../../styles' as common;
+
+:host(.card-content) {
+  @include common.mixins-default-layout();
+  display: block;
+  font-size: common.$typography-font-size-small;
+  letter-spacing: common.$typography-letter-spacing-small;
+  line-height: common.$typography-line-height-small;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

@@ -1,8 +1,6 @@
 import { h, Component, Element, Host, Prop, Watch } from '@stencil/core';
 import { hasSlot } from '@utils/utils';
 
-export type ListItemType = 'link' | 'text';
-
 /**
  * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
  * used once at the top of a List or Accordian component.
@@ -13,12 +11,12 @@ export type ListItemType = 'link' | 'text';
  *  @slot end - Container optional right side icon
  */
 @Component({
-  tag: 'dct-item-heading',
-  styleUrl: './item-heading.scss',
+  tag: 'dct-carousel-heading',
+  styleUrl: './carousel-heading.scss',
   shadow: true,
 })
-export class ItemHeading {
-  @Element() el!: HTMLDctItemHeadingElement;
+export class CarouselHeading {
+  @Element() el!: HTMLDctCarouselHeadingElement;
 
   /**
    * If true, animate the icon elements dct-item-heading icons in start and end
@@ -30,11 +28,11 @@ export class ItemHeading {
    */
   @Prop() disabled = false;
 
-  @Prop({ mutable: true }) rotateIcon = false;
-  @Watch('rotateIcon')
-  expandedChanged(newValue: boolean, oldValue: boolean) {
+  @Prop({ mutable: true }) renderAll = false;
+  @Watch('renderAll')
+  openChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
-      this.animateIcons && newValue ? this.el.classList.add('animate-rotation') : this.el.classList.remove('animate-rotation');
+      this.animateIcons && newValue ? this.el.classList.add('animate-render-all') : this.el.classList.remove('animate-render-all');
     }
   }
 
@@ -42,24 +40,18 @@ export class ItemHeading {
     return (
       <Host
         class={{
-          'item-heading': true,
+          'carousel-heading': true,
           disabled: this.disabled,
         }}
       >
-        {hasSlot(this.el, 'start') && (
-          <div class={{ icon: true, disabled: this.disabled }} >
-            <slot name="start" />
-          </div>
-        )}
         <div class='heading'>
           <slot name='heading' />
-          <slot name='sub-heading' />
+          {hasSlot(this.el, 'icon') && (
+            <div class={{ icon: true, disabled: this.disabled }}>
+              <slot name='icon' />
+            </div>
+          )}
         </div>
-        {hasSlot(this.el, 'end') && (
-          <div class={{ icon: true, disabled: this.disabled }}>
-            <slot name="end" />
-          </div>
-        )}
       </Host>
     );
   }

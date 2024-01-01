@@ -33,39 +33,62 @@
       }
 
       .carousel-card {
-        background-position: center;
-        background-size: cover;
-        width: 200px;
-        height: 125px;
-        // sbackground-color: aqua;
+        /* background-position: center;
+        background-size: cover; */
+        width: 300px;
+        height: 200px;
       }
+      .abc {
+        width: 300px;
+        height: 200px;
+        min-width: 300px;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
+      .def{
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      dct-carousel::part(wrapper) {
+        color: red;
+        background-color: green;
+        display: flex;
+        flex-flow: row wrap;
+    }
     </style>
   </head>
   <body>
-    <div style="width: 1000px">
       <dct-carousel>
+        <dct-carousel-heading slot="heading">
+          <div slot="heading">Show all</div>
+          <span slot="icon" class="material-symbols-outlined"
+            >arrow_forward</span
+          >
+        </dct-carousel-heading>
         <dct-card class="carousel-card">
-          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
-          <span slot="title">title1</span>
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <dct-card-title>title1</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
-          <span slot="title">title2</span>
-        </dct-card>
-        <dct-card class="carousel-card">
-          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
-          <span slot="title">title3</span>
-        </dct-card>
-        <dct-card class="carousel-card">
-          <!-- <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" /> -->
-          <span slot="title">title4</span>
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
+          <dct-card-title overlay="true">title2</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
           <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <dct-card-title overlay="true">title3</dct-card-title>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <dct-card-title overlay="true">title4</dct-card-title>
+        </dct-card>
+        <dct-card class="carousel-card">
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
           <span slot="title">5</span>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
           <span slot="title">title6</span>
         </dct-card>
         <dct-card class="carousel-card">
@@ -75,12 +98,38 @@
           <span slot="title">title8</span>
         </dct-card>
         <dct-card class="carousel-card">
-          <span slot="title">title9</span>
+          <dct-card-title overlay="true">title 9</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <span slot="title">10</span>
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
+          <dct-card-title overlay="true">title 10</dct-card-title>
         </dct-card>
       </dct-carousel>
+
+      <!-- <div>
+        <dct-card>
+          <dct-card-title>
+            <span>card title no image</span>
+            <span slot="sub-title">Some sub-heading</span>
+          </dct-card-title>
+          <dct-card-content>
+            <p>Some card content</p>
+            <p>Some card content</p>
+            <p>Some card content</p>
+            <p>Some card content</p>
+          </dct-card-content>
+        </dct-card>
+      </div>
+
+      <div>
+        <dct-card style="width: 400px">
+          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <dct-card-title overlay="true">Some card content title2</dct-card-title>
+        </dct-card>
+      </div>
+
+
+
       <dct-list>
         <dct-item-heading slot="heading">
           <div slot="heading">List Heading</div>
@@ -111,6 +160,7 @@
           <dct-item><div>Second according content</div></dct-item>
         </dct-accordian>
       </dct-accordian-controller>
+       -->
 
       <dct-accordian>
         <dct-item-heading slot="heading">

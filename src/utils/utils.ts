@@ -72,7 +72,6 @@ export const transitionEnd = (
 ) => {
   const options: any = { passive: true };
   const onTransitionEndEvent = (e?: Event) => {
-    console.log('XXX end;;;');
     if (e === undefined || el === e.target) {
       remove();
       cb && cb(e as TransitionEvent);
@@ -85,7 +84,27 @@ export const transitionEnd = (
 
   el.addEventListener('transitionend', onTransitionEndEvent, options);
 
-  console.log('XXX start.,,');
-
   return remove;
+};
+
+export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: string) => {
+  if (!el) {
+    return;
+  }
+
+  const slot: HTMLSlotElement = el.querySelector(
+    `slot[name="${slotName}"]`
+  );
+
+  const heading = slot
+    .assignedElements({ flatten: true })
+    .find((el) => el.tagName === tagName) as
+    | HTMLElement
+    | undefined;
+
+  if (!heading) {
+    return;
+  }
+
+  return heading;
 };

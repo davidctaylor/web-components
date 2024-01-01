@@ -6,8 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AccordianEventType } from "./components/accordian/accordian";
+import { CarouselEventType } from "./components/carousel/carousel";
 import { ItemType } from "./components/item/item";
 export { AccordianEventType } from "./components/accordian/accordian";
+export { CarouselEventType } from "./components/carousel/carousel";
 export { ItemType } from "./components/item/item";
 export namespace Components {
     /**
@@ -19,10 +21,6 @@ export namespace Components {
      * expannd and collapse events.
      */
     interface DctAccordian {
-        /**
-          * If true, animate the icon elements dct-item-heading icons in start and end
-         */
-        "animateIcons": boolean;
         /**
           * If true, the accordian is in a disabled state
          */
@@ -54,7 +52,7 @@ export namespace Components {
     }
     interface DctCard {
         /**
-          * List is in a disabled state
+          * Card is in a disabled state
          */
         "disabled": boolean;
         "elevated": boolean;
@@ -62,9 +60,34 @@ export namespace Components {
           * Optional list heading
          */
         "heading": string;
-        "oulined": boolean;
+        "outlined": boolean;
+    }
+    interface DctCardContent {
+    }
+    interface DctCardTitle {
+        "overlay": boolean;
     }
     interface DctCarousel {
+        "disabled": boolean;
+        /**
+          * If true, the carousel is in an render all state.
+         */
+        "displayAll": boolean;
+    }
+    /**
+     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
+     * used once at the top of a List or Accordian component.
+     */
+    interface DctCarouselHeading {
+        /**
+          * If true, animate the icon elements dct-item-heading icons in start and end
+         */
+        "animateIcons": boolean;
+        /**
+          * ItemHeading is in a disabled state
+         */
+        "disabled": boolean;
+        "renderAll": boolean;
     }
     interface DctDivider {
         /**
@@ -105,9 +128,14 @@ export namespace Components {
      */
     interface DctItemHeading {
         /**
+          * If true, animate the icon elements dct-item-heading icons in start and end
+         */
+        "animateIcons": boolean;
+        /**
           * ItemHeading is in a disabled state
          */
         "disabled": boolean;
+        "rotateIcon": boolean;
     }
     interface DctList {
         /**
@@ -123,6 +151,10 @@ export namespace Components {
 export interface DctAccordianCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDctAccordianElement;
+}
+export interface DctCarouselCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDctCarouselElement;
 }
 declare global {
     interface HTMLDctAccordianElementEventMap {
@@ -168,11 +200,44 @@ declare global {
         prototype: HTMLDctCardElement;
         new (): HTMLDctCardElement;
     };
+    interface HTMLDctCardContentElement extends Components.DctCardContent, HTMLStencilElement {
+    }
+    var HTMLDctCardContentElement: {
+        prototype: HTMLDctCardContentElement;
+        new (): HTMLDctCardContentElement;
+    };
+    interface HTMLDctCardTitleElement extends Components.DctCardTitle, HTMLStencilElement {
+    }
+    var HTMLDctCardTitleElement: {
+        prototype: HTMLDctCardTitleElement;
+        new (): HTMLDctCardTitleElement;
+    };
+    interface HTMLDctCarouselElementEventMap {
+        "carouselChange": CarouselEventType;
+    }
     interface HTMLDctCarouselElement extends Components.DctCarousel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDctCarouselElementEventMap>(type: K, listener: (this: HTMLDctCarouselElement, ev: DctCarouselCustomEvent<HTMLDctCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDctCarouselElementEventMap>(type: K, listener: (this: HTMLDctCarouselElement, ev: DctCarouselCustomEvent<HTMLDctCarouselElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLDctCarouselElement: {
         prototype: HTMLDctCarouselElement;
         new (): HTMLDctCarouselElement;
+    };
+    /**
+     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
+     * used once at the top of a List or Accordian component.
+     */
+    interface HTMLDctCarouselHeadingElement extends Components.DctCarouselHeading, HTMLStencilElement {
+    }
+    var HTMLDctCarouselHeadingElement: {
+        prototype: HTMLDctCarouselHeadingElement;
+        new (): HTMLDctCarouselHeadingElement;
     };
     interface HTMLDctDividerElement extends Components.DctDivider, HTMLStencilElement {
     }
@@ -211,7 +276,10 @@ declare global {
         "dct-accordian": HTMLDctAccordianElement;
         "dct-accordian-controller": HTMLDctAccordianControllerElement;
         "dct-card": HTMLDctCardElement;
+        "dct-card-content": HTMLDctCardContentElement;
+        "dct-card-title": HTMLDctCardTitleElement;
         "dct-carousel": HTMLDctCarouselElement;
+        "dct-carousel-heading": HTMLDctCarouselHeadingElement;
         "dct-divider": HTMLDctDividerElement;
         "dct-item": HTMLDctItemElement;
         "dct-item-heading": HTMLDctItemHeadingElement;
@@ -228,10 +296,6 @@ declare namespace LocalJSX {
      * expannd and collapse events.
      */
     interface DctAccordian {
-        /**
-          * If true, animate the icon elements dct-item-heading icons in start and end
-         */
-        "animateIcons"?: boolean;
         /**
           * If true, the accordian is in a disabled state
          */
@@ -267,7 +331,7 @@ declare namespace LocalJSX {
     }
     interface DctCard {
         /**
-          * List is in a disabled state
+          * Card is in a disabled state
          */
         "disabled"?: boolean;
         "elevated"?: boolean;
@@ -275,9 +339,38 @@ declare namespace LocalJSX {
           * Optional list heading
          */
         "heading": string;
-        "oulined"?: boolean;
+        "outlined"?: boolean;
+    }
+    interface DctCardContent {
+    }
+    interface DctCardTitle {
+        "overlay"?: boolean;
     }
     interface DctCarousel {
+        "disabled"?: boolean;
+        /**
+          * If true, the carousel is in an render all state.
+         */
+        "displayAll"?: boolean;
+        /**
+          * Carousel change event emitter
+         */
+        "onCarouselChange"?: (event: DctCarouselCustomEvent<CarouselEventType>) => void;
+    }
+    /**
+     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
+     * used once at the top of a List or Accordian component.
+     */
+    interface DctCarouselHeading {
+        /**
+          * If true, animate the icon elements dct-item-heading icons in start and end
+         */
+        "animateIcons"?: boolean;
+        /**
+          * ItemHeading is in a disabled state
+         */
+        "disabled"?: boolean;
+        "renderAll"?: boolean;
     }
     interface DctDivider {
         /**
@@ -318,9 +411,14 @@ declare namespace LocalJSX {
      */
     interface DctItemHeading {
         /**
+          * If true, animate the icon elements dct-item-heading icons in start and end
+         */
+        "animateIcons"?: boolean;
+        /**
           * ItemHeading is in a disabled state
          */
         "disabled"?: boolean;
+        "rotateIcon"?: boolean;
     }
     interface DctList {
         /**
@@ -336,7 +434,10 @@ declare namespace LocalJSX {
         "dct-accordian": DctAccordian;
         "dct-accordian-controller": DctAccordianController;
         "dct-card": DctCard;
+        "dct-card-content": DctCardContent;
+        "dct-card-title": DctCardTitle;
         "dct-carousel": DctCarousel;
+        "dct-carousel-heading": DctCarouselHeading;
         "dct-divider": DctDivider;
         "dct-item": DctItem;
         "dct-item-heading": DctItemHeading;
@@ -364,7 +465,14 @@ declare module "@stencil/core" {
              */
             "dct-accordian-controller": LocalJSX.DctAccordianController & JSXBase.HTMLAttributes<HTMLDctAccordianControllerElement>;
             "dct-card": LocalJSX.DctCard & JSXBase.HTMLAttributes<HTMLDctCardElement>;
+            "dct-card-content": LocalJSX.DctCardContent & JSXBase.HTMLAttributes<HTMLDctCardContentElement>;
+            "dct-card-title": LocalJSX.DctCardTitle & JSXBase.HTMLAttributes<HTMLDctCardTitleElement>;
             "dct-carousel": LocalJSX.DctCarousel & JSXBase.HTMLAttributes<HTMLDctCarouselElement>;
+            /**
+             * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
+             * used once at the top of a List or Accordian component.
+             */
+            "dct-carousel-heading": LocalJSX.DctCarouselHeading & JSXBase.HTMLAttributes<HTMLDctCarouselHeadingElement>;
             "dct-divider": LocalJSX.DctDivider & JSXBase.HTMLAttributes<HTMLDctDividerElement>;
             /**
              * Item are elements that can contain text, links or any other native elements and should

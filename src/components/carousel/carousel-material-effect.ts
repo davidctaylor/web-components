@@ -1,6 +1,25 @@
+import { transitionEnd } from '@utils/utils';
 import { CarouselEffect, CarouselState } from '../interfaces/carousel';
 
 export class CarouselMaterialEffect implements CarouselEffect {
+  public renderAll(carousel: CarouselState, isEnabled: boolean) {
+
+    if (isEnabled) {
+      carousel.containerEl.classList.add('display-all');
+      carousel.cards.forEach(card => {
+        card.style.width = `${carousel.cardWidth}px`;
+        card.style.flexBasis =  `${carousel.cardWidth}px`;
+        card.style.marginRight = `${carousel.cardSpacing}px`;
+      });
+    } else {
+      transitionEnd(carousel.cards[0], () => {
+        carousel.containerEl.classList.remove('display-all');
+      });
+
+      this.render(carousel);     
+    }
+  }
+  
   public next(carousel: CarouselState, direction: 'prev' | 'next') {
     if (
       direction === 'next' &&
@@ -16,16 +35,17 @@ export class CarouselMaterialEffect implements CarouselEffect {
     carousel.position.currentX = carousel.activeIndex * carousel.cardWidth;
     carousel.position.startX = 0;
 
-    this.update(carousel);
+    this.render(carousel);
   }
 
   public scroll(carousel: CarouselState) {
     const scrollX = carousel.position.currentX - carousel.position.startX;
-    carousel.activeIndex = Math.round(scrollX / carousel.cardWidth);
-    this.update(carousel);
+    carousel.activeIndex = Math.round(carousel.position.currentX / carousel.cardWidth);
+    console.log('_onScrollEvent', carousel.position.currentX, scrollX, carousel.activeIndex);
+    this.render(carousel);
   }
 
-  public update(carousel: CarouselState) {
+  public render(carousel: CarouselState) {
     let firstCard =
       carousel.activeIndex === 0 ||
       carousel.activeIndex === carousel.cards.length - 1
@@ -40,10 +60,7 @@ export class CarouselMaterialEffect implements CarouselEffect {
       widthAvailable -= cw;
     }
 
-    const cardsPending =
-      carousel.cards.length - carousel.activeIndex - cardSizes.length;
-
-    if (cardsPending > 0) {
+    if (carousel.cards.length - carousel.activeIndex > 0) {
       cardSizes[cardSizes.length - 1] = carousel.cardWidthMin;
       const fullCards = cardSizes.filter((cw) => cw === carousel.cardWidth);
       let remaining = carousel.width - cardSizes.reduce((a, b) => (a += b), 0);
@@ -56,15 +73,23 @@ export class CarouselMaterialEffect implements CarouselEffect {
       });
     }
 
+    console.log('xxx', cardSizes);
+
     let cardIdx = 0;
     for (let i = 0; i < carousel.cards.length; i += 1) {
-      if (i < carousel.activeIndex - 1 || i >= carousel.cards.length - 1) {
-        carousel.cards[i].style.width = `0px`;
+      if (i < carousel.activeIndex || i >= carousel.activeIndex + cardSizes.length) {
+        // carousel.cards[i].style.width = `0px`;
+        carousel.cards[i].style.flexBasis = '0px';
         carousel.cards[i].style.marginRight = `0px`;
         continue;
       }
-      carousel.cards[i].style.width = `${cardSizes[cardIdx]}px`;
-      carousel.cards[i].style.marginRight = `${carousel.cardSpacing}px`;
+      // carousel.cards[i].style.width = `${cardSizes[cardIdx]}px`;
+      carousel.cards[i].style.flexBasis = `${cardSizes[cardIdx]}px`;
+      if (cardIdx < cardSizes.length -1) {
+        carousel.cards[i].style.marginRight = `${carousel.cardSpacing}px`;
+      } else {
+        carousel.cards[i].style.marginRight = `0px`;
+      }
       cardIdx += 1;
     }
   }

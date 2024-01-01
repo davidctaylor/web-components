@@ -8,7 +8,7 @@ import {
   Prop,
   Watch,
 } from '@stencil/core';
-import { expandContent, collapseContent } from '@utils/utils';
+import { collapseContent, expandContent, findSlottedElement } from '@utils/utils';
 
 /**
  * AccordianEventType
@@ -45,11 +45,6 @@ export class Accordian {
   @Element() el!: HTMLDctAccordianElement;
 
   /**
-   * If true, animate the icon elements dct-item-heading icons in start and end
-   */
-  @Prop() animateIcons = true;
-
-  /**
    * If true, the accordian is in a disabled state
    */
   @Prop() disabled = false;
@@ -78,16 +73,13 @@ export class Accordian {
           this._contentSlotElement.offsetHeight
         );
         this._headingSlot &&
-          this.animateIcons &&
-          this._headingSlot.classList.add('animate-rotation');
+          (this._headingSlot.rotateIcon = true);
       } else {
         collapseContent(
           this._contentElement,
           this._contentSlotElement.offsetHeight
         );
-        this._headingSlot &&
-          this.animateIcons &&
-          this._headingSlot.classList.remove('animate-rotation');
+        this._headingSlot &&  (this._headingSlot.rotateIcon = false);
       }
     }
   }
@@ -102,7 +94,7 @@ export class Accordian {
   private _contentElement!: HTMLElement;
   private _buttonElement!: HTMLButtonElement;
   private _contentSlotElement!: HTMLElement;
-  private _headingSlot: HTMLElement;
+  private _headingSlot: HTMLDctItemHeadingElement;
 
   componentWillLoad() {
     Accordian._instanceCounter += 1;
@@ -120,7 +112,6 @@ export class Accordian {
         role="list"
         class={{
           'accordian-container': true,
-          'animate-icons': this.animateIcons,
           disabled: this.disabled,
           collapsed: !this.expanded,
         }}
@@ -171,19 +162,10 @@ export class Accordian {
   };
 
   private _slottedHeadingElement = () => {
+    const heading: HTMLDctItemHeadingElement = findSlottedElement(this._buttonElement, 'heading', 'DCT-ITEM-HEADING') as HTMLDctItemHeadingElement;
     if (!this._buttonElement) {
       return;
     }
-
-    const slot: HTMLSlotElement = this._buttonElement.querySelector(
-      'slot[name="heading"]'
-    );
-
-    const heading = slot
-      .assignedElements({ flatten: true })
-      .find((el) => el.tagName === 'DCT-ITEM-HEADING') as
-      | HTMLDctItemHeadingElement
-      | undefined;
 
     if (!heading) {
       return;

@@ -4,38 +4,34 @@
   @include common.mixins-default-layout();
   border-radius: 0.75rem;
   contain: content;
+  display: block;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  height: auto;
+  width: auto;
 
   ::slotted(img) {
+    aspect-ratio: 2;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     display: block;
     height: 100%;
-    object-fit: inherit;
-    object-position: inherit;
-    width: 100%;
+    object-fit: cover;
+    object-position: center;
     max-width: 100%;
-  }
-
-  .card-content-container {
-    padding: 1rem;
+    text-size-adjust: 100%;
     width: 100%;
-    display: block;
-    slot[name='title'] {
-      display: block;
-    }
 
-    slot[name='content'] {
-      display: block;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-      font-size: common.$typography-font-size-small;
-      letter-spacing: common.$typography-letter-spacing-small;
-      line-height: common.$typography-line-height-small;
-    }
+    // position: relative;
   }
 }
 
 :host(.card-elevated) {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+}
+
+:host(.card-outlined) {
+  border-bottom-color: common.$colors-accordian-border-color;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }
