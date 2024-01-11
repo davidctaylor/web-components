@@ -95,7 +95,7 @@ export class Card {
             role="listitem"
             target={this.target}
             aria-disabled={this.disabled}
-            class={{ 'item-heading': true }}
+            class={{ 'card-heading': true }}
             onClick={this._onClick}
           >
             <slot></slot>

@@ -92,20 +92,25 @@ export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: s
     return;
   }
 
-  const slot: HTMLSlotElement = el.querySelector(
-    `slot[name="${slotName}"]`
-  );
+  const query = `slot[name="${slotName}"]`;
+  let slot: HTMLSlotElement;
+  
+  if (el.shadowRoot) { 
+    slot = el.shadowRoot.querySelector(query );
+  }
+  slot = slot ? slot : el.querySelector(query);
+  console.log('slot', slot);
 
-  return slot
+
+  return slot ? slot 
     .assignedElements({ flatten: true })
     .find((el) => el.tagName === tagName) as
     | HTMLElement
-    | undefined;
+    | undefined : undefined;
 };
 
 export const addRipple = (el: HTMLElement, ev: Event) => {
   let ripple: HTMLDctRippleElement;
-  console.log('XXX el', el);
   if (el.shadowRoot) {
     ripple = el.shadowRoot.querySelector('dct-ripple');
   }
@@ -113,4 +118,20 @@ export const addRipple = (el: HTMLElement, ev: Event) => {
   ripple = ripple ? ripple : el.querySelector('dct-ripple');
   console.log('XXX rip:', ripple);
   ripple && ripple.addRipple(ev).then((res) => res());
+};
+
+export const pointerCoord = (event: any): { x: number; y: number } => {
+  // get X coordinates for either a mouse click
+  // or a touch depending on the given event
+  if (event) {
+    const changedTouches = event.changedTouches;
+    if (changedTouches && changedTouches.length > 0) {
+      const touch = changedTouches[0];
+      return { x: touch.clientX, y: touch.clientY };
+    }
+    if (event.pageX !== undefined) {
+      return { x: event.pageX, y: event.pageY };
+    }
+  }
+  return { x: 0, y: 0 };
 };

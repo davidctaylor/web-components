@@ -5,9 +5,16 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute   | Description | Type      | Default |
+| ----------- | ----------- | ----------- | --------- | ------- |
+| `unbounded` | `unbounded` |             | `boolean` | `false` |
+
+
 ## Methods
 
-### `addRipple(event: Event) => Promise<() => void>`
+### `addRipple(ev: Event) => Promise<() => void>`
 
 
 

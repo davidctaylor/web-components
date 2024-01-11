@@ -8,30 +8,10 @@ import {
   readTask,
   Prop,
 } from '@stencil/core';
+import { pointerCoord } from '@utils/utils'
 
 const PADDING = 10;
 const INITIAL_ORIGIN_SCALE = 0.5;
-
-const pointerCoord = (ev: any): { x: number; y: number } => {
-  // get X coordinates for either a mouse click
-  // or a touch depending on the given event
-  if (ev) {
-    const changedTouches = ev.changedTouches;
-    if (changedTouches && changedTouches.length > 0) {
-      const touch = changedTouches[0];
-      return { x: touch.clientX, y: touch.clientY };
-    }
-    if (ev.pageX !== undefined) {
-      return { x: ev.pageX, y: ev.pageY };
-    }
-  }
-  return { x: 0, y: 0 };
-};
-
-const removeRipple = (el: HTMLElement) => {
-  el.classList.add('ripple-fade-out');
-  setTimeout(() => el.remove(), 200);
-};
 
 /**
  * 
@@ -44,7 +24,7 @@ const removeRipple = (el: HTMLElement) => {
 export class Ripple {
   @Element() el!: HTMLElement;
 
-  @Prop() unbounded = true;
+  @Prop() unbounded = false;
 
   @Method()
   async addRipple(ev: Event) {
@@ -84,7 +64,7 @@ export class Ripple {
           const container = this.el.shadowRoot || this.el;
           container.appendChild(elem);
           setTimeout(() => {
-            resolve(() => removeRipple(elem));
+            resolve(() => this._removeRipple(elem));
           }, 225 + 100);
         });
       });
@@ -94,6 +74,9 @@ export class Ripple {
   render() {
     return <Host role="presentation"></Host>;
   }
+
+  private _removeRipple = (el: HTMLElement) => {
+    el.classList.add('ripple-fade-out');
+    setTimeout(() => el.remove(), 200);
+  };
 }
-
-

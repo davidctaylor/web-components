@@ -27,7 +27,7 @@ CardHeader.args = {
   disabled: false,
   overlay: false,
   title: `Card title`,
-  subHeading: `Card sub heading<span>`,
+  subHeading: `Card sub heading`,
   startIcon: undefined,
   endIcon: 'more_vert',
 };

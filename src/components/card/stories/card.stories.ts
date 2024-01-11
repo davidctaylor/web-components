@@ -9,10 +9,10 @@ const Template = (args) => {
   return `
     <dct-card disabled=${args.disabled} border=${args.border} href="${args.href}">
       ${args.addRipple ? `<dct-ripple></dct-ripple>` : ``}
-      <dct-card-title>
+      <dct-card-header>
         <span>Card Title</span>
-        <span slot="sub-title">Card sub title</span>
-      </dct-card-title>
+        <span slot="sub-heading">Card sub title</span>
+      </dct-card-header>
       <dct-card-content><div>Text description for the card's content</div></dct-card-content>
     </dct-card>`;
 };

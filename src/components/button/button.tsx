@@ -1,4 +1,4 @@
-import { h, Component, Element, Event, EventEmitter, Host, Prop } from '@stencil/core';
+import { h, Component, Element, Event, EventEmitter, Host, Prop, Watch } from '@stencil/core';
 import { addRipple } from '@utils/utils';
 
 @Component({
@@ -12,36 +12,26 @@ export class Button {
   /**
    * 
    */
-  @Prop() disabled = false;
+  @Prop({ reflect: true }) disabled = false;
 
   /**
    * Button event emitter
    */
-  @Event() buttonClickEvent: EventEmitter<void>;
-
-  // componentWillLoad() {
-  // }
-
-  // componentDidLoad() {
-  // }
-  
-  // disconnectedCallback() {
-  // }
+  @Event() dctButtonClick: EventEmitter<void>;
 
   render() {
     return (
       <Host
         class={{
-        'button': true,
+        'button-container': true,
+        disabled: this.disabled,
+        icon: true,
       }}>
           <button 
             aria-disabled={this.disabled}
-            onClick={(event) => this._onClick(event)}
-            class={{
-              disabled: false,
-              icon: true,
-            }}>
+            onClick={(event) => this._onClick(event)}>
             <slot/>
+            <dct-ripple></dct-ripple>
           </button>
       </Host>
     );
@@ -49,6 +39,6 @@ export class Button {
 
   private _onClick(event: Event) {
     addRipple(this.el, event);
-    this.buttonClickEvent.emit();
+    this.dctButtonClick.emit();
   }
 }

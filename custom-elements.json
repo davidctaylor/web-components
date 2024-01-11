@@ -51,6 +51,19 @@
       ]
     },
     {
+      "name": "dct-button",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": ""
+        }
+      ]
+    },
+    {
       "name": "dct-card",
       "description": {
         "kind": "markdown",
@@ -273,7 +286,12 @@
         "kind": "markdown",
         "value": ""
       },
-      "attributes": []
+      "attributes": [
+        {
+          "name": "unbounded",
+          "description": ""
+        }
+      ]
     }
   ]
 }

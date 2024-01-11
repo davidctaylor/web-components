@@ -24,44 +24,14 @@
 
   display: flex;
   align-items: center;
+  gap: 2rem;
   justify-content: center;
-  overflow: hidden;
   height: auto;
   width: auto;
+  overflow: hidden;
   position: relative;
   padding-left: var(--dct-card-header-padding-left);
   padding-right: var(--dct-card-header-padding-right);
   padding-top: var(--dct-card-header-padding-top);
   padding-bottom: var(--dct-card-header-padding-bottom);
-
-  // button {
-  //   @include common.mixins-default-button();
-  //   &.disabled-prev,
-  //   &.disabled-next {
-  //     pointer-events: none;
-  //     ::slotted(*) {
-  //       color: common.$colors-disabled !important;
-  //     }     
-  //   }
-  // }
-
-  // slot[name="previous"] {
-  //   padding-right: 2rem;
-  // }
-  // slot[name="next"] {
-  //   padding-left: 2rem;
-  // }
-
-  // slot[name="previous"],
-  // slot[name="next"] {
-  //   align-items: center;
-  //   display: flex;
-  //   height: common.$components-icon-height;
-  //   width: common.$components-icon-width;
-  //   justify-content: center;
-  //   overflow: hidden;
-  //   margin-left: common.$components-header-padding-left;
-  //   transition: transform common.$animate-transition-duration
-  //     common.$animate-transition-easing;
-  // }
 }

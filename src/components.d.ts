@@ -248,7 +248,7 @@ declare global {
         new (): HTMLDctAccordianControllerElement;
     };
     interface HTMLDctButtonElementEventMap {
-        "buttonClickEvent": void;
+        "dctButtonClick": void;
     }
     interface HTMLDctButtonElement extends Components.DctButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDctButtonElementEventMap>(type: K, listener: (this: HTMLDctButtonElement, ev: DctButtonCustomEvent<HTMLDctButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -434,7 +434,7 @@ declare namespace LocalJSX {
         /**
           * Button event emitter
          */
-        "onButtonClickEvent"?: (event: DctButtonCustomEvent<void>) => void;
+        "onDctButtonClick"?: (event: DctButtonCustomEvent<void>) => void;
     }
     /**
      * Card
