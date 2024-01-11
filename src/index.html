@@ -60,48 +60,97 @@
     </style>
   </head>
   <body>
-      <dct-carousel>
-        <dct-carousel-heading slot="heading">
-          <div slot="heading">Show all</div>
-          <span slot="icon" class="material-symbols-outlined"
-            >arrow_forward</span
-          >
-        </dct-carousel-heading>
+<!-- 
+    <dct-card class="carousel-card"  href="http://google.com">
+      <img src="/assets/mountain-road.webp"/>
+      <dct-card-title overlay="true">
+        <span >title1</span>
+        <span slot="sub-title">Sub card title<span>
+      </dct-card-title>
+      <dct-card-content><div>card content....</div></dct-card-content>
+    </dct-card>
+    <dct-card class="carousel-card"  href="http://google.com">
+      <img src="/assets/mountain-road.webp"/>
+      <dct-card-title overlay="true">
+        <span >title1</span>
+      </dct-card-title>
+      <dct-card-content><div>card content....</div></dct-card-content>
+    </dct-card> -->
+
+    <dct-carousel header-text="Show all">
+      <dct-carousel-controls slot="controls">
+        <dct-button slot="previous" >
+          <dct-ripple></dct-ripple>
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </dct-button>
+        <dct-button slot="next" >
+          <!-- <dct-ripple></dct-ripple> -->
+          <span>h</span>
+        </dct-button>
+        <!-- <span slot="next" class="material-symbols-outlined">arrow_forward_ios</span> -->
+      </dct-carousel-controls>
+      <span slot="icon" class="material-symbols-outlined"
+      >arrow_forward</span
+    >
+      <dct-card class="carousel-card">
+        <dct-card-title>
+          <span>title1</span>
+          <span slot="sub-title">Sub card title<span>
+        </dct-card-title>
+        <dct-card-content><div>card content....</div></dct-card-content>
+      </dct-card>
+      <dct-card class="carousel-card">
+        <dct-card-title overlay="true">title2</dct-card-title>
+      </dct-card>
+      <dct-card class="carousel-card">
+        <img src="/assets/mountain-road.webp" />
+        <dct-card-title overlay="true">title3</dct-card-title>
+      </dct-card>
+    </dct-carousel>
+    
+    
+      <dct-carousel header-text="Show all">
+        <dct-carousel-controls slot="controls"></dct-carousel-controls>
+        <span slot="icon" class="material-symbols-outlined"
+        >arrow_forward</span
+      >
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
-          <dct-card-title>title1</dct-card-title>
+          <dct-card-title>
+            <span>title1</span>
+            <span slot="sub-title">Sub card title<span>
+          </dct-card-title>
+          <dct-card-content><div>card content....</div></dct-card-content>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
           <dct-card-title overlay="true">title2</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <img src="/assets/mountain-road.webp" />
           <dct-card-title overlay="true">title3</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg" />
+          <img src="/assets/mountain-road.webp" />
           <dct-card-title overlay="true">title4</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
-          <span slot="title">5</span>
+          <img src="/assets/mountain-road.webp"/>
+          <dct-card-title overlay="true">title5</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
-          <span slot="title">title6</span>
+          <img src="/assets/mountain-road.webp"/>
+          <dct-card-title overlay="true">title6</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <span slot="title">title7</span>
+          <dct-card-title>title7</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <span slot="title">title8</span>
+          <dct-card-title>title8</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
           <dct-card-title overlay="true">title 9</dct-card-title>
         </dct-card>
         <dct-card class="carousel-card">
-          <img src="/assets/mars-plex-knH05eGDEwc-unsplash.jpg"/>
+          <img src="/assets/mountain-road.webp"/>
           <dct-card-title overlay="true">title 10</dct-card-title>
         </dct-card>
       </dct-carousel>

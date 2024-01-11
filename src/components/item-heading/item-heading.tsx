@@ -21,7 +21,7 @@ export class ItemHeading {
   @Element() el!: HTMLDctItemHeadingElement;
 
   /**
-   * If true, animate the icon elements dct-item-heading icons in start and end
+   * If true, animate the icon elementsicons in start and end slots
    */
   @Prop() animateIcons = true;
 
@@ -30,6 +30,9 @@ export class ItemHeading {
    */
   @Prop() disabled = false;
 
+  /**
+   * * If true, icon is in a rotated state
+   */
   @Prop({ mutable: true }) rotateIcon = false;
   @Watch('rotateIcon')
   expandedChanged(newValue: boolean, oldValue: boolean) {

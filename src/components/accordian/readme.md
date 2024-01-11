@@ -15,12 +15,11 @@ expannd and collapse events.
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                           | Type                            | Default  |
-| -------------- | --------------- | ------------------------------------------------------------------------------------- | ------------------------------- | -------- |
-| `animateIcons` | `animate-icons` | If true, animate the icon elements dct-item-heading icons in start and end            | `boolean`                       | `true`   |
-| `disabled`     | `disabled`      | If true, the accordian is in a disabled state                                         | `boolean`                       | `false`  |
-| `divider`      | `divider`       | If set to `full` or `partial`, displays a divider or separator line for the accordian | `"full" \| "none" \| "partial"` | `'full'` |
-| `expanded`     | `expanded`      | If true, the accordian is in an expanded state.                                       | `boolean`                       | `false`  |
+| Property   | Attribute  | Description                                                                           | Type                            | Default  |
+| ---------- | ---------- | ------------------------------------------------------------------------------------- | ------------------------------- | -------- |
+| `disabled` | `disabled` | If true, the accordian is in a disabled state                                         | `boolean`                       | `false`  |
+| `divider`  | `divider`  | If set to `full` or `partial`, displays a divider or separator line for the accordian | `"full" \| "none" \| "partial"` | `'full'` |
+| `expanded` | `expanded` | If true, the accordian is in an expanded state.                                       | `boolean`                       | `false`  |
 
 
 ## Events
@@ -40,12 +39,12 @@ expannd and collapse events.
 
 ## CSS Custom Properties
 
-| Name                            | Description                         |
-| ------------------------------- | ----------------------------------- |
-| `--dct-accordian-padding-let`   | padding list item content container |
-| `--dct-accordian-padding-right` | padding list item content container |
-| `--dct-item-padding-bottom`     | padding list item content container |
-| `--dct-item-padding-top`        | padding list item content container |
+| Name                             | Description                      |
+| -------------------------------- | -------------------------------- |
+| `--dct-accordian-padding-bottom` | accordian content padding bottom |
+| `--dct-accordian-padding-letf`   | accordian content padding left   |
+| `--dct-accordian-padding-right`  | accordian content padding right  |
+| `--dct-accordian-padding-top`    | accordian content padding top    |
 
 
 ----------------------------------------------

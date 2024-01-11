@@ -59,7 +59,7 @@ export class AccordianController {
   }
 
   @Listen('accordianChange', { target: 'body' })
-  onListItemChange(event: CustomEvent) {
+  onAccordianChange(event: CustomEvent) {
     if (this.displayMultiple) {
       return;
     }

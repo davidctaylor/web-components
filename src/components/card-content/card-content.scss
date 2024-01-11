@@ -1,13 +1,42 @@
 @use '../../styles' as common;
 
+:host {
+  /**
+  * @prop --dct-card-content-padding-letf: card content padding left
+  */
+  --dct-card-content-padding-left: 1rem;
+  /**
+  * @prop --dct-card-content-padding-right: card content padding right
+  */
+  --dct-card-content-padding-right: 1rem;
+  /**
+  * @prop --dct-card-content-padding-padding-top: card content padding top
+  */
+  --dct-card-content-padding-top: 1rem;
+  /**
+  * @prop --dct-card-content-padding-padding-bottom: card content padding bottom
+  */
+  --dct-card-content-padding-bottom: 1rem;
+}
+
 :host(.card-content) {
   @include common.mixins-default-layout();
+  @include common.mixins-host-disabled();
+
   display: block;
   font-size: common.$typography-font-size-small;
   letter-spacing: common.$typography-letter-spacing-small;
   line-height: common.$typography-line-height-small;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-left: var(--dct-card-content-padding-left);
+  padding-right: var(--dct-card-content-padding-right);
+  padding-top: var(--dct-card-content-padding-top);
+  padding-bottom: var(--dct-card-content-padding-bottom);
+}
+
+:host(.disabled) {
+  color: common.$colors-disabled;
+}
+
+:host(.card-small) {
+  display: none;
 }

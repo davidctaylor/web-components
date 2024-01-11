@@ -32,7 +32,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "storybook": "storybook dev -p 6006 -s dist",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -s dist"
   },
   "dependencies": {

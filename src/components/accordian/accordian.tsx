@@ -29,8 +29,8 @@ export interface AccordianCustomEvent extends CustomEvent {
  * the display of accordian title and optional icon elements. The heading record acts a button controlling
  * expannd and collapse events.
  *
- * @slot header - Header content is placed within an button element and is used to expand or collapse the accordion item.
  * @slot slot - Container for the accordian content
+ * @slot header - Header content is placed within an button element and is used to expand or collapse the accordion item.
  */
 @Component({
   tag: 'dct-accordian',

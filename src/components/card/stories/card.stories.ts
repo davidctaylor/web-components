@@ -6,20 +6,48 @@ export default {
 };
 
 const Template = (args) => {
-  const item = (title) => `
-    <dct-item separator=${args.itemSeparator}><div>${title} according content</div></dct-item>`;
-
   return `
-    <dct-list disabled=${args.disabled} heading="${args.heading}"">
-      ${item('First')}
-      ${item('Second')}
-      ${item('Third')}
-    </dct-list>`;
+    <dct-card disabled=${args.disabled} border=${args.border} href="${args.href}">
+      ${args.addRipple ? `<dct-ripple></dct-ripple>` : ``}
+      <dct-card-title>
+        <span>Card Title</span>
+        <span slot="sub-title">Card sub title</span>
+      </dct-card-title>
+      <dct-card-content><div>Text description for the card's content</div></dct-card-content>
+    </dct-card>`;
 };
 
-export const List = Template.bind({});
-List.args = {
+const TemplateWithMedia = (args) => {
+  return `
+    <div style="height:300px; width:500px">
+      <dct-card disabled=${args.disabled} border=${args.border} href="${args.href}">
+        ${args.addRipple ? `<dct-ripple></dct-ripple>` : ``}
+        ${args.mediaAbove ? '<img src="mountain-road.webp"/>' : ''}
+        <dct-card-title overlay=${args.titleOverlay}>
+          <span>Card Title</span>
+          <span slot="sub-title">Card sub title</span>
+        </dct-card-title>
+        <dct-card-content><div>Text description for the card's content</div></dct-card-content>
+        ${!args.mediaAbove ? '<img src="mountain-road.webp"/>' : ''}
+      </dct-card>
+    </div>`;
+};
+
+export const Card = Template.bind({});
+Card.args = {
   disabled: false,
-  itemSeparator: 'full',
-  heading: 'List Heading',
+  border: 'elevated',
+  href: 'https://google.com',
+  addRipple: true,
+};
+
+
+export const CardWithMedia = TemplateWithMedia.bind({});
+CardWithMedia.args = {
+  disabled: false,
+  border: 'elevated',
+  titleOverlay: false,
+  mediaAbove: true,
+  href: 'https://google.com',
+  addRipple: true,
 };

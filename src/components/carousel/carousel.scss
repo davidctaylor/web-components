@@ -1,104 +1,113 @@
-@use '../../styles' as common;
+@use "../../styles" as common;
 
 :host(.carousel-container) {
   @include common.mixins-default-layout();
 
   display: flex;
   flex-direction: column;
-  // background-color: aquamarine;
-  // display: block;
   overflow: hidden;
   height: auto;
   width: auto;
   position: relative;
-  // top: 0;
-  // left: 0;
-  // z-index: 1;
-  // overflow: hidden;
-  // overflow-x: scroll;
-  touch-action: pan-y;
-  // scroll-snap-type: x mandatory;
-  // transition-property: transform;
-  // display: block;
+  touch-action: none;
+  scroll-snap-type: x mandatory;
 
-  .carousel-heading {
-    color: red;
-    background-color: yellow;
+  .carousel-header-footer {
     @include common.mixins-default-button();
-  }
+    @include common.mixins-hover-event();
+    @include common.mixins-heading();
 
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    transition: transform common.$animate-transition-duration
+      common.$animate-transition-easing;
+
+    &.footer {
+      justify-content: flex-end;
+    }
+
+    .content {
+      align-items: center;
+      display: flex;
+      transition: transform common.$animate-transition-duration
+        common.$animate-transition-easing;
+
+      &.footer {
+        .icon {
+          opacity: 0;
+          transition: opacity common.$animate-transition-duration
+            common.$animate-transition-easing;
+        }
+      }
+    }
+
+    .icon slot[name="icon"] {
+      align-items: center;
+      display: flex;
+      height: common.$components-icon-height;
+      width: common.$components-icon-width;
+      justify-content: center;
+      overflow: hidden;
+      margin-left: common.$components-header-padding-left;
+      transition: transform common.$animate-transition-duration
+        common.$animate-transition-easing;
+    }
+
+    &.render-all {
+      .icon slot[name="icon"] {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .carousel-header-footer:has(.footer) {
+    &.render-all {
+      transform: translateX(
+        calc(-1 * ((100% - 2rem) - common.$components-icon-width))
+      );
+
+      .icon {
+        opacity: 1;
+      }
+    }
+  }
+  .carousel-header-footer:not(:has(.footer)) {
+    &.render-all {
+      .content {
+        transform: translateX(
+          calc(-1 * ((100% + 0.5rem) - common.$components-icon-width))
+        );
+      }
+    }
+  }
 
   .carousel {
     display: flex;
-    // flex-wrap: wrap;
-
     row-gap: 16px;
-    background-color: paleturquoise;
     width: auto;
     height: auto;
     box-sizing: content-box;
     position: relative;
-    touch-action: pan-y;
-
-    // transition: all 100ms ease;
+    touch-action: pan-x; // manipulation;
 
     &.display-all {
       flex-wrap: wrap;
-      // display: block;
-      // transition: all 100ms ease;
     }
   }
-
-  // .carousel-wrapper {
-
-  //   display: flex;
-  //   // flex-wrap: wrap;
-  //   flex-flow: row wrap;
-  //   background-color: papayawhip;
-
-  //   ::part(wrapper) {
-  //     display: flex;
-  //     // flex-wrap: wrap;
-  //     flex-flow: row wrap;
-  //     background-color: green;
-  //     color: red;
-  //   }
-  // }
-
-  // .carousel-heading {
-  //   background-color: pink;
-  // }
-
-  // slot {
-  //   display: flex;
-  //   text-align: center;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
 
   ::slotted(dct-card) {
     flex-shrink: 0;
     border-radius: 28px;
-    // position: absolute;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     overflow: hidden;
     transition: flex-basis 500ms ease;
-    // transition: all 500ms ease;
-    touch-action: none;
+    // transition: transform common.$animate-transition-duration
+      // common.$animate-transition-easing;
   }
-
-  // ::slotted(.abc) {
-  //   // flex-shrink: 0;
-  //   // position: relative;
-  //   // flex-basis: 0;
-  //   // flex-grow: 1;
-  //   display: block;
-  // }
-}
-
-:host(.animate-rotation) {
-  slot[name='start'],
-  slot[name='end'] {
-    transform: rotate(90deg);
-    color: red;
+  
+  ::slotted(dct-card:hover) {
+    transform: scale(1.04);
   }
 }

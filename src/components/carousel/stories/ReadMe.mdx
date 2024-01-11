@@ -1,0 +1,16 @@
+import { Markdown, Meta, Story, Canvas } from '@storybook/blocks';
+import readme from '../readme.md?raw';
+
+import * as CarouselStories from './carousel.stories';
+
+<Meta title="DCTComponents/Carousel" of={CarouselStories} />
+
+## Carousel Component
+
+<Canvas>
+  <Story>
+    <dct-carousel />
+  </Story>
+</Canvas>
+
+<Markdown>{readme}</Markdown>

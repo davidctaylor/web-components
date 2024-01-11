@@ -15,11 +15,13 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    font-weight: 500;
     justify-content: center;
 
     slot[name='sub-heading'] {
       color: common.$colors-secondary;
       font-size: common.$typography-font-size-small;
+      font-weight: common.$typography-font-weight-bold;
       letter-spacing: common.$typography-letter-spacing-small;
       line-height: common.$typography-line-height-small;
     }

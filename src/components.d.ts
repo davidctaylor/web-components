@@ -6,10 +6,12 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AccordianEventType } from "./components/accordian/accordian";
-import { CarouselEventType } from "./components/carousel/carousel";
+import { CardBorderType } from "./components/card/card";
+import { CarouselCardEventType, CarouselEventType } from "./components/interfaces/carousel";
 import { ItemType } from "./components/item/item";
 export { AccordianEventType } from "./components/accordian/accordian";
-export { CarouselEventType } from "./components/carousel/carousel";
+export { CardBorderType } from "./components/card/card";
+export { CarouselCardEventType, CarouselEventType } from "./components/interfaces/carousel";
 export { ItemType } from "./components/item/item";
 export namespace Components {
     /**
@@ -50,44 +52,84 @@ export namespace Components {
          */
         "displayMultiple": boolean;
     }
-    interface DctCard {
-        /**
-          * Card is in a disabled state
-         */
+    interface DctButton {
         "disabled": boolean;
-        "elevated": boolean;
-        /**
-          * Optional list heading
-         */
-        "heading": string;
-        "outlined": boolean;
-    }
-    interface DctCardContent {
-    }
-    interface DctCardTitle {
-        "overlay": boolean;
-    }
-    interface DctCarousel {
-        "disabled": boolean;
-        /**
-          * If true, the carousel is in an render all state.
-         */
-        "displayAll": boolean;
     }
     /**
-     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-     * used once at the top of a List or Accordian component.
+     * Card
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     * Cards and created from title, subtitle and content elements and have been broken into
+     * multiple components to support this structure.
      */
-    interface DctCarouselHeading {
+    interface DctCard {
         /**
-          * If true, animate the icon elements dct-item-heading icons in start and end
+          * The Card's border style. Solid, elevated or none. Default elevated, shadow style border.
          */
-        "animateIcons": boolean;
+        "border": CardBorderType;
         /**
-          * ItemHeading is in a disabled state
+          * Card is in a disabled state. Setting this state will also set the disabled property of any child components
          */
         "disabled": boolean;
+        /**
+          * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
+         */
+        "href": string;
+        /**
+          * Applies when a href value is provided. It contains the target value to display the linked URL Default value _blank;
+         */
+        "target": string;
+    }
+    /**
+     * Card Content
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     */
+    interface DctCardContent {
+        "disabled": boolean;
+    }
+    /**
+     * Card Header
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     */
+    interface DctCardHeader {
+        /**
+          * If true, the card title is in a disabled state
+         */
+        "disabled": boolean;
+        /**
+          * If true, the card title will be in an overaly state. Primarily for use  when the parent Card is displaying an Image only allowin the title to be displayed on top of the image
+         */
+        "overlay": boolean;
+    }
+    /**
+     * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+     * follwowing features
+     * * Contain visual items like images or video, along with optional label text
+     * * Four layouts: Multi-browse, uncontained, hero, and full-screen
+     * * Layouts can be start-aligned or center-aligned
+     * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+     */
+    interface DctCarousel {
+        "allCards": () => Promise<HTMLDctCardElement[]>;
+        "disabled": boolean;
+        /**
+          * Optional text to display in Carousels footer element determine if all carousel cards are visible
+         */
+        "footerText": string;
+        /**
+          * Optional text to display in Carousels header element determine if all carousel cards are visible
+         */
+        "headerText": string;
+        "navigate": (direction: 'prev' | 'next') => Promise<void>;
+        /**
+          * If true, the carousel is in an render all state and all Carousel cards will be displayed in a grid layout
+         */
         "renderAll": boolean;
+    }
+    interface DctCarouselControls {
+        "disabled": boolean;
     }
     interface DctDivider {
         /**
@@ -114,7 +156,7 @@ export namespace Components {
          */
         "separator": 'full' | 'partial' | 'none';
         /**
-          * Used if type link. In this case the is defined as an anchor element and requires the target value
+          * Used if type link. In this case the is defined as an anchor element and requires the target value Default value _blank;
          */
         "target": string;
         /**
@@ -128,13 +170,16 @@ export namespace Components {
      */
     interface DctItemHeading {
         /**
-          * If true, animate the icon elements dct-item-heading icons in start and end
+          * If true, animate the icon elementsicons in start and end slots
          */
         "animateIcons": boolean;
         /**
           * ItemHeading is in a disabled state
          */
         "disabled": boolean;
+        /**
+          * * If true, icon is in a rotated state
+         */
         "rotateIcon": boolean;
     }
     interface DctList {
@@ -147,10 +192,18 @@ export namespace Components {
          */
         "heading": string;
     }
+    interface DctRipple {
+        "addRipple": (ev: Event) => Promise<() => void>;
+        "unbounded": boolean;
+    }
 }
 export interface DctAccordianCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLDctAccordianElement;
+}
+export interface DctButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDctButtonElement;
 }
 export interface DctCarouselCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -194,27 +247,70 @@ declare global {
         prototype: HTMLDctAccordianControllerElement;
         new (): HTMLDctAccordianControllerElement;
     };
+    interface HTMLDctButtonElementEventMap {
+        "buttonClickEvent": void;
+    }
+    interface HTMLDctButtonElement extends Components.DctButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDctButtonElementEventMap>(type: K, listener: (this: HTMLDctButtonElement, ev: DctButtonCustomEvent<HTMLDctButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDctButtonElementEventMap>(type: K, listener: (this: HTMLDctButtonElement, ev: DctButtonCustomEvent<HTMLDctButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDctButtonElement: {
+        prototype: HTMLDctButtonElement;
+        new (): HTMLDctButtonElement;
+    };
+    /**
+     * Card
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     * Cards and created from title, subtitle and content elements and have been broken into
+     * multiple components to support this structure.
+     */
     interface HTMLDctCardElement extends Components.DctCard, HTMLStencilElement {
     }
     var HTMLDctCardElement: {
         prototype: HTMLDctCardElement;
         new (): HTMLDctCardElement;
     };
+    /**
+     * Card Content
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     */
     interface HTMLDctCardContentElement extends Components.DctCardContent, HTMLStencilElement {
     }
     var HTMLDctCardContentElement: {
         prototype: HTMLDctCardContentElement;
         new (): HTMLDctCardContentElement;
     };
-    interface HTMLDctCardTitleElement extends Components.DctCardTitle, HTMLStencilElement {
+    /**
+     * Card Header
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     */
+    interface HTMLDctCardHeaderElement extends Components.DctCardHeader, HTMLStencilElement {
     }
-    var HTMLDctCardTitleElement: {
-        prototype: HTMLDctCardTitleElement;
-        new (): HTMLDctCardTitleElement;
+    var HTMLDctCardHeaderElement: {
+        prototype: HTMLDctCardHeaderElement;
+        new (): HTMLDctCardHeaderElement;
     };
     interface HTMLDctCarouselElementEventMap {
         "carouselChange": CarouselEventType;
+        "carouselCardChange": CarouselCardEventType;
     }
+    /**
+     * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+     * follwowing features
+     * * Contain visual items like images or video, along with optional label text
+     * * Four layouts: Multi-browse, uncontained, hero, and full-screen
+     * * Layouts can be start-aligned or center-aligned
+     * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+     */
     interface HTMLDctCarouselElement extends Components.DctCarousel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDctCarouselElementEventMap>(type: K, listener: (this: HTMLDctCarouselElement, ev: DctCarouselCustomEvent<HTMLDctCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -229,15 +325,11 @@ declare global {
         prototype: HTMLDctCarouselElement;
         new (): HTMLDctCarouselElement;
     };
-    /**
-     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-     * used once at the top of a List or Accordian component.
-     */
-    interface HTMLDctCarouselHeadingElement extends Components.DctCarouselHeading, HTMLStencilElement {
+    interface HTMLDctCarouselControlsElement extends Components.DctCarouselControls, HTMLStencilElement {
     }
-    var HTMLDctCarouselHeadingElement: {
-        prototype: HTMLDctCarouselHeadingElement;
-        new (): HTMLDctCarouselHeadingElement;
+    var HTMLDctCarouselControlsElement: {
+        prototype: HTMLDctCarouselControlsElement;
+        new (): HTMLDctCarouselControlsElement;
     };
     interface HTMLDctDividerElement extends Components.DctDivider, HTMLStencilElement {
     }
@@ -272,18 +364,26 @@ declare global {
         prototype: HTMLDctListElement;
         new (): HTMLDctListElement;
     };
+    interface HTMLDctRippleElement extends Components.DctRipple, HTMLStencilElement {
+    }
+    var HTMLDctRippleElement: {
+        prototype: HTMLDctRippleElement;
+        new (): HTMLDctRippleElement;
+    };
     interface HTMLElementTagNameMap {
         "dct-accordian": HTMLDctAccordianElement;
         "dct-accordian-controller": HTMLDctAccordianControllerElement;
+        "dct-button": HTMLDctButtonElement;
         "dct-card": HTMLDctCardElement;
         "dct-card-content": HTMLDctCardContentElement;
-        "dct-card-title": HTMLDctCardTitleElement;
+        "dct-card-header": HTMLDctCardHeaderElement;
         "dct-carousel": HTMLDctCarouselElement;
-        "dct-carousel-heading": HTMLDctCarouselHeadingElement;
+        "dct-carousel-controls": HTMLDctCarouselControlsElement;
         "dct-divider": HTMLDctDividerElement;
         "dct-item": HTMLDctItemElement;
         "dct-item-heading": HTMLDctItemHeadingElement;
         "dct-list": HTMLDctListElement;
+        "dct-ripple": HTMLDctRippleElement;
     }
 }
 declare namespace LocalJSX {
@@ -329,48 +429,94 @@ declare namespace LocalJSX {
          */
         "displayMultiple"?: boolean;
     }
+    interface DctButton {
+        "disabled"?: boolean;
+        /**
+          * Button event emitter
+         */
+        "onButtonClickEvent"?: (event: DctButtonCustomEvent<void>) => void;
+    }
+    /**
+     * Card
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     * Cards and created from title, subtitle and content elements and have been broken into
+     * multiple components to support this structure.
+     */
     interface DctCard {
         /**
-          * Card is in a disabled state
+          * The Card's border style. Solid, elevated or none. Default elevated, shadow style border.
+         */
+        "border"?: CardBorderType;
+        /**
+          * Card is in a disabled state. Setting this state will also set the disabled property of any child components
          */
         "disabled"?: boolean;
-        "elevated"?: boolean;
         /**
-          * Optional list heading
+          * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
          */
-        "heading": string;
-        "outlined"?: boolean;
+        "href"?: string;
+        /**
+          * Applies when a href value is provided. It contains the target value to display the linked URL Default value _blank;
+         */
+        "target"?: string;
     }
+    /**
+     * Card Content
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     */
     interface DctCardContent {
+        "disabled"?: boolean;
     }
-    interface DctCardTitle {
+    /**
+     * Card Header
+     * Display content and actions about a single subject. Card contents can include anything 
+     * from images to headlines, supporting text, buttons, and lists
+     */
+    interface DctCardHeader {
+        /**
+          * If true, the card title is in a disabled state
+         */
+        "disabled"?: boolean;
+        /**
+          * If true, the card title will be in an overaly state. Primarily for use  when the parent Card is displaying an Image only allowin the title to be displayed on top of the image
+         */
         "overlay"?: boolean;
     }
+    /**
+     * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+     * follwowing features
+     * * Contain visual items like images or video, along with optional label text
+     * * Four layouts: Multi-browse, uncontained, hero, and full-screen
+     * * Layouts can be start-aligned or center-aligned
+     * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+     */
     interface DctCarousel {
         "disabled"?: boolean;
         /**
-          * If true, the carousel is in an render all state.
+          * Optional text to display in Carousels footer element determine if all carousel cards are visible
          */
-        "displayAll"?: boolean;
+        "footerText"?: string;
+        /**
+          * Optional text to display in Carousels header element determine if all carousel cards are visible
+         */
+        "headerText"?: string;
+        /**
+          * Carousel card change event
+         */
+        "onCarouselCardChange"?: (event: DctCarouselCustomEvent<CarouselCardEventType>) => void;
         /**
           * Carousel change event emitter
          */
         "onCarouselChange"?: (event: DctCarouselCustomEvent<CarouselEventType>) => void;
-    }
-    /**
-     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-     * used once at the top of a List or Accordian component.
-     */
-    interface DctCarouselHeading {
         /**
-          * If true, animate the icon elements dct-item-heading icons in start and end
+          * If true, the carousel is in an render all state and all Carousel cards will be displayed in a grid layout
          */
-        "animateIcons"?: boolean;
-        /**
-          * ItemHeading is in a disabled state
-         */
-        "disabled"?: boolean;
         "renderAll"?: boolean;
+    }
+    interface DctCarouselControls {
+        "disabled"?: boolean;
     }
     interface DctDivider {
         /**
@@ -397,7 +543,7 @@ declare namespace LocalJSX {
          */
         "separator"?: 'full' | 'partial' | 'none';
         /**
-          * Used if type link. In this case the is defined as an anchor element and requires the target value
+          * Used if type link. In this case the is defined as an anchor element and requires the target value Default value _blank;
          */
         "target"?: string;
         /**
@@ -411,13 +557,16 @@ declare namespace LocalJSX {
      */
     interface DctItemHeading {
         /**
-          * If true, animate the icon elements dct-item-heading icons in start and end
+          * If true, animate the icon elementsicons in start and end slots
          */
         "animateIcons"?: boolean;
         /**
           * ItemHeading is in a disabled state
          */
         "disabled"?: boolean;
+        /**
+          * * If true, icon is in a rotated state
+         */
         "rotateIcon"?: boolean;
     }
     interface DctList {
@@ -430,18 +579,23 @@ declare namespace LocalJSX {
          */
         "heading": string;
     }
+    interface DctRipple {
+        "unbounded"?: boolean;
+    }
     interface IntrinsicElements {
         "dct-accordian": DctAccordian;
         "dct-accordian-controller": DctAccordianController;
+        "dct-button": DctButton;
         "dct-card": DctCard;
         "dct-card-content": DctCardContent;
-        "dct-card-title": DctCardTitle;
+        "dct-card-header": DctCardHeader;
         "dct-carousel": DctCarousel;
-        "dct-carousel-heading": DctCarouselHeading;
+        "dct-carousel-controls": DctCarouselControls;
         "dct-divider": DctDivider;
         "dct-item": DctItem;
         "dct-item-heading": DctItemHeading;
         "dct-list": DctList;
+        "dct-ripple": DctRipple;
     }
 }
 export { LocalJSX as JSX };
@@ -464,15 +618,37 @@ declare module "@stencil/core" {
              * - Allowing single or multiple (all) Accordians to be expanded
              */
             "dct-accordian-controller": LocalJSX.DctAccordianController & JSXBase.HTMLAttributes<HTMLDctAccordianControllerElement>;
-            "dct-card": LocalJSX.DctCard & JSXBase.HTMLAttributes<HTMLDctCardElement>;
-            "dct-card-content": LocalJSX.DctCardContent & JSXBase.HTMLAttributes<HTMLDctCardContentElement>;
-            "dct-card-title": LocalJSX.DctCardTitle & JSXBase.HTMLAttributes<HTMLDctCardTitleElement>;
-            "dct-carousel": LocalJSX.DctCarousel & JSXBase.HTMLAttributes<HTMLDctCarouselElement>;
+            "dct-button": LocalJSX.DctButton & JSXBase.HTMLAttributes<HTMLDctButtonElement>;
             /**
-             * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-             * used once at the top of a List or Accordian component.
+             * Card
+             * Display content and actions about a single subject. Card contents can include anything 
+             * from images to headlines, supporting text, buttons, and lists
+             * Cards and created from title, subtitle and content elements and have been broken into
+             * multiple components to support this structure.
              */
-            "dct-carousel-heading": LocalJSX.DctCarouselHeading & JSXBase.HTMLAttributes<HTMLDctCarouselHeadingElement>;
+            "dct-card": LocalJSX.DctCard & JSXBase.HTMLAttributes<HTMLDctCardElement>;
+            /**
+             * Card Content
+             * Display content and actions about a single subject. Card contents can include anything 
+             * from images to headlines, supporting text, buttons, and lists
+             */
+            "dct-card-content": LocalJSX.DctCardContent & JSXBase.HTMLAttributes<HTMLDctCardContentElement>;
+            /**
+             * Card Header
+             * Display content and actions about a single subject. Card contents can include anything 
+             * from images to headlines, supporting text, buttons, and lists
+             */
+            "dct-card-header": LocalJSX.DctCardHeader & JSXBase.HTMLAttributes<HTMLDctCardHeaderElement>;
+            /**
+             * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+             * follwowing features
+             * * Contain visual items like images or video, along with optional label text
+             * * Four layouts: Multi-browse, uncontained, hero, and full-screen
+             * * Layouts can be start-aligned or center-aligned
+             * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+             */
+            "dct-carousel": LocalJSX.DctCarousel & JSXBase.HTMLAttributes<HTMLDctCarouselElement>;
+            "dct-carousel-controls": LocalJSX.DctCarouselControls & JSXBase.HTMLAttributes<HTMLDctCarouselControlsElement>;
             "dct-divider": LocalJSX.DctDivider & JSXBase.HTMLAttributes<HTMLDctDividerElement>;
             /**
              * Item are elements that can contain text, links or any other native elements and should
@@ -486,6 +662,7 @@ declare module "@stencil/core" {
              */
             "dct-item-heading": LocalJSX.DctItemHeading & JSXBase.HTMLAttributes<HTMLDctItemHeadingElement>;
             "dct-list": LocalJSX.DctList & JSXBase.HTMLAttributes<HTMLDctListElement>;
+            "dct-ripple": LocalJSX.DctRipple & JSXBase.HTMLAttributes<HTMLDctRippleElement>;
         }
     }
 }

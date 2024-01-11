@@ -96,15 +96,21 @@ export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: s
     `slot[name="${slotName}"]`
   );
 
-  const heading = slot
+  return slot
     .assignedElements({ flatten: true })
     .find((el) => el.tagName === tagName) as
     | HTMLElement
     | undefined;
+};
 
-  if (!heading) {
-    return;
+export const addRipple = (el: HTMLElement, ev: Event) => {
+  let ripple: HTMLDctRippleElement;
+  console.log('XXX el', el);
+  if (el.shadowRoot) {
+    ripple = el.shadowRoot.querySelector('dct-ripple');
   }
-
-  return heading;
+  
+  ripple = ripple ? ripple : el.querySelector('dct-ripple');
+  console.log('XXX rip:', ripple);
+  ripple && ripple.addRipple(ev).then((res) => res());
 };

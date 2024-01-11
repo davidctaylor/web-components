@@ -42,8 +42,9 @@ export class Item {
 
   /**
    * Used if type link. In this case the is defined as an anchor element and requires the target value
+   * Default value _blank;
    */
-  @Prop() target: string;
+  @Prop() target: string = '_blank';
 
   render() {
     return (
