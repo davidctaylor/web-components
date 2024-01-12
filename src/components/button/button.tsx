@@ -12,7 +12,7 @@ import { ComponentBorderType } from '../interfaces';
 
 /**
  * Button
- * 
+ *
  * Basic button component with optional ripple effect. They may display
  * text or icons.
  *
@@ -34,7 +34,7 @@ export class Button {
   /**
    * The Buttons's type. Default 'button'
    */
-  @Prop() buttonStyle: 'default' | 'icon'= 'default';
+  @Prop() buttonStyle: 'default' | 'icon' = 'default';
 
   /**
    * The Buttons's type. Default 'button'
@@ -66,36 +66,23 @@ export class Button {
     return (
       <Host
         class={{
-<<<<<<< HEAD
-        'button-container': true,
-        disabled: this.disabled,
-        elevated: this.border === 'elevated',
-        outlined: this.border === 'outlined',
-        icon: this.buttonStyle === 'icon',
-      }}>
-          <button
-            disabled={this.disabled}
-            aria-disabled={this.disabled}
-            aria-label={this.ariaLabel}
-            type={this.buttonType}
-            onClick={(event) => this._onClick(event)}>
-            <slot/>
-            {this.ripple && (<dct-ripple></dct-ripple>)}
-          </button>
-=======
           'button-container': true,
           disabled: this.disabled,
-          icon: true,
+          elevated: this.border === 'elevated',
+          outlined: this.border === 'outlined',
+          icon: this.buttonStyle === 'icon',
         }}
       >
         <button
+          disabled={this.disabled}
           aria-disabled={this.disabled}
+          aria-label={this.ariaLabel}
+          type={this.buttonType}
           onClick={(event) => this._onClick(event)}
         >
           <slot />
-          <dct-ripple></dct-ripple>
+          {this.ripple && <dct-ripple></dct-ripple>}
         </button>
->>>>>>> 4811465 (code cleanup for carousel feature)
       </Host>
     );
   }

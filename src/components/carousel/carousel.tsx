@@ -12,7 +12,12 @@ import {
   Method,
 } from '@stencil/core';
 
-import { CarouselCardEventType, CarouselEventType, CarouselEffect, CarouselState } from '../interfaces';
+import {
+  CarouselCardEventType,
+  CarouselEventType,
+  CarouselEffect,
+  CarouselState,
+} from '../interfaces';
 import { CarouselMaterialEffect } from './carousel-material-effect';
 
 /**
@@ -63,16 +68,7 @@ export class Carousel {
   renderAllChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
       this._carouselEffect.renderAll(this._carouselState, this.renderAll);
-<<<<<<< HEAD
       this._emitCarouselChange();
-=======
-      this.carouselChange.emit({
-        activeIndex: this._carouselState.activeIndex,
-        activeCard: this._carouselState.cards[this._carouselState.activeIndex],
-        totalCards: this._carouselState.cards.length,
-        renderAll: this.renderAll,
-      });
->>>>>>> 4811465 (code cleanup for carousel feature)
     }
   }
 
@@ -227,10 +223,11 @@ export class Carousel {
 
   private _emitCarouselChange() {
     this.carouselChange.emit({
-      hasNext: this._carouselState.activeIndex < this._carouselState.cards.length -2,
+      hasNext:
+        this._carouselState.activeIndex < this._carouselState.cards.length - 2,
       hasPrevious: this._carouselState.activeIndex > 0,
       totalCards: this._carouselState.cards.length,
-      renderAll: this.renderAll
+      renderAll: this.renderAll,
     });
   }
 
@@ -273,16 +270,7 @@ export class Carousel {
 
   private _onClickPage(direction: 'prev' | 'next') {
     this._carouselEffect.next(this._carouselState, direction);
-<<<<<<< HEAD
     this._emitCarouselChange();
-=======
-    this.carouselChange.emit({
-      activeIndex: this._carouselState.activeIndex,
-      activeCard: this._carouselState.cards[this._carouselState.activeIndex],
-      totalCards: this._carouselState.cards.length,
-      renderAll: this.renderAll,
-    });
->>>>>>> 4811465 (code cleanup for carousel feature)
   }
 
   private _onScrollEvent() {
@@ -324,21 +312,9 @@ export class Carousel {
         this._carouselState.position.active = false;
         this._carouselState.position.currentX = event.pageX;
         this._carouselState.position.currentY = event.pageY;
-        console.log('XXX up1:', this._carouselState.position.startX);
-        console.log('XXX up2:', this._carouselState.position.currentX);
 
         this._onScrollEvent();
-<<<<<<< HEAD
         this._emitCarouselChange();
-=======
-        this.carouselChange.emit({
-          activeIndex: this._carouselState.activeIndex,
-          activeCard:
-            this._carouselState.cards[this._carouselState.activeIndex],
-          totalCards: this._carouselState.cards.length,
-          renderAll: this.renderAll,
-        });
->>>>>>> 4811465 (code cleanup for carousel feature)
       },
       { signal: this._abortController.signal }
     );
@@ -346,7 +322,6 @@ export class Carousel {
       'pointercancel',
       (event) => {
         event.preventDefault();
-        console.log('XXXpointercancel ');
         this._carouselState.position.active = false;
         // this._resetCarouselPosition();
         this._carouselState.position.startX =
@@ -361,7 +336,6 @@ export class Carousel {
       'pointermove',
       (event) => {
         event.preventDefault();
-        // console.log('XXXpointermove ');
         if (!this._carouselState.position.active) {
           return;
         }

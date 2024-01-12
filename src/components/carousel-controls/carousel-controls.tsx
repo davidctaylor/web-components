@@ -49,7 +49,9 @@ export class Carousel {
     this._previousEl && this._previousEl.setAttribute('carousel-previous', '');
     this._nextEl && this._nextEl.setAttribute('carousel-next', '');
 
-    this._carouselStatus && this._previousEl && (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
+    this._carouselStatus &&
+      this._previousEl &&
+      (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
   }
 
   disconnectedCallback() {
@@ -76,23 +78,14 @@ export class Carousel {
   }
 
   private _addEventListeners() {
-<<<<<<< HEAD
-    this._carouselEl.addEventListener('carouselChange', (event: CustomEvent) => {
-      this._carouselStatus = event.detail;
-      console.log('XXX EVENT:', this._carouselStatus);
-      this._previousEl && (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
-      this._nextEl && (this._nextEl.disabled = !this._carouselStatus.hasNext);
-    },
-=======
     this._carouselEl.addEventListener(
       'carouselChange',
       (event: CustomEvent) => {
         this._carouselStatus = event.detail;
-        console.log('XXX EVENT:', this._carouselStatus);
         this._previousEl &&
-          (this._previousEl.disabled = this._carouselStatus.activeIndex === 0);
+          (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
+        this._nextEl && (this._nextEl.disabled = !this._carouselStatus.hasNext);
       },
->>>>>>> 4811465 (code cleanup for carousel feature)
       { signal: this._abortController.signal }
     );
   }
