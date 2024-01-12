@@ -33,7 +33,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -s dist"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@stencil/core": "^4.7.0",
