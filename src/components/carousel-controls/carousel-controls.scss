@@ -1,0 +1,37 @@
+@use '../../styles' as common;
+
+:host {
+  /**
+  * @prop --dct-card-header-padding-left: card content padding left
+  */
+  --dct-card-header-padding-left: 1rem;
+  /**
+  * @prop --dct-card-header-padding-right: card content padding right
+  */
+  --dct-card-header-padding-right: 1rem;
+  /**
+  * @prop --dct-card-header-padding-padding-top: card content padding top
+  */
+  --dct-card-header-padding-top: 1rem;
+  /**
+  * @prop --dct-card-header-padding-padding-bottom: card content padding bottom
+  */
+  --dct-card-header-padding-bottom: 1rem;
+}
+
+:host(.carousel-controls) {
+  @include common.mixins-default-layout();
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+  position: relative;
+  padding-left: var(--dct-card-header-padding-left);
+  padding-right: var(--dct-card-header-padding-right);
+  padding-top: var(--dct-card-header-padding-top);
+  padding-bottom: var(--dct-card-header-padding-bottom);
+}

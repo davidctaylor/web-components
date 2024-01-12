@@ -2,7 +2,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
 export const config: Config = {
-  namespace: 'DCT-components',
+  namespace: 'dct-components',
   outputTargets: [
     {
       type: 'dist',
@@ -22,6 +22,7 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
+      copy: [{ src: '../images', dest: 'assets' }],
     },
   ],
   testing: {

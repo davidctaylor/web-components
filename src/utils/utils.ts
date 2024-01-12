@@ -5,6 +5,17 @@ export const hasSlot = (el: HTMLElement, name: string): boolean => {
   return !!el.querySelector(`[slot="${name}"]`);
 };
 
+export const inSideContainer = (el: HTMLElement, child: HTMLElement) => {
+  const domRect: DOMRect = el.getBoundingClientRect();
+  const childDR: DOMRect = child.getBoundingClientRect();
+  return (
+    childDR.left >= domRect.left &&
+    domRect.right >= childDR.right &&
+    childDR.top >= domRect.top &&
+    childDR.bottom <= domRect.bottom
+  );
+};
+
 export const expandContent = async (el: HTMLElement, offsetHeight: number) => {
   if (offsetHeight === 0) {
     return;
@@ -19,7 +30,10 @@ export const expandContent = async (el: HTMLElement, offsetHeight: number) => {
   el.style.removeProperty('max-height');
 };
 
-export const collapseContent = async (el: HTMLElement, offsetHeight: number) => {
+export const collapseContent = async (
+  el: HTMLElement,
+  offsetHeight: number
+) => {
   if (offsetHeight === 0) {
     return;
   }
@@ -46,12 +60,15 @@ export const internalAnimationFrame = (cb: (v: unknown) => void) => {
 };
 
 export const transitionEndAsync = (el: HTMLElement) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     transitionEnd(el, resolve);
   });
 };
 
-export const transitionEnd = (el: HTMLElement, cb: (event?: TransitionEvent) => void) => {
+export const transitionEnd = (
+  el: HTMLElement,
+  cb: (event?: TransitionEvent) => void
+) => {
   const options: any = { passive: true };
   const onTransitionEndEvent = (e?: Event) => {
     if (e === undefined || el === e.target) {
@@ -67,4 +84,50 @@ export const transitionEnd = (el: HTMLElement, cb: (event?: TransitionEvent) => 
   el.addEventListener('transitionend', onTransitionEndEvent, options);
 
   return remove;
+};
+
+export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: string) => {
+  if (!el) {
+    return;
+  }
+
+  const query = slotName ? `slot[name="${slotName}"]` : `slot`;
+  let slot: HTMLSlotElement;
+  
+  if (el.shadowRoot) { 
+    slot = el.shadowRoot.querySelector(query );
+  }
+  slot = slot ? slot : el.querySelector(query);
+
+  return slot ? slot 
+    .assignedElements({ flatten: true })
+    .find((el) => el.tagName === tagName) as
+    | HTMLElement
+    | undefined : undefined;
+};
+
+export const addRipple = (el: HTMLElement, ev: Event) => {
+  let ripple: HTMLDctRippleElement;
+  if (el.shadowRoot) {
+    ripple = el.shadowRoot.querySelector('dct-ripple');
+  }
+  
+  ripple = ripple ? ripple : el.querySelector('dct-ripple');
+  ripple && ripple.addRipple(ev).then((res) => res());
+};
+
+export const pointerCoord = (event: any): { x: number; y: number } => {
+  // get X coordinates for either a mouse click
+  // or a touch depending on the given event
+  if (event) {
+    const changedTouches = event.changedTouches;
+    if (changedTouches && changedTouches.length > 0) {
+      const touch = changedTouches[0];
+      return { x: touch.clientX, y: touch.clientY };
+    }
+    if (event.pageX !== undefined) {
+      return { x: event.pageX, y: event.pageY };
+    }
+  }
+  return { x: 0, y: 0 };
 };

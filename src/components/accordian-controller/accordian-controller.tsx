@@ -58,8 +58,8 @@ export class AccordianController {
     });
   }
 
-  @Listen('accordianChange', { target: 'body' })
-  onListItemChange(event: CustomEvent) {
+  @Listen('accordianChange')
+  onAccordianChange(event: CustomEvent) {
     if (this.displayMultiple) {
       return;
     }

@@ -1,0 +1,16 @@
+import { Markdown, Meta, Story, Canvas } from '@storybook/blocks';
+import readme from '../readme.md?raw';
+
+import * as CardStories from './card.stories';
+
+<Meta title="DCTComponents/Card" of={CardStories} />
+
+## Card Component
+
+<Canvas>
+  <Story>
+    <dct-card />
+  </Story>
+</Canvas>
+
+<Markdown>{readme}</Markdown>

@@ -2,6 +2,9 @@ $font-size: var(--dct-font-size, 1rem);
 $font-size-large: var((--dct-font-size-small, 1.5rem));
 $font-size-small: var((--dct-font-size-small, calc(1rem - 2px)));
 
+$font-weight: var(--dct-font-weight, 400);
+$font-weight-bold: var(--dct-font-weight, 500);
+
 $letter-spacing: var(--dct-letter-spacing, 0.5px);
 $letter-spacing-small: var(--dct-letter-spacing-small 0.25px);
 $line-height: 1.5rem;

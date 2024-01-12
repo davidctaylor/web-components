@@ -1,6 +1,6 @@
 # DCT UI Component Library
 
-A library of UI Web Components built using Stencil.js
+A library of high level UI Web Components inspired by Material Design 3 and built using Stencil.js
 
 ### Installation
 

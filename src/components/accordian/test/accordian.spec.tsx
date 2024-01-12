@@ -23,7 +23,7 @@ describe('Accordian', () => {
     });
 
     expect(page.root).toEqualHtml(`
-      <dct-accordian class="accordian-container animate-icons collapsed" role="list">
+      <dct-accordian class="accordian-container collapsed" role="list">
        <mock:shadow-root>
          <button aria-controls="dct-accordian-1" class="accordian-heading" id="dct-accordian-header-1">
           <slot name="heading">
@@ -43,7 +43,7 @@ describe('Accordian', () => {
     const page = await newSpecPage({
       components: [Accordian],
       html: `
-      <dct-accordian animate-icons="true" disabled="false">
+      <dct-accordian disabled="false">
         <dct-item-heading slot="heading">
           <span slot="start" class="material-symbols-outlined">expand_more</span>
           <div slot="heading">Accordian heading</div>
@@ -55,7 +55,7 @@ describe('Accordian', () => {
     });
 
     expect(page.root).toEqualHtml(`
-      <dct-accordian animate-icons="true" class="accordian-container animate-icons collapsed" disabled="false" role="list">
+      <dct-accordian class="accordian-container collapsed" disabled="false" role="list">
         <mock:shadow-root>
           <button aria-controls="dct-accordian-2" class="accordian-heading" id="dct-accordian-header-2">
             <slot name="heading"></slot>

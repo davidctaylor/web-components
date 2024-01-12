@@ -2,17 +2,11 @@
 
 export default {
   // component: Accordian,
-  title: 'DCTComponents/ItemHeading',
+  title: 'DCTComponents/Item/ItemHeading',
   parameters: {
     actions: {},
   },
 };
-
-// const handleEvent = (e) => {
-//   action('accordianChange')(e.detail);
-// };
-
-// window.addEventListener('accordianChange', handleEvent);
 
 const Template = (args) => {
   const heading = `

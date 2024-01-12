@@ -1,12 +1,5 @@
 @use '../../styles' as common;
 
-:host {
-  --dct-item-heading-padding-top: 0.5rem;
-  --dct-item-heading-padding-right: 1.4rem;
-  --dct-item-heading-padding-bottom: 0.5rem;
-  --dct-item-heading-padding-left: 1rem;
-}
-
 :host(.item-heading) {
   @include common.mixins-default-layout();
   @include common.mixins-hover-event();
@@ -22,11 +15,13 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    font-weight: 500;
     justify-content: center;
 
     slot[name='sub-heading'] {
       color: common.$colors-secondary;
       font-size: common.$typography-font-size-small;
+      font-weight: common.$typography-font-weight-bold;
       letter-spacing: common.$typography-letter-spacing-small;
       line-height: common.$typography-line-height-small;
     }
@@ -46,8 +41,8 @@
   slot[name='end'] {
     align-items: center;
     display: flex;
-    height: common.$animate-icon-height;
-    width: common.$animate-icon-width;
+    height: common.$components-icon-height;
+    width: common.$components-icon-width;
     justify-content: center;
     overflow: hidden;
 

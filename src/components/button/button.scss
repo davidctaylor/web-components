@@ -1,0 +1,68 @@
+@use '../../styles' as common;
+
+:host {
+  /**
+  * @prop --dct-button-height: button height
+  */
+  --dct-button-height: 48px;
+  /**
+  * @prop --dct-button-height: width of ion button
+  */
+  --dct-button-width-icon: 48px;
+}
+
+:host(.button-container) {
+  @include common.mixins-default-layout();
+
+  border-radius: 100px;
+  display: block;
+  overflow: hidden;
+  height: var(--dct-button-height);
+  width: auto;
+  position: relative;
+
+  button {
+    @include common.mixins-default-button();
+
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+:host(.outlined) {
+  border-color: common.$colors-card-border-color;
+  border-style: solid;
+  border-width: 1px;
+}
+
+:host(.elevated) {
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+:host(.disabled) {
+  pointer-events: none;
+  ::slotted(*) {
+    color: common.$colors-disabled !important;
+  }
+}
+
+:host(.button-container:focus:not(.disabled)) {
+  background: common.$colors-background-focus;
+  border-color: common.$colors-border-focus;
+  border-style: solid;
+  border-width: 1px;
+}
+
+:host(.icon) {
+  border-radius: 100%;
+  width: var(--dct-button-width-icon);
+
+  ::slotted(*) {
+    font-size: 24px !important;
+  }
+}

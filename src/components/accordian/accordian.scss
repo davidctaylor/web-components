@@ -2,43 +2,34 @@
 
 :host {
   /**
-  * @prop --dct-accordian-padding-let: padding list item content container
+  * @prop --dct-accordian-padding-letf: accordian content padding left
   */
-  --dct-item-accordian-left: 0.5rem;
+  --dct-accordian-left: 0.5rem;
   /**
-  * @prop --dct-accordian-padding-right: padding list item content container
+  * @prop --dct-accordian-padding-right: accordian content padding right
   */
-  --dct-item-accordian-right: 0.5rem;
+  --dct-accordian-right: 0.5rem;
   /**
-  * @prop --dct-item-padding-top: padding list item content container
+  * @prop --dct-accordian-padding-top: accordian content padding top
   */
-  --dct-item-accordian-top: 1rem;
+  --dct-accordian-top: 1rem;
   /**
-  * @prop --dct-item-padding-bottom: padding list item content container
+  * @prop --dct-accordian-padding-bottom: accordian content padding bottom
   */
-  --dct-item-accordian-bottom: 1rem;
+  --dct-accordian-bottom: 1rem;
 }
 
 :host(.accordian-container) {
   @include common.mixins-default-layout();
   @include common.mixins-hover-event();
   @include common.mixins-host-disabled();
+  
   display: flex;
   flex-direction: column;
 
-  button {
-    border: none;
-    background: inherit;
-    color: inherit;
-    font-size: inherit;
-    font-family: inherit;
-    padding-block: 0;
-    padding-inline: 0;
-    pointer-events: auto;
-  }
-
   .accordian-heading {
     width: 100%;
+    @include common.mixins-default-button();
   }
 
   .accordian-content {
@@ -64,7 +55,7 @@
 :host(.accordian-container.icon-start) {
   .accordian-content {
     .accordian-content-slot {
-      padding-left: calc(1rem + common.$animate-icon-width);
+      padding-left: calc(1rem + common.$components-icon-width);
     }
   }
 }

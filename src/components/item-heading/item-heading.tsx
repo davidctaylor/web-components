@@ -1,4 +1,4 @@
-import { h, Component, Element, Host, Prop } from '@stencil/core';
+import { h, Component, Element, Host, Prop, Watch } from '@stencil/core';
 import { hasSlot } from '@utils/utils';
 
 export type ListItemType = 'link' | 'text';
@@ -21,9 +21,25 @@ export class ItemHeading {
   @Element() el!: HTMLDctItemHeadingElement;
 
   /**
+   * If true, animate the icon elementsicons in start and end slots
+   */
+  @Prop() animateIcons = true;
+
+  /**
    * ItemHeading is in a disabled state
    */
   @Prop() disabled = false;
+
+  /**
+   * * If true, icon is in a rotated state
+   */
+  @Prop({ mutable: true }) rotateIcon = false;
+  @Watch('rotateIcon')
+  expandedChanged(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue) {
+      this.animateIcons && newValue ? this.el.classList.add('animate-rotation') : this.el.classList.remove('animate-rotation');
+    }
+  }
 
   render() {
     return (
@@ -34,13 +50,13 @@ export class ItemHeading {
         }}
       >
         {hasSlot(this.el, 'start') && (
-          <div class={{ icon: true, disabled: this.disabled }}>
+          <div class={{ icon: true, disabled: this.disabled }} >
             <slot name="start" />
           </div>
         )}
-        <div class="heading">
-          <slot name="heading" />
-          <slot name="sub-heading" />
+        <div class='heading'>
+          <slot name='heading' />
+          <slot name='sub-heading' />
         </div>
         {hasSlot(this.el, 'end') && (
           <div class={{ icon: true, disabled: this.disabled }}>

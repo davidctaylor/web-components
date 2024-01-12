@@ -9,10 +9,6 @@
       },
       "attributes": [
         {
-          "name": "animate-icons",
-          "description": "If true, animate the icon elements dct-item-heading icons in start and end"
-        },
-        {
           "name": "disabled",
           "description": "If true, the accordian is in a disabled state"
         },
@@ -51,6 +47,177 @@
         {
           "name": "display-multiple",
           "description": "Allows multilple Accordian elements be in an expanded state. If set to false,\nthe first expanded Accordian element will remain expanded all subsequent\nAccordian's will be places in a collapsed state"
+        }
+      ]
+    },
+    {
+      "name": "dct-button",
+      "description": {
+        "kind": "markdown",
+        "value": "Button\n\nBasic button component with optional ripple effect. They may display\ntext or icons."
+      },
+      "attributes": [
+        {
+          "name": "aria-label",
+          "description": "Optional aria label for button"
+        },
+        {
+          "name": "border",
+          "description": "The Buttons's border style. Solid, elevated or none.\nDefault elevated, shadow style border.",
+          "values": [
+            {
+              "name": "elevated"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "outlined"
+            }
+          ]
+        },
+        {
+          "name": "button-style",
+          "description": "The Buttons's type. Default 'button'",
+          "values": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "icon"
+            }
+          ]
+        },
+        {
+          "name": "button-type",
+          "description": "The Buttons's type. Default 'button'",
+          "values": [
+            {
+              "name": "button"
+            },
+            {
+              "name": "reset"
+            },
+            {
+              "name": "submit"
+            }
+          ]
+        },
+        {
+          "name": "disabled",
+          "description": "Button in an disabled state. Default false."
+        },
+        {
+          "name": "ripple",
+          "description": "Ripple effect enabled for button. Defult true"
+        }
+      ]
+    },
+    {
+      "name": "dct-card",
+      "description": {
+        "kind": "markdown",
+        "value": "Card\nDisplay content and actions about a single subject. Card contents can include anything \nfrom images to headlines, supporting text, buttons, and lists\n\nCards and created from title, subtitle and content elements and have been broken into\nmultiple components to support this structure."
+      },
+      "attributes": [
+        {
+          "name": "border",
+          "description": "The Card's border style. Solid, elevated or none.\nDefault elevated, shadow style border.",
+          "values": [
+            {
+              "name": "elevated"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "outlined"
+            }
+          ]
+        },
+        {
+          "name": "disabled",
+          "description": "Card is in a disabled state. Setting this state will also set the disabled property\nof any child components"
+        },
+        {
+          "name": "href",
+          "description": "Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered"
+        },
+        {
+          "name": "ripple",
+          "description": "Ripple effect enabled for card. Defult true"
+        },
+        {
+          "name": "target",
+          "description": "Applies when a href value is provided. It contains the target value to display the linked URL\nDefault value _blank;"
+        }
+      ]
+    },
+    {
+      "name": "dct-card-content",
+      "description": {
+        "kind": "markdown",
+        "value": "Card Content\nDisplay content and actions about a single subject. Card contents can include anything \nfrom images to headlines, supporting text, buttons, and lists"
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "dct-card-header",
+      "description": {
+        "kind": "markdown",
+        "value": "Card Header\nDisplay content and actions about a single subject. Card contents can include anything \nfrom images to headlines, supporting text, buttons, and lists"
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "If true, the card title is in a disabled state"
+        },
+        {
+          "name": "overlay",
+          "description": "If true, the card title will be in an overaly state. Primarily for use \nwhen the parent Card is displaying an Image only allowin the title\nto be displayed on top of the image"
+        }
+      ]
+    },
+    {
+      "name": "dct-carousel",
+      "description": {
+        "kind": "markdown",
+        "value": "\nCarousel's show a collection of items that can be scrolled on and off the screen and have the \nfollwowing features\n* Contain visual items like images or video, along with optional label text\n* Four layouts: Multi-browse, uncontained, hero, and full-screen\n* Layouts can be start-aligned or center-aligned\n* Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available"
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": ""
+        },
+        {
+          "name": "footer-text",
+          "description": "Optional text to display in Carousels footer element determine if\nall carousel cards are visible"
+        },
+        {
+          "name": "header-text",
+          "description": "Optional text to display in Carousels header element determine if\nall carousel cards are visible"
+        },
+        {
+          "name": "render-all",
+          "description": "If true, the carousel is in an render all state and all Carousel cards will be displayed\nin a grid layout"
+        }
+      ]
+    },
+    {
+      "name": "dct-carousel-controls",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": ""
         }
       ]
     },
@@ -110,7 +277,7 @@
         },
         {
           "name": "target",
-          "description": "Used if type link. In this case the is defined as an anchor element and requires the target value"
+          "description": "Used if type link. In this case the is defined as an anchor element and requires the target value\nDefault value _blank;"
         },
         {
           "name": "type",
@@ -137,8 +304,16 @@
       },
       "attributes": [
         {
+          "name": "animate-icons",
+          "description": "If true, animate the icon elementsicons in start and end slots"
+        },
+        {
           "name": "disabled",
           "description": "ItemHeading is in a disabled state"
+        },
+        {
+          "name": "rotate-icon",
+          "description": "* If true, icon is in a rotated state"
         }
       ]
     },
@@ -156,6 +331,19 @@
         {
           "name": "heading",
           "description": "Optional list heading"
+        }
+      ]
+    },
+    {
+      "name": "dct-ripple",
+      "description": {
+        "kind": "markdown",
+        "value": ""
+      },
+      "attributes": [
+        {
+          "name": "unbounded",
+          "description": ""
         }
       ]
     }
