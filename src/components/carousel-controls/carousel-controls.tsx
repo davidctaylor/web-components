@@ -28,9 +28,6 @@ export class Carousel {
 
   componentWillLoad() {
     this._carouselEl = this.el.closest('dct-carousel');
-    this._carouselEl.allCards().then((cards) => {
-      console.log('cards', cards);
-    });
     this._carouselEl && this._addEventListeners();
   }
 

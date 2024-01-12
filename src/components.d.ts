@@ -142,7 +142,6 @@ export namespace Components {
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
      */
     interface DctCarousel {
-        "allCards": () => Promise<HTMLDctCardElement[]>;
         "disabled": boolean;
         /**
           * Optional text to display in Carousels footer element determine if all carousel cards are visible

@@ -66,8 +66,6 @@ export class CarouselMaterialEffect implements CarouselEffect {
         }
       }
       this.render(carousel);
-      console.log('XXX x', scrollX, carousel.activeIndex);
-
       carousel.position.startX = carousel.position.currentX;
     }
   }

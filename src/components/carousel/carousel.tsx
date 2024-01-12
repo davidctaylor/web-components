@@ -109,11 +109,6 @@ export class Carousel {
   @Event() carouselCardChange!: EventEmitter<CarouselCardEventType>;
 
   @Method()
-  async allCards() {
-    return this._allCards();
-  }
-
-  @Method()
   async navigate(direction: 'prev' | 'next') {
     return this._onClickPage(direction);
   }
@@ -237,16 +232,18 @@ export class Carousel {
     );
     this._carouselState.containerEl = this._contentEl;
     this._carouselState.cards = this._allCards();
-    this._carouselState.cardWidth =
-      this._carouselState.cards[0].getBoundingClientRect().width;
-    this._carouselState.cardHeight =
-      this._carouselState.cards[0].getBoundingClientRect().height;
-    this._carouselState.width = this.el.getBoundingClientRect().width;
+    if (this._carouselState.cards.length > 0) {
+      this._carouselState.cardWidth =
+        this._carouselState.cards[0].getBoundingClientRect().width;
+      this._carouselState.cardHeight =
+        this._carouselState.cards[0].getBoundingClientRect().height;
+      this._carouselState.width = this.el.getBoundingClientRect().width;
+    }
 
     this._carouselState.cards.forEach((card, idx) => {
       card.role = 'listitem';
       card.setAttribute(
-        'addaria-label',
+        'aria-label',
         `card ${idx} of ${this._carouselState.cards.length}`
       );
     });
@@ -299,8 +296,6 @@ export class Carousel {
 
           this._carouselState.position.startX = event.pageX;
           this._carouselState.position.startY = event.pageY;
-          console.log('XXX down:', this._carouselState.position.startX);
-          console.log('XXX down:', this._carouselState.position.currentX);
         }
       },
       { signal: this._abortController.signal }

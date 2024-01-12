@@ -58,7 +58,7 @@ export class AccordianController {
     });
   }
 
-  @Listen('accordianChange', { target: 'body' })
+  @Listen('accordianChange')
   onAccordianChange(event: CustomEvent) {
     if (this.displayMultiple) {
       return;

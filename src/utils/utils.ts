@@ -61,7 +61,6 @@ export const internalAnimationFrame = (cb: (v: unknown) => void) => {
 
 export const transitionEndAsync = (el: HTMLElement) => {
   return new Promise((resolve) => {
-    console.log('XXX end2');
     transitionEnd(el, resolve);
   });
 };

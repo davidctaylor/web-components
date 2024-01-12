@@ -1,26 +1,32 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { List } from '../list';
 
-xdescribe('List', () => {
+describe('List', () => {
   it('should render List', async () => {
     const listPage = await newSpecPage({
       components: [List],
       html: `
         <dct-list disabled=false heading="List Heading">
           <dct-item separator=full>
-            <div>First according content</div>
+            <span>Item content</span>
           </dct-item>
         </dct-list>`,
     });
 
     expect(listPage.root).toEqualHtml(`
-      <dct-item class="item-container" disabled="false" href="https://www.google.com/" target="_black" type="text">
-       <mock:shadow-root>
-        <slot></slot>
-        <div class="item-separator none"></div>
-       </mock:shadow-root>
-       <span>Item content</span>
-      </dct-item>
+      <dct-list class="list-container" disabled="false" heading="List Heading" role="list">
+        <mock:shadow-root>
+          <div class="list-heading">
+            List Heading
+          </div>
+          <slot></slot>
+          </mock:shadow-root>
+          <dct-item separator="full">
+          <span>
+            Item content
+          </span>
+        </dct-item>
+      </dct-list>
     `);
   });
 });
