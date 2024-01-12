@@ -1,3 +1,5 @@
+export type ComponentBorderType = 'elevated' | 'outlined' | 'none';
+
 export interface CarouselPosition {
   active: boolean;
   startX: number;
@@ -28,8 +30,8 @@ export interface CarouselState {
  * CarouselEventType
  */
 export type CarouselEventType = {
-  activeIndex: number;
-  activeCard: HTMLElement;
+  hasPrevious: boolean;
+  hasNext: boolean;
   renderAll: boolean;
   totalCards: number;
 };
@@ -52,5 +54,3 @@ export interface CarouselEffect {
   scroll(carousel: CarouselState): void;
   event(fn: (event: CarouselCardEventType) => void);
 }
-
-

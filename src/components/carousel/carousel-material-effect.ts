@@ -1,5 +1,5 @@
 import { transitionEnd } from '@utils/utils';
-import { CarouselEffect, CarouselState, CarouselCardEventType } from '../interfaces/carousel';
+import { CarouselEffect, CarouselState, CarouselCardEventType } from '../interfaces';
 
 export class CarouselMaterialEffect implements CarouselEffect {
   private _eventCb: (event: CarouselCardEventType) => void;

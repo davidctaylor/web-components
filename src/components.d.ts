@@ -6,12 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AccordianEventType } from "./components/accordian/accordian";
-import { CardBorderType } from "./components/card/card";
-import { CarouselCardEventType, CarouselEventType } from "./components/interfaces/carousel";
+import { CarouselCardEventType, CarouselEventType, ComponentBorderType } from "./components/interfaces";
 import { ItemType } from "./components/item/item";
 export { AccordianEventType } from "./components/accordian/accordian";
-export { CardBorderType } from "./components/card/card";
-export { CarouselCardEventType, CarouselEventType } from "./components/interfaces/carousel";
+export { CarouselCardEventType, CarouselEventType, ComponentBorderType } from "./components/interfaces";
 export { ItemType } from "./components/item/item";
 export namespace Components {
     /**
@@ -52,8 +50,36 @@ export namespace Components {
          */
         "displayMultiple": boolean;
     }
+    /**
+     * Button
+     * Basic button component with optional ripple effect. They may display
+     * text or icons.
+     */
     interface DctButton {
+        /**
+          * Optional aria label for button
+         */
+        "ariaLabel": string;
+        /**
+          * The Buttons's border style. Solid, elevated or none. Default elevated, shadow style border.
+         */
+        "border": ComponentBorderType;
+        /**
+          * The Buttons's type. Default 'button'
+         */
+        "buttonStyle": 'default' | 'icon';
+        /**
+          * The Buttons's type. Default 'button'
+         */
+        "buttonType": 'button' | 'reset' | 'submit';
+        /**
+          * Button in an disabled state. Default false.
+         */
         "disabled": boolean;
+        /**
+          * Ripple effect enabled for button. Defult true
+         */
+        "ripple": boolean;
     }
     /**
      * Card
@@ -66,7 +92,7 @@ export namespace Components {
         /**
           * The Card's border style. Solid, elevated or none. Default elevated, shadow style border.
          */
-        "border": CardBorderType;
+        "border": ComponentBorderType;
         /**
           * Card is in a disabled state. Setting this state will also set the disabled property of any child components
          */
@@ -75,6 +101,10 @@ export namespace Components {
           * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
          */
         "href": string;
+        /**
+          * Ripple effect enabled for card. Defult true
+         */
+        "ripple": boolean;
         /**
           * Applies when a href value is provided. It contains the target value to display the linked URL Default value _blank;
          */
@@ -250,6 +280,11 @@ declare global {
     interface HTMLDctButtonElementEventMap {
         "dctButtonClick": void;
     }
+    /**
+     * Button
+     * Basic button component with optional ripple effect. They may display
+     * text or icons.
+     */
     interface HTMLDctButtonElement extends Components.DctButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDctButtonElementEventMap>(type: K, listener: (this: HTMLDctButtonElement, ev: DctButtonCustomEvent<HTMLDctButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -429,12 +464,40 @@ declare namespace LocalJSX {
          */
         "displayMultiple"?: boolean;
     }
+    /**
+     * Button
+     * Basic button component with optional ripple effect. They may display
+     * text or icons.
+     */
     interface DctButton {
+        /**
+          * Optional aria label for button
+         */
+        "ariaLabel"?: string;
+        /**
+          * The Buttons's border style. Solid, elevated or none. Default elevated, shadow style border.
+         */
+        "border"?: ComponentBorderType;
+        /**
+          * The Buttons's type. Default 'button'
+         */
+        "buttonStyle"?: 'default' | 'icon';
+        /**
+          * The Buttons's type. Default 'button'
+         */
+        "buttonType"?: 'button' | 'reset' | 'submit';
+        /**
+          * Button in an disabled state. Default false.
+         */
         "disabled"?: boolean;
         /**
           * Button event emitter
          */
         "onDctButtonClick"?: (event: DctButtonCustomEvent<void>) => void;
+        /**
+          * Ripple effect enabled for button. Defult true
+         */
+        "ripple"?: boolean;
     }
     /**
      * Card
@@ -447,7 +510,7 @@ declare namespace LocalJSX {
         /**
           * The Card's border style. Solid, elevated or none. Default elevated, shadow style border.
          */
-        "border"?: CardBorderType;
+        "border"?: ComponentBorderType;
         /**
           * Card is in a disabled state. Setting this state will also set the disabled property of any child components
          */
@@ -456,6 +519,10 @@ declare namespace LocalJSX {
           * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
          */
         "href"?: string;
+        /**
+          * Ripple effect enabled for card. Defult true
+         */
+        "ripple"?: boolean;
         /**
           * Applies when a href value is provided. It contains the target value to display the linked URL Default value _blank;
          */
@@ -618,6 +685,11 @@ declare module "@stencil/core" {
              * - Allowing single or multiple (all) Accordians to be expanded
              */
             "dct-accordian-controller": LocalJSX.DctAccordianController & JSXBase.HTMLAttributes<HTMLDctAccordianControllerElement>;
+            /**
+             * Button
+             * Basic button component with optional ripple effect. They may display
+             * text or icons.
+             */
             "dct-button": LocalJSX.DctButton & JSXBase.HTMLAttributes<HTMLDctButtonElement>;
             /**
              * Card

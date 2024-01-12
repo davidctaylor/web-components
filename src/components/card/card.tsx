@@ -1,8 +1,8 @@
 import { h, Component, Prop, Element, Host, Watch } from '@stencil/core';
 
-import { addRipple } from '@utils/index';
+import { addRipple, findSlottedElement } from '@utils/index';
+import { ComponentBorderType } from '../interfaces';
 export type CardType = 'link' | 'text';
-export type CardBorderType = 'elevated' | 'outlined' | 'none';
 
 /**
  * Card
@@ -25,6 +25,12 @@ export class Card {
   @Element() el!: HTMLDctCardElement;
 
   /**
+   * The Card's border style. Solid, elevated or none.
+   * Default elevated, shadow style border.
+   */
+  @Prop() border: ComponentBorderType = 'elevated';
+
+  /**
    * Card is in a disabled state. Setting this state will also set the disabled property
    * of any child components
    */
@@ -43,37 +49,21 @@ export class Card {
   @Prop() href: string;
 
   /**
+   * Ripple effect enabled for card. Defult true
+   */
+  @Prop() ripple = true;
+
+  /**
   * Applies when a href value is provided. It contains the target value to display the linked URL
   * Default value _blank;
   */
- 
   @Prop() target: string = '_blank';
 
-  /**
-   * The Card's border style. Solid, elevated or none.
-   * Default elevated, shadow style border.
-   */
-  @Prop() border: CardBorderType = 'elevated';
-
   componentDidLoad() {
-    const slot: HTMLSlotElement = this.el.shadowRoot.querySelector(`slot`);
-  
-    this._contentSlot = slot
-      .assignedElements({ flatten: true })
-      .find((el) => el.tagName === 'DCT-CARD-CONTENT') as
-      | HTMLDctCardContentElement
-      | undefined;
-
-    this._titleSlot = slot
-      .assignedElements({ flatten: true })
-      .find((el) => el.tagName === 'DCT-CARD-HEADER') as
-      | HTMLDctCardHeaderElement
-      | undefined;
-
+    this._contentSlot = findSlottedElement(this.el, undefined, 'DCT-CARD-CONTENT') as HTMLDctCardContentElement;
+    this._titleSlot = findSlottedElement(this.el, undefined, 'DCT-CARD-HEADER') as HTMLDctCardHeaderElement;
     this._contentSlot && (this._contentSlot.disabled = this.disabled); 
     this._titleSlot && (this._titleSlot.disabled = this.disabled);
-
-    console.log('XXX CARD', this.href);
   }
 
   private _contentSlot: HTMLDctCardContentElement | undefined;
@@ -84,8 +74,8 @@ export class Card {
       <Host
         class={{
           'card-container': true,
-          'card-elevated': this.border === 'elevated',
-          'card-outlined': this.border === 'outlined',
+          elevated: this.border === 'elevated',
+          outlined: this.border === 'outlined',
           disabled: this.disabled,
         }}
       >
@@ -98,6 +88,7 @@ export class Card {
             class={{ 'card-heading': true }}
             onClick={this._onClick}
           >
+            {this.ripple && (<dct-ripple></dct-ripple>)}
             <slot></slot>
           </a>
         )}
@@ -106,8 +97,7 @@ export class Card {
     );
   }
 
-  private _onClick = (ev: Event) => {
-    ev.preventDefault();
-    addRipple(this.el, ev);
+  private _onClick = (ev: Event) => {    
+    this.ripple && addRipple(this.el, ev);
   };
 }

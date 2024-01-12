@@ -1,5 +1,5 @@
 import { h, Component, Element, Host, Prop, Listen } from '@stencil/core';
-import { CarouselEventType } from '../interfaces/carousel';
+import { CarouselEventType } from '../interfaces';
 import { findSlottedElement } from '@utils/utils';
 // import { addRipple } from '@utils/utils';
 
@@ -44,7 +44,7 @@ export class Carousel {
 
     this._previousEl && console.log('XXX PREV:', (this._previousEl as HTMLElement));
 
-    this._carouselStatus && this._previousEl && (this._previousEl.disabled = this._carouselStatus.activeIndex === 0);
+    this._carouselStatus && this._previousEl && (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
   }
   
   disconnectedCallback() {
@@ -73,8 +73,9 @@ export class Carousel {
     this._carouselEl.addEventListener('carouselChange', (event: CustomEvent) => {
       this._carouselStatus = event.detail;
       console.log('XXX EVENT:', this._carouselStatus);
-      this._previousEl && (this._previousEl.disabled = this._carouselStatus.activeIndex === 0);
-      },
+      this._previousEl && (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
+      this._nextEl && (this._nextEl.disabled = !this._carouselStatus.hasNext);
+    },
       { signal: this._abortController.signal }
     );
   }

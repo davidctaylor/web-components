@@ -29,7 +29,6 @@
     object-fit: fill;
     object-position: center;
     max-width: 100%;
-    // text-size-adjust: 100%;
     width: 100%;
   }
 }
@@ -40,11 +39,18 @@
   }
 }
 
-:host(.card-elevated) {
+:host(.card-container:focus:not(.disabled)) {
+  background: common.$colors-background-focus;
+  border-color: common.$colors-border-focus;
+  border-style: solid;
+  border-width: 1px;
+}
+
+:host(.elevated) {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
 }
 
-:host(.card-outlined) {
+:host(.outlined) {
   border-color: common.$colors-card-border-color;
   border-style: solid;
   border-width: 1px;

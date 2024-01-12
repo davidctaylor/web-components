@@ -23,16 +23,6 @@ from images to headlines, supporting text, buttons, and lists
 | `"slot"` | Container for card content |
 
 
-## CSS Custom Properties
-
-| Name                                        | Description                 |
-| ------------------------------------------- | --------------------------- |
-| `--dct-card-content-padding-letf`           | card content padding left   |
-| `--dct-card-content-padding-padding-bottom` | card content padding bottom |
-| `--dct-card-content-padding-padding-top`    | card content padding top    |
-| `--dct-card-content-padding-right`          | card content padding right  |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

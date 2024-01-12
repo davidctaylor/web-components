@@ -92,15 +92,13 @@ export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: s
     return;
   }
 
-  const query = `slot[name="${slotName}"]`;
+  const query = slotName ? `slot[name="${slotName}"]` : `slot`;
   let slot: HTMLSlotElement;
   
   if (el.shadowRoot) { 
     slot = el.shadowRoot.querySelector(query );
   }
   slot = slot ? slot : el.querySelector(query);
-  console.log('slot', slot);
-
 
   return slot ? slot 
     .assignedElements({ flatten: true })
@@ -116,7 +114,6 @@ export const addRipple = (el: HTMLElement, ev: Event) => {
   }
   
   ripple = ripple ? ripple : el.querySelector('dct-ripple');
-  console.log('XXX rip:', ripple);
   ripple && ripple.addRipple(ev).then((res) => res());
 };
 

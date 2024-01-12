@@ -1,6 +1,6 @@
 import { h, forceUpdate, Component, Element, Event, EventEmitter, Host, Listen, Prop, Watch, Method } from '@stencil/core';
 
-import { CarouselCardEventType, CarouselEventType, CarouselEffect, CarouselState } from '../interfaces/carousel';
+import { CarouselCardEventType, CarouselEventType, CarouselEffect, CarouselState } from '../interfaces';
 import { CarouselMaterialEffect } from './carousel-material-effect';
 
 /**
@@ -51,12 +51,7 @@ export class Carousel {
   renderAllChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
       this._carouselEffect.renderAll(this._carouselState, this.renderAll);
-      this.carouselChange.emit({
-        activeIndex: this._carouselState.activeIndex,
-        activeCard: this._carouselState.cards[this._carouselState.activeIndex],
-        totalCards: this._carouselState.cards.length,
-        renderAll: this.renderAll,
-       });
+      this._emitCarouselChange();
     }
   }
 
@@ -206,6 +201,15 @@ export class Carousel {
     ) as HTMLDctCardElement[];
   }
 
+  private _emitCarouselChange() {
+    this.carouselChange.emit({
+      hasNext: this._carouselState.activeIndex < this._carouselState.cards.length -2,
+      hasPrevious: this._carouselState.activeIndex > 0,
+      totalCards: this._carouselState.cards.length,
+      renderAll: this.renderAll
+    });
+  }
+
   private _initializeCarousel() {
     this._carouselEffect.event((event: CarouselCardEventType) => this.carouselCardChange.emit(event));
     this._carouselState.containerEl = this._contentEl;
@@ -224,8 +228,8 @@ export class Carousel {
     this._carouselEffect.render(this._carouselState);
 
     this.carouselChange.emit({
-      activeIndex: this._carouselState.activeIndex,
-      activeCard: this._carouselState.cards[this._carouselState.activeIndex],
+      hasNext: true,
+      hasPrevious: false,
       totalCards: this._carouselState.cards.length,
       renderAll: this.renderAll
     });
@@ -240,16 +244,11 @@ export class Carousel {
 
   private _onClickPage(direction: 'prev' | 'next') {
     this._carouselEffect.next(this._carouselState, direction);
-    this.carouselChange.emit({
-      activeIndex: this._carouselState.activeIndex,
-      activeCard: this._carouselState.cards[this._carouselState.activeIndex],
-      totalCards: this._carouselState.cards.length,
-      renderAll: this.renderAll});
+    this._emitCarouselChange();
   }
 
   private _onScrollEvent() {
     this._carouselEffect.scroll(this._carouselState);
-
   }
 
   private _addEventListeners() {
@@ -287,12 +286,7 @@ export class Carousel {
         console.log('XXX up2:', this._carouselState.position.currentX );
        
         this._onScrollEvent();
-        this.carouselChange.emit({
-          activeIndex: this._carouselState.activeIndex,
-          activeCard: this._carouselState.cards[this._carouselState.activeIndex],
-          totalCards: this._carouselState.cards.length,
-          renderAll: this.renderAll,
-        });
+        this._emitCarouselChange();
       },
       { signal: this._abortController.signal }
     );

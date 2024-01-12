@@ -37,16 +37,6 @@ expannd and collapse events.
 | `"slot"`   | Container for the accordian content                                                                     |
 
 
-## CSS Custom Properties
-
-| Name                             | Description                      |
-| -------------------------------- | -------------------------------- |
-| `--dct-accordian-padding-bottom` | accordian content padding bottom |
-| `--dct-accordian-padding-letf`   | accordian content padding left   |
-| `--dct-accordian-padding-right`  | accordian content padding right  |
-| `--dct-accordian-padding-top`    | accordian content padding top    |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

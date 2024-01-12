@@ -24,10 +24,10 @@ follwowing features
 
 ## Events
 
-| Event                | Description                   | Type                                                                                                     |
-| -------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `carouselCardChange` | Carousel card change event    | `CustomEvent<{ card: HTMLElement; visibility: "small" \| "hidden" \| "visible"; }>`                      |
-| `carouselChange`     | Carousel change event emitter | `CustomEvent<{ activeIndex: number; activeCard: HTMLElement; renderAll: boolean; totalCards: number; }>` |
+| Event                | Description                   | Type                                                                                               |
+| -------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------- |
+| `carouselCardChange` | Carousel card change event    | `CustomEvent<{ card: HTMLElement; visibility: "small" \| "hidden" \| "visible"; }>`                |
+| `carouselChange`     | Carousel change event emitter | `CustomEvent<{ hasPrevious: boolean; hasNext: boolean; renderAll: boolean; totalCards: number; }>` |
 
 
 ## Methods

@@ -98,9 +98,9 @@
 }
 
 :host(.disabled) {
-  color: common.$colors-disabled;
   .heading {
-    slot[name='sub-header'] {
+    color: common.$colors-disabled;
+    slot[name='sub-heading'] {
       color: common.$colors-disabled;
     }
   }

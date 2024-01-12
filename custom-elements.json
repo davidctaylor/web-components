@@ -54,12 +54,62 @@
       "name": "dct-button",
       "description": {
         "kind": "markdown",
-        "value": ""
+        "value": "Button\n\nBasic button component with optional ripple effect. They may display\ntext or icons."
       },
       "attributes": [
         {
+          "name": "aria-label",
+          "description": "Optional aria label for button"
+        },
+        {
+          "name": "border",
+          "description": "The Buttons's border style. Solid, elevated or none.\nDefault elevated, shadow style border.",
+          "values": [
+            {
+              "name": "elevated"
+            },
+            {
+              "name": "none"
+            },
+            {
+              "name": "outlined"
+            }
+          ]
+        },
+        {
+          "name": "button-style",
+          "description": "The Buttons's type. Default 'button'",
+          "values": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "icon"
+            }
+          ]
+        },
+        {
+          "name": "button-type",
+          "description": "The Buttons's type. Default 'button'",
+          "values": [
+            {
+              "name": "button"
+            },
+            {
+              "name": "reset"
+            },
+            {
+              "name": "submit"
+            }
+          ]
+        },
+        {
           "name": "disabled",
-          "description": ""
+          "description": "Button in an disabled state. Default false."
+        },
+        {
+          "name": "ripple",
+          "description": "Ripple effect enabled for button. Defult true"
         }
       ]
     },
@@ -92,6 +142,10 @@
         {
           "name": "href",
           "description": "Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered"
+        },
+        {
+          "name": "ripple",
+          "description": "Ripple effect enabled for card. Defult true"
         },
         {
           "name": "target",
