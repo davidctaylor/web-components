@@ -1,17 +1,29 @@
-import { h, forceUpdate, Component, Element, Event, EventEmitter, Host, Listen, Prop, Watch, Method } from '@stencil/core';
+import {
+  h,
+  forceUpdate,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Listen,
+  Prop,
+  Watch,
+  Method,
+} from '@stencil/core';
 
 import { CarouselCardEventType, CarouselEventType, CarouselEffect, CarouselState } from '../interfaces';
 import { CarouselMaterialEffect } from './carousel-material-effect';
 
 /**
- * 
- * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+ *
+ * Carousel's show a collection of items that can be scrolled on and off the screen and have the
  * follwowing features
  * * Contain visual items like images or video, along with optional label text
  * * Four layouts: Multi-browse, uncontained, hero, and full-screen
  * * Layouts can be start-aligned or center-aligned
  * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
- * 
+ *
  * @slot slot - Container for the Carousel's content
  * @slot icon - Header content is placed within an button element and is used to expand or collapse the accordion item.
  */
@@ -38,10 +50,10 @@ export class Carousel {
   @Prop() footerText: string;
 
   /**
-   * 
+   *
    */
   @Prop() disabled = false;
-  
+
   /**
    * If true, the carousel is in an render all state and all Carousel cards will be displayed
    * in a grid layout
@@ -51,7 +63,16 @@ export class Carousel {
   renderAllChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
       this._carouselEffect.renderAll(this._carouselState, this.renderAll);
+<<<<<<< HEAD
       this._emitCarouselChange();
+=======
+      this.carouselChange.emit({
+        activeIndex: this._carouselState.activeIndex,
+        activeCard: this._carouselState.cards[this._carouselState.activeIndex],
+        totalCards: this._carouselState.cards.length,
+        renderAll: this.renderAll,
+      });
+>>>>>>> 4811465 (code cleanup for carousel feature)
     }
   }
 
@@ -67,7 +88,8 @@ export class Carousel {
         return;
       }
 
-      this._carouselState.width = this._carouselState.containerEl.getBoundingClientRect().width;
+      this._carouselState.width =
+        this._carouselState.containerEl.getBoundingClientRect().width;
 
       this._onScrollEvent();
       forceUpdate(this);
@@ -81,7 +103,9 @@ export class Carousel {
     eventName: 'carouselChange',
     composed: true,
     cancelable: true,
-    bubbles: true}) carouselChange: EventEmitter<CarouselEventType>;
+    bubbles: true,
+  })
+  carouselChange: EventEmitter<CarouselEventType>;
 
   /**
    * Carousel card change event
@@ -133,7 +157,7 @@ export class Carousel {
 
   componentDidLoad() {
     this._initializeCarousel();
-    this._addEventListeners();    
+    this._addEventListeners();
   }
 
   disconnectedCallback() {
@@ -150,32 +174,32 @@ export class Carousel {
           onClick={this._onClickHeading}
           class={{
             'carousel-header-footer': true,
-            'footer': !isHeader || !btnText,
-            'render-all': this.renderAll
+            footer: !isHeader || !btnText,
+            'render-all': this.renderAll,
           }}
         >
-          <div class={{
-            'content': true,
-            'footer': !btnText
-            }}>
-            {btnText && ( 
-              <p>{btnText}</p>
-            )}
+          <div
+            class={{
+              content: true,
+              footer: !btnText,
+            }}
+          >
+            {btnText && <p>{btnText}</p>}
             {isHeader && (
-              <div class={{ icon: true, footer: !btnText}}>
-                <slot name='icon'></slot>
+              <div class={{ icon: true, footer: !btnText }}>
+                <slot name="icon"></slot>
               </div>
             )}
           </div>
         </button>
       );
-
-    }
+    };
     return (
       <Host
         class={{
-        'carousel-container': true,
-      }}>
+          'carousel-container': true,
+        }}
+      >
         {headerFooter(true, this.headerText)}
         <div
           class={{
@@ -186,7 +210,7 @@ export class Carousel {
           ref={(el) => (this._contentEl = el)}
           role="container"
         >
-            <slot></slot>
+          <slot></slot>
         </div>
 
         {this.footerText && headerFooter(false, this.footerText)}
@@ -211,7 +235,9 @@ export class Carousel {
   }
 
   private _initializeCarousel() {
-    this._carouselEffect.event((event: CarouselCardEventType) => this.carouselCardChange.emit(event));
+    this._carouselEffect.event((event: CarouselCardEventType) =>
+      this.carouselCardChange.emit(event)
+    );
     this._carouselState.containerEl = this._contentEl;
     this._carouselState.cards = this._allCards();
     this._carouselState.cardWidth =
@@ -221,8 +247,11 @@ export class Carousel {
     this._carouselState.width = this.el.getBoundingClientRect().width;
 
     this._carouselState.cards.forEach((card, idx) => {
-      card.role='listitem';
-      card.setAttribute('addaria-label', `card ${idx} of ${this._carouselState.cards.length}`);
+      card.role = 'listitem';
+      card.setAttribute(
+        'addaria-label',
+        `card ${idx} of ${this._carouselState.cards.length}`
+      );
     });
 
     this._carouselEffect.render(this._carouselState);
@@ -231,7 +260,7 @@ export class Carousel {
       hasNext: true,
       hasPrevious: false,
       totalCards: this._carouselState.cards.length,
-      renderAll: this.renderAll
+      renderAll: this.renderAll,
     });
   }
 
@@ -244,7 +273,16 @@ export class Carousel {
 
   private _onClickPage(direction: 'prev' | 'next') {
     this._carouselEffect.next(this._carouselState, direction);
+<<<<<<< HEAD
     this._emitCarouselChange();
+=======
+    this.carouselChange.emit({
+      activeIndex: this._carouselState.activeIndex,
+      activeCard: this._carouselState.cards[this._carouselState.activeIndex],
+      totalCards: this._carouselState.cards.length,
+      renderAll: this.renderAll,
+    });
+>>>>>>> 4811465 (code cleanup for carousel feature)
   }
 
   private _onScrollEvent() {
@@ -258,19 +296,23 @@ export class Carousel {
         // this._contentEl.setPointerCapture(event.pointerId);
         if (event.isPrimary) {
           event.preventDefault();
-          if ((event.target as HTMLElement).hasPointerCapture(event.pointerId)) {
-            (event.target as HTMLElement).releasePointerCapture(event.pointerId);
+          if (
+            (event.target as HTMLElement).hasPointerCapture(event.pointerId)
+          ) {
+            (event.target as HTMLElement).releasePointerCapture(
+              event.pointerId
+            );
           }
           this._carouselState.position.active = true;
           this._carouselState.position.previousX =
             this._carouselState.position.currentX;
           this._carouselState.position.previousY =
             this._carouselState.position.currentY;
- 
+
           this._carouselState.position.startX = event.pageX;
           this._carouselState.position.startY = event.pageY;
           console.log('XXX down:', this._carouselState.position.startX);
-          console.log('XXX down:', this._carouselState.position.currentX );
+          console.log('XXX down:', this._carouselState.position.currentX);
         }
       },
       { signal: this._abortController.signal }
@@ -282,11 +324,21 @@ export class Carousel {
         this._carouselState.position.active = false;
         this._carouselState.position.currentX = event.pageX;
         this._carouselState.position.currentY = event.pageY;
-        console.log('XXX up1:', this._carouselState.position.startX );
-        console.log('XXX up2:', this._carouselState.position.currentX );
-       
+        console.log('XXX up1:', this._carouselState.position.startX);
+        console.log('XXX up2:', this._carouselState.position.currentX);
+
         this._onScrollEvent();
+<<<<<<< HEAD
         this._emitCarouselChange();
+=======
+        this.carouselChange.emit({
+          activeIndex: this._carouselState.activeIndex,
+          activeCard:
+            this._carouselState.cards[this._carouselState.activeIndex],
+          totalCards: this._carouselState.cards.length,
+          renderAll: this.renderAll,
+        });
+>>>>>>> 4811465 (code cleanup for carousel feature)
       },
       { signal: this._abortController.signal }
     );
@@ -297,8 +349,10 @@ export class Carousel {
         console.log('XXXpointercancel ');
         this._carouselState.position.active = false;
         // this._resetCarouselPosition();
-        this._carouselState.position.startX = this._carouselState.position.previousX;
-        this._carouselState.position.startY = this._carouselState.position.previousY
+        this._carouselState.position.startX =
+          this._carouselState.position.previousX;
+        this._carouselState.position.startY =
+          this._carouselState.position.previousY;
         this._onScrollEvent();
       },
       { signal: this._abortController.signal }

@@ -1,4 +1,12 @@
-import { h, Component, Element, Event, EventEmitter, Host, Prop } from '@stencil/core';
+import {
+  h,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Prop,
+} from '@stencil/core';
 import { addRipple } from '@utils/utils';
 import { ComponentBorderType } from '../interfaces';
 
@@ -58,6 +66,7 @@ export class Button {
     return (
       <Host
         class={{
+<<<<<<< HEAD
         'button-container': true,
         disabled: this.disabled,
         elevated: this.border === 'elevated',
@@ -73,6 +82,20 @@ export class Button {
             <slot/>
             {this.ripple && (<dct-ripple></dct-ripple>)}
           </button>
+=======
+          'button-container': true,
+          disabled: this.disabled,
+          icon: true,
+        }}
+      >
+        <button
+          aria-disabled={this.disabled}
+          onClick={(event) => this._onClick(event)}
+        >
+          <slot />
+          <dct-ripple></dct-ripple>
+        </button>
+>>>>>>> 4811465 (code cleanup for carousel feature)
       </Host>
     );
   }

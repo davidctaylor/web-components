@@ -1,4 +1,4 @@
-@use "../../styles" as common;
+@use '../../styles' as common;
 
 :host(.carousel-container) {
   @include common.mixins-default-layout();
@@ -43,7 +43,7 @@
       }
     }
 
-    .icon slot[name="icon"] {
+    .icon slot[name='icon'] {
       align-items: center;
       display: flex;
       height: common.$components-icon-height;
@@ -56,7 +56,7 @@
     }
 
     &.render-all {
-      .icon slot[name="icon"] {
+      .icon slot[name='icon'] {
         transform: rotate(180deg);
       }
     }
@@ -104,9 +104,9 @@
     overflow: hidden;
     transition: flex-basis 500ms ease;
     // transition: transform common.$animate-transition-duration
-      // common.$animate-transition-easing;
+    // common.$animate-transition-easing;
   }
-  
+
   ::slotted(dct-card:hover) {
     transform: scale(1.04);
   }

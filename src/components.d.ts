@@ -83,7 +83,7 @@ export namespace Components {
     }
     /**
      * Card
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      * Cards and created from title, subtitle and content elements and have been broken into
      * multiple components to support this structure.
@@ -112,7 +112,7 @@ export namespace Components {
     }
     /**
      * Card Content
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      */
     interface DctCardContent {
@@ -120,7 +120,7 @@ export namespace Components {
     }
     /**
      * Card Header
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      */
     interface DctCardHeader {
@@ -129,12 +129,12 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * If true, the card title will be in an overaly state. Primarily for use  when the parent Card is displaying an Image only allowin the title to be displayed on top of the image
+          * If true, the card title will be in an overaly state. Primarily for use when the parent Card is displaying an Image only allowin the title to be displayed on top of the image
          */
         "overlay": boolean;
     }
     /**
-     * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+     * Carousel's show a collection of items that can be scrolled on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
      * * Four layouts: Multi-browse, uncontained, hero, and full-screen
@@ -301,7 +301,7 @@ declare global {
     };
     /**
      * Card
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      * Cards and created from title, subtitle and content elements and have been broken into
      * multiple components to support this structure.
@@ -314,7 +314,7 @@ declare global {
     };
     /**
      * Card Content
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      */
     interface HTMLDctCardContentElement extends Components.DctCardContent, HTMLStencilElement {
@@ -325,7 +325,7 @@ declare global {
     };
     /**
      * Card Header
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      */
     interface HTMLDctCardHeaderElement extends Components.DctCardHeader, HTMLStencilElement {
@@ -339,7 +339,7 @@ declare global {
         "carouselCardChange": CarouselCardEventType;
     }
     /**
-     * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+     * Carousel's show a collection of items that can be scrolled on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
      * * Four layouts: Multi-browse, uncontained, hero, and full-screen
@@ -501,7 +501,7 @@ declare namespace LocalJSX {
     }
     /**
      * Card
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      * Cards and created from title, subtitle and content elements and have been broken into
      * multiple components to support this structure.
@@ -530,7 +530,7 @@ declare namespace LocalJSX {
     }
     /**
      * Card Content
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      */
     interface DctCardContent {
@@ -538,7 +538,7 @@ declare namespace LocalJSX {
     }
     /**
      * Card Header
-     * Display content and actions about a single subject. Card contents can include anything 
+     * Display content and actions about a single subject. Card contents can include anything
      * from images to headlines, supporting text, buttons, and lists
      */
     interface DctCardHeader {
@@ -547,12 +547,12 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * If true, the card title will be in an overaly state. Primarily for use  when the parent Card is displaying an Image only allowin the title to be displayed on top of the image
+          * If true, the card title will be in an overaly state. Primarily for use when the parent Card is displaying an Image only allowin the title to be displayed on top of the image
          */
         "overlay"?: boolean;
     }
     /**
-     * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+     * Carousel's show a collection of items that can be scrolled on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
      * * Four layouts: Multi-browse, uncontained, hero, and full-screen
@@ -693,7 +693,7 @@ declare module "@stencil/core" {
             "dct-button": LocalJSX.DctButton & JSXBase.HTMLAttributes<HTMLDctButtonElement>;
             /**
              * Card
-             * Display content and actions about a single subject. Card contents can include anything 
+             * Display content and actions about a single subject. Card contents can include anything
              * from images to headlines, supporting text, buttons, and lists
              * Cards and created from title, subtitle and content elements and have been broken into
              * multiple components to support this structure.
@@ -701,18 +701,18 @@ declare module "@stencil/core" {
             "dct-card": LocalJSX.DctCard & JSXBase.HTMLAttributes<HTMLDctCardElement>;
             /**
              * Card Content
-             * Display content and actions about a single subject. Card contents can include anything 
+             * Display content and actions about a single subject. Card contents can include anything
              * from images to headlines, supporting text, buttons, and lists
              */
             "dct-card-content": LocalJSX.DctCardContent & JSXBase.HTMLAttributes<HTMLDctCardContentElement>;
             /**
              * Card Header
-             * Display content and actions about a single subject. Card contents can include anything 
+             * Display content and actions about a single subject. Card contents can include anything
              * from images to headlines, supporting text, buttons, and lists
              */
             "dct-card-header": LocalJSX.DctCardHeader & JSXBase.HTMLAttributes<HTMLDctCardHeaderElement>;
             /**
-             * Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+             * Carousel's show a collection of items that can be scrolled on and off the screen and have the
              * follwowing features
              * * Contain visual items like images or video, along with optional label text
              * * Four layouts: Multi-browse, uncontained, hero, and full-screen

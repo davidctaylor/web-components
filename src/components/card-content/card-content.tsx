@@ -2,7 +2,7 @@ import { h, Component, Host, Prop } from '@stencil/core';
 
 /**
  * Card Content
- * Display content and actions about a single subject. Card contents can include anything 
+ * Display content and actions about a single subject. Card contents can include anything
  * from images to headlines, supporting text, buttons, and lists
  *
  * @slot slot - Container for card content
@@ -13,7 +13,6 @@ import { h, Component, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CardContent {
-
   @Prop({ mutable: true }) disabled = false;
 
   render() {
@@ -21,7 +20,7 @@ export class CardContent {
       <Host
         class={{
           'card-content': true,
-          disabled: this.disabled
+          disabled: this.disabled,
         }}
       >
         <slot></slot>

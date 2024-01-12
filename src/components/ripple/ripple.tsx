@@ -8,13 +8,13 @@ import {
   readTask,
   Prop,
 } from '@stencil/core';
-import { pointerCoord } from '@utils/utils'
+import { pointerCoord } from '@utils/utils';
 
-const PADDING = 10;
-const INITIAL_ORIGIN_SCALE = 0.5;
+const RIPPLE_PADDING = 10;
+const RIPPLE_ORIGIN_SCALE = 0.5;
 
 /**
- * 
+ *
  */
 @Component({
   tag: 'dct-ripple',
@@ -37,9 +37,9 @@ export class Ripple {
           domRect.width * domRect.width + domRect.height * domRect.height
         );
         const maxDim = Math.max(domRect.height, domRect.width);
-        const maxRadius = this.unbounded ? maxDim : hypotenuse + PADDING;
+        const maxRadius = this.unbounded ? maxDim : hypotenuse + RIPPLE_PADDING;
         // const maxRadius = hypotenuse + PADDING;
-        const initialSize = Math.floor(maxDim * INITIAL_ORIGIN_SCALE);
+        const initialSize = Math.floor(maxDim * RIPPLE_ORIGIN_SCALE);
         const finalScale = maxRadius / initialSize;
         let posX = x - domRect.left;
         let posY = y - domRect.top;
@@ -53,13 +53,16 @@ export class Ripple {
         const moveY = domRect.height * 0.5 - posY;
 
         writeTask(() => {
-          const elem = document.createElement("div");
+          const elem = document.createElement('div');
           elem.classList.add('ripple-effect');
           elem.style.top = `${styleY}px`;
           elem.style.left = `${styleX}px`;
           elem.style.width = elem.style.height = `${initialSize}px`;
           elem.style.setProperty(`--scale-complete`, `${finalScale}`);
-          elem.style.setProperty(`--translate-complete`, `${moveX}px, ${moveY}px`);
+          elem.style.setProperty(
+            `--translate-complete`,
+            `${moveX}px, ${moveY}px`
+          );
 
           const container = this.el.shadowRoot || this.el;
           container.appendChild(elem);

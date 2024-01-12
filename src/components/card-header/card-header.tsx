@@ -3,7 +3,7 @@ import { hasSlot } from '@utils/utils';
 
 /**
  * Card Header
- * Display content and actions about a single subject. Card contents can include anything 
+ * Display content and actions about a single subject. Card contents can include anything
  * from images to headlines, supporting text, buttons, and lists
  *
  * @slot slot - Container for the Title field
@@ -21,9 +21,9 @@ export class CardHeader {
    * If true, the card title is in a disabled state
    */
   @Prop() disabled = false;
-  
+
   /**
-   * If true, the card title will be in an overaly state. Primarily for use 
+   * If true, the card title will be in an overaly state. Primarily for use
    * when the parent Card is displaying an Image only allowin the title
    * to be displayed on top of the image
    */
@@ -31,7 +31,8 @@ export class CardHeader {
 
   render() {
     return (
-      <Host role='heading'
+      <Host
+        role="heading"
         class={{
           'card-header': true,
           disabled: this.disabled,
@@ -39,13 +40,13 @@ export class CardHeader {
         }}
       >
         {hasSlot(this.el, 'start') && (
-          <div class={{ icon: true, disabled: this.disabled }} >
+          <div class={{ icon: true, disabled: this.disabled }}>
             <slot name="start" />
           </div>
         )}
-        <div class='heading'>
-          <slot/>
-          <slot name='sub-heading' />
+        <div class="heading">
+          <slot />
+          <slot name="sub-heading" />
         </div>
         {hasSlot(this.el, 'end') && (
           <div class={{ icon: true, disabled: this.disabled }}>

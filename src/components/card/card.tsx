@@ -6,9 +6,9 @@ export type CardType = 'link' | 'text';
 
 /**
  * Card
- * Display content and actions about a single subject. Card contents can include anything 
+ * Display content and actions about a single subject. Card contents can include anything
  * from images to headlines, supporting text, buttons, and lists
- * 
+ *
  * Cards and created from title, subtitle and content elements and have been broken into
  * multiple components to support this structure.
  *
@@ -38,14 +38,14 @@ export class Card {
   @Watch('disabled')
   disabledChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
-      this._contentSlot && (this._contentSlot.disabled = this.disabled); 
+      this._contentSlot && (this._contentSlot.disabled = this.disabled);
       this._titleSlot && (this._titleSlot.disabled = this.disabled);
     }
   }
 
   /**
-  * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
-  */
+   * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
+   */
   @Prop() href: string;
 
   /**
@@ -54,15 +54,23 @@ export class Card {
   @Prop() ripple = true;
 
   /**
-  * Applies when a href value is provided. It contains the target value to display the linked URL
-  * Default value _blank;
-  */
+   * Applies when a href value is provided. It contains the target value to display the linked URL
+   * Default value _blank;
+   */
   @Prop() target: string = '_blank';
 
   componentDidLoad() {
-    this._contentSlot = findSlottedElement(this.el, undefined, 'DCT-CARD-CONTENT') as HTMLDctCardContentElement;
-    this._titleSlot = findSlottedElement(this.el, undefined, 'DCT-CARD-HEADER') as HTMLDctCardHeaderElement;
-    this._contentSlot && (this._contentSlot.disabled = this.disabled); 
+    this._contentSlot = findSlottedElement(
+      this.el,
+      undefined,
+      'DCT-CARD-CONTENT'
+    ) as HTMLDctCardContentElement;
+    this._titleSlot = findSlottedElement(
+      this.el,
+      undefined,
+      'DCT-CARD-HEADER'
+    ) as HTMLDctCardHeaderElement;
+    this._contentSlot && (this._contentSlot.disabled = this.disabled);
     this._titleSlot && (this._titleSlot.disabled = this.disabled);
   }
 
@@ -88,7 +96,7 @@ export class Card {
             class={{ 'card-heading': true }}
             onClick={this._onClick}
           >
-            {this.ripple && (<dct-ripple></dct-ripple>)}
+            {this.ripple && <dct-ripple></dct-ripple>}
             <slot></slot>
           </a>
         )}
@@ -97,7 +105,7 @@ export class Card {
     );
   }
 
-  private _onClick = (ev: Event) => {    
+  private _onClick = (ev: Event) => {
     this.ripple && addRipple(this.el, ev);
   };
 }

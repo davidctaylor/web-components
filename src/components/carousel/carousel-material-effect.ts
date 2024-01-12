@@ -1,5 +1,9 @@
 import { transitionEnd } from '@utils/utils';
-import { CarouselEffect, CarouselState, CarouselCardEventType } from '../interfaces';
+import {
+  CarouselEffect,
+  CarouselState,
+  CarouselCardEventType,
+} from '../interfaces';
 
 export class CarouselMaterialEffect implements CarouselEffect {
   private _eventCb: (event: CarouselCardEventType) => void;
@@ -9,12 +13,11 @@ export class CarouselMaterialEffect implements CarouselEffect {
   }
 
   public renderAll(carousel: CarouselState, isEnabled: boolean) {
-
     if (isEnabled) {
       carousel.containerEl.classList.add('display-all');
-      carousel.cards.forEach(card => {
+      carousel.cards.forEach((card) => {
         card.style.width = `${carousel.cardWidth}px`;
-        card.style.flexBasis =  `${carousel.cardWidth}px`;
+        card.style.flexBasis = `${carousel.cardWidth}px`;
         card.style.marginRight = `${carousel.cardSpacing}px`;
       });
     } else {
@@ -22,10 +25,10 @@ export class CarouselMaterialEffect implements CarouselEffect {
         carousel.containerEl.classList.remove('display-all');
       });
 
-      this.render(carousel);     
+      this.render(carousel);
     }
   }
-  
+
   public next(carousel: CarouselState, direction: 'prev' | 'next') {
     if (
       direction === 'next' &&
@@ -45,12 +48,15 @@ export class CarouselMaterialEffect implements CarouselEffect {
 
   public scroll(carousel: CarouselState) {
     const scrollX = carousel.position.currentX - carousel.position.startX;
-    
+
     const distance = scrollX > 0 ? scrollX * 1 : scrollX * -1;
     if ((scrollX > 0 ? scrollX * 1 : scrollX * -1) > carousel.cardWidth / 2) {
       const idx = Math.round(distance / carousel.cardWidth);
-    
-      if (scrollX < 0 && carousel.activeIndex + idx < carousel.cards.length - 1) {
+
+      if (
+        scrollX < 0 &&
+        carousel.activeIndex + idx < carousel.cards.length - 1
+      ) {
         carousel.activeIndex += idx;
       } else if (scrollX > 0) {
         if (carousel.activeIndex - idx > 0) {
@@ -86,7 +92,8 @@ export class CarouselMaterialEffect implements CarouselEffect {
       const fullCards = cardSizes.filter((cw) => cw === carousel.cardWidth);
       let remaining = carousel.width - cardSizes.reduce((a, b) => (a += b), 0);
       remaining -= fullCards.length * carousel.cardSpacing;
-      remaining -= cardSizes[0] > carousel.cardWidthMin ? 0 : carousel.cardSpacing;
+      remaining -=
+        cardSizes[0] > carousel.cardWidthMin ? 0 : carousel.cardSpacing;
       const adjCard = remaining / fullCards.length;
       cardSizes = cardSizes.map((cw) => {
         cw += cw === carousel.cardWidth ? adjCard : 0;
@@ -97,34 +104,47 @@ export class CarouselMaterialEffect implements CarouselEffect {
     let cardIdx = 0;
     for (let i = 0; i < carousel.cards.length; i += 1) {
       let emitted = false;
-      if (i < carousel.activeIndex || i >= carousel.activeIndex + cardSizes.length) {
+      if (
+        i < carousel.activeIndex ||
+        i >= carousel.activeIndex + cardSizes.length
+      ) {
         carousel.cards[i].style.borderWidth = `0px`;
         carousel.cards[i].style.flexBasis = '0px';
         carousel.cards[i].style.marginRight = `0px`;
-        this._eventCb({card: carousel.cards[i], visibility: 'hidden'});
+        this._eventCb({ card: carousel.cards[i], visibility: 'hidden' });
         continue;
       }
       carousel.cards[i].style.removeProperty('border-width');
       carousel.cards[i].style.flexBasis = `${cardSizes[cardIdx]}px`;
       if (cardSizes[cardIdx] === carousel.cardWidthMin) {
-        this._eventCb({card: carousel.cards[i], visibility: 'small'});
+        this._eventCb({ card: carousel.cards[i], visibility: 'small' });
         emitted = true;
-        carousel.cards[i].querySelector('dct-card-title')?.classList.add('card-small');
-        carousel.cards[i].querySelector('dct-card-content')?.classList.add('card-small');
+        carousel.cards[i]
+          .querySelector('dct-card-title')
+          ?.classList.add('card-small');
+        carousel.cards[i]
+          .querySelector('dct-card-content')
+          ?.classList.add('card-small');
       } else {
-        carousel.cards[i].querySelector('dct-card-title')?.classList.remove('card-small');
-        carousel.cards[i].querySelector('dct-card-content')?.classList.remove('card-small');
+        carousel.cards[i]
+          .querySelector('dct-card-title')
+          ?.classList.remove('card-small');
+        carousel.cards[i]
+          .querySelector('dct-card-content')
+          ?.classList.remove('card-small');
       }
-      if (cardIdx < cardSizes.length -1) {
+      if (cardIdx < cardSizes.length - 1) {
         carousel.cards[i].style.marginRight = `${carousel.cardSpacing}px`;
-        !emitted && this._eventCb({card: carousel.cards[i], visibility: 'visible'});
+        !emitted &&
+          this._eventCb({ card: carousel.cards[i], visibility: 'visible' });
         emitted = true;
       } else {
         carousel.cards[i].style.marginRight = `0px`;
       }
 
-      !emitted && this._eventCb({card: carousel.cards[i], visibility: 'hidden'});
-     
+      !emitted &&
+        this._eventCb({ card: carousel.cards[i], visibility: 'hidden' });
+
       cardIdx += 1;
     }
   }
