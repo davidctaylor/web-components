@@ -53,7 +53,7 @@ const Template = (args) => {
 export const Carousel = Template.bind({});
 Carousel.args = {
   disabled: false,
-  headerText: 'Show all header',
-  footerText: 'Show all footer',
+  headerText: 'Show all Carousel items',
+  footerText: 'Show all Carousel items',
   displayHeader: true,
 };
