@@ -187,7 +187,7 @@
       "name": "dct-carousel",
       "description": {
         "kind": "markdown",
-        "value": "\nCarousel's show a collection of items that can be scrolled on and off the screen and have the\nfollwowing features\n* Contain visual items like images or video, along with optional label text\n* Four layouts: Multi-browse, uncontained, hero, and full-screen\n* Layouts can be start-aligned or center-aligned\n* Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available"
+        "value": "\nCarousel's show a collection of items that can be scrolled on and off the screen and have the\nfollwowing features\n* Contain visual items like images or video, along with optional label text\n* Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available\n* Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout"
       },
       "attributes": [
         {

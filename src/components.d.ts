@@ -137,9 +137,8 @@ export namespace Components {
      * Carousel's show a collection of items that can be scrolled on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
-     * * Four layouts: Multi-browse, uncontained, hero, and full-screen
-     * * Layouts can be start-aligned or center-aligned
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+     * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
      */
     interface DctCarousel {
         "disabled": boolean;
@@ -341,9 +340,8 @@ declare global {
      * Carousel's show a collection of items that can be scrolled on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
-     * * Four layouts: Multi-browse, uncontained, hero, and full-screen
-     * * Layouts can be start-aligned or center-aligned
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+     * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
      */
     interface HTMLDctCarouselElement extends Components.DctCarousel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDctCarouselElementEventMap>(type: K, listener: (this: HTMLDctCarouselElement, ev: DctCarouselCustomEvent<HTMLDctCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -554,9 +552,8 @@ declare namespace LocalJSX {
      * Carousel's show a collection of items that can be scrolled on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
-     * * Four layouts: Multi-browse, uncontained, hero, and full-screen
-     * * Layouts can be start-aligned or center-aligned
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+     * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
      */
     interface DctCarousel {
         "disabled"?: boolean;
@@ -714,9 +711,8 @@ declare module "@stencil/core" {
              * Carousel's show a collection of items that can be scrolled on and off the screen and have the
              * follwowing features
              * * Contain visual items like images or video, along with optional label text
-             * * Four layouts: Multi-browse, uncontained, hero, and full-screen
-             * * Layouts can be start-aligned or center-aligned
              * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+             * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
              */
             "dct-carousel": LocalJSX.DctCarousel & JSXBase.HTMLAttributes<HTMLDctCarouselElement>;
             "dct-carousel-controls": LocalJSX.DctCarouselControls & JSXBase.HTMLAttributes<HTMLDctCarouselControlsElement>;

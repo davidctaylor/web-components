@@ -25,9 +25,8 @@ import { CarouselMaterialEffect } from './carousel-material-effect';
  * Carousel's show a collection of items that can be scrolled on and off the screen and have the
  * follwowing features
  * * Contain visual items like images or video, along with optional label text
- * * Four layouts: Multi-browse, uncontained, hero, and full-screen
- * * Layouts can be start-aligned or center-aligned
  * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
+ * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
  *
  * @slot slot - Container for the Carousel's content
  * @slot icon - Header content is placed within an button element and is used to expand or collapse the accordion item.
@@ -87,7 +86,7 @@ export class Carousel {
       this._carouselState.width =
         this._carouselState.containerEl.getBoundingClientRect().width;
 
-      this._onScrollEvent();
+      this._carouselEffect.renderAll(this._carouselState, false);
       forceUpdate(this);
     }, 100);
   }
