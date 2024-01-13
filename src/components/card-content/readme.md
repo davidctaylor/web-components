@@ -6,7 +6,7 @@
 ## Overview
 
 Card Content
-Display content and actions about a single subject. Card contents can include anything 
+Display content and actions about a single subject. Card contents can include anything
 from images to headlines, supporting text, buttons, and lists
 
 ## Properties
@@ -21,6 +21,16 @@ from images to headlines, supporting text, buttons, and lists
 | Slot     | Description                |
 | -------- | -------------------------- |
 | `"slot"` | Container for card content |
+
+
+## CSS Custom Properties
+
+| Name                                        | Description                 |
+| ------------------------------------------- | --------------------------- |
+| `--dct-card-content-padding-letf`           | card content padding left   |
+| `--dct-card-content-padding-padding-bottom` | card content padding bottom |
+| `--dct-card-content-padding-padding-top`    | card content padding top    |
+| `--dct-card-content-padding-right`          | card content padding right  |
 
 
 ----------------------------------------------

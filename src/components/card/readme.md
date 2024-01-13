@@ -6,7 +6,7 @@
 ## Overview
 
 Card
-Display content and actions about a single subject. Card contents can include anything 
+Display content and actions about a single subject. Card contents can include anything
 from images to headlines, supporting text, buttons, and lists
 
 Cards and created from title, subtitle and content elements and have been broken into

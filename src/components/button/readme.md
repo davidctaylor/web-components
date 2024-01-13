@@ -36,6 +36,13 @@ text or icons.
 | `"slot"` | Container for the button content |
 
 
+## CSS Custom Properties
+
+| Name                  | Description   |
+| --------------------- | ------------- |
+| `--dct-button-height` | button height |
+
+
 ## Dependencies
 
 ### Depends on

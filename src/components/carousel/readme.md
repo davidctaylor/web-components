@@ -5,7 +5,7 @@
 
 ## Overview
 
-Carousel's show a collection of items that can be scrolled on and off the screen and have the 
+Carousel's show a collection of items that can be scrolled on and off the screen and have the
 follwowing features
 * Contain visual items like images or video, along with optional label text
 * Four layouts: Multi-browse, uncontained, hero, and full-screen
@@ -31,16 +31,6 @@ follwowing features
 
 
 ## Methods
-
-### `allCards() => Promise<HTMLDctCardElement[]>`
-
-
-
-#### Returns
-
-Type: `Promise<HTMLDctCardElement[]>`
-
-
 
 ### `navigate(direction: 'prev' | 'next') => Promise<void>`
 

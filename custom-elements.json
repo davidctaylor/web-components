@@ -117,7 +117,7 @@
       "name": "dct-card",
       "description": {
         "kind": "markdown",
-        "value": "Card\nDisplay content and actions about a single subject. Card contents can include anything \nfrom images to headlines, supporting text, buttons, and lists\n\nCards and created from title, subtitle and content elements and have been broken into\nmultiple components to support this structure."
+        "value": "Card\nDisplay content and actions about a single subject. Card contents can include anything\nfrom images to headlines, supporting text, buttons, and lists\n\nCards and created from title, subtitle and content elements and have been broken into\nmultiple components to support this structure."
       },
       "attributes": [
         {
@@ -157,7 +157,7 @@
       "name": "dct-card-content",
       "description": {
         "kind": "markdown",
-        "value": "Card Content\nDisplay content and actions about a single subject. Card contents can include anything \nfrom images to headlines, supporting text, buttons, and lists"
+        "value": "Card Content\nDisplay content and actions about a single subject. Card contents can include anything\nfrom images to headlines, supporting text, buttons, and lists"
       },
       "attributes": [
         {
@@ -170,7 +170,7 @@
       "name": "dct-card-header",
       "description": {
         "kind": "markdown",
-        "value": "Card Header\nDisplay content and actions about a single subject. Card contents can include anything \nfrom images to headlines, supporting text, buttons, and lists"
+        "value": "Card Header\nDisplay content and actions about a single subject. Card contents can include anything\nfrom images to headlines, supporting text, buttons, and lists"
       },
       "attributes": [
         {
@@ -179,7 +179,7 @@
         },
         {
           "name": "overlay",
-          "description": "If true, the card title will be in an overaly state. Primarily for use \nwhen the parent Card is displaying an Image only allowin the title\nto be displayed on top of the image"
+          "description": "If true, the card title will be in an overaly state. Primarily for use\nwhen the parent Card is displaying an Image only allowin the title\nto be displayed on top of the image"
         }
       ]
     },
@@ -187,7 +187,7 @@
       "name": "dct-carousel",
       "description": {
         "kind": "markdown",
-        "value": "\nCarousel's show a collection of items that can be scrolled on and off the screen and have the \nfollwowing features\n* Contain visual items like images or video, along with optional label text\n* Four layouts: Multi-browse, uncontained, hero, and full-screen\n* Layouts can be start-aligned or center-aligned\n* Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available"
+        "value": "\nCarousel's show a collection of items that can be scrolled on and off the screen and have the\nfollwowing features\n* Contain visual items like images or video, along with optional label text\n* Four layouts: Multi-browse, uncontained, hero, and full-screen\n* Layouts can be start-aligned or center-aligned\n* Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available"
       },
       "attributes": [
         {
