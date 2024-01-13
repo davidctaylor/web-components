@@ -52,8 +52,9 @@ export namespace Components {
     }
     /**
      * Button
-     * Basic button component with optional ripple effect. They may display
-     * text or icons.
+     * Basic button component with optional ripple effect.
+     * Work in progress!!
+     * * They may display text or icons.
      */
     interface DctButton {
         /**
@@ -280,8 +281,9 @@ declare global {
     }
     /**
      * Button
-     * Basic button component with optional ripple effect. They may display
-     * text or icons.
+     * Basic button component with optional ripple effect.
+     * Work in progress!!
+     * * They may display text or icons.
      */
     interface HTMLDctButtonElement extends Components.DctButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLDctButtonElementEventMap>(type: K, listener: (this: HTMLDctButtonElement, ev: DctButtonCustomEvent<HTMLDctButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -463,8 +465,9 @@ declare namespace LocalJSX {
     }
     /**
      * Button
-     * Basic button component with optional ripple effect. They may display
-     * text or icons.
+     * Basic button component with optional ripple effect.
+     * Work in progress!!
+     * * They may display text or icons.
      */
     interface DctButton {
         /**
@@ -683,8 +686,9 @@ declare module "@stencil/core" {
             "dct-accordian-controller": LocalJSX.DctAccordianController & JSXBase.HTMLAttributes<HTMLDctAccordianControllerElement>;
             /**
              * Button
-             * Basic button component with optional ripple effect. They may display
-             * text or icons.
+             * Basic button component with optional ripple effect.
+             * Work in progress!!
+             * * They may display text or icons.
              */
             "dct-button": LocalJSX.DctButton & JSXBase.HTMLAttributes<HTMLDctButtonElement>;
             /**

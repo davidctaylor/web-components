@@ -13,8 +13,11 @@ import { ComponentBorderType } from '../interfaces';
 /**
  * Button
  *
- * Basic button component with optional ripple effect. They may display
- * text or icons.
+ * Basic button component with optional ripple effect.
+ *
+ * Work in progress!!
+ *
+ * * They may display text or icons.
  *
  * @slot slot - Container for the button content
  */

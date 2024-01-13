@@ -54,7 +54,7 @@
       "name": "dct-button",
       "description": {
         "kind": "markdown",
-        "value": "Button\n\nBasic button component with optional ripple effect. They may display\ntext or icons."
+        "value": "Button\n\nBasic button component with optional ripple effect.\n\nWork in progress!!\n\n* They may display text or icons."
       },
       "attributes": [
         {
