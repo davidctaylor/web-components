@@ -97,6 +97,12 @@
 }
 
 :host(.card-small) {
+  // text-orientation: upright;
+  text-overflow: ellipsis;
+  writing-mode: vertical-rl;
+  white-space: break-spaces;
+  slot[name='start'],
+  slot[name='end'],
   slot[name='sub-header'] {
     display: none;
   }

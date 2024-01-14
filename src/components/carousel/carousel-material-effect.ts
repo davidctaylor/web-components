@@ -118,14 +118,14 @@ export class CarouselMaterialEffect implements CarouselEffect {
         this._eventCb({ card: carousel.cards[i], visibility: 'small' });
         emitted = true;
         carousel.cards[i]
-          .querySelector('dct-card-title')
+          .querySelector('dct-card-header')
           ?.classList.add('card-small');
         carousel.cards[i]
           .querySelector('dct-card-content')
           ?.classList.add('card-small');
       } else {
         carousel.cards[i]
-          .querySelector('dct-card-title')
+          .querySelector('dct-card-header')
           ?.classList.remove('card-small');
         carousel.cards[i]
           .querySelector('dct-card-content')

@@ -43,9 +43,17 @@ const Template = (args) => {
       <span slot="icon" class="material-symbols-outlined">arrow_forward</span>
       ${card('Carousel card 1', 'Card sub-title', 'desert-road.webp')}
       ${card(undefined, undefined, 'infinite-railway-lines.webp')}
-      ${card('Carousel card 3', undefined, 'mountain-road.webp')}
+      ${card(
+        'Carousel card 3 mountain road webp',
+        undefined,
+        'mountain-road.webp'
+      )}
       ${card('Carousel card 4', undefined, undefined)}
-      ${card('Carousel card 5', 'Card sub-title', 'rowers.webp')}
+      ${card(
+        'Carousel card 5 card 3 mountain road webp',
+        'Card sub-title',
+        'rowers.webp'
+      )}
     </dct-carousel>
   </div>`;
 };

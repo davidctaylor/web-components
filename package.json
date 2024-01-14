@@ -1,6 +1,6 @@
 {
   "name": "@dctjs/web-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Basic Web Components",
   "keywords": [
     "components",
@@ -37,15 +37,15 @@
   },
   "dependencies": {
     "@stencil/core": "^4.7.0",
-    "@stencil/sass": "^3.0.7",
-    "@storybook/addon-docs": "^7.5.3",
-    "@storybook/web-components": "^7.5.3"
+    "@stencil/sass": "^3.0.7"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.3",
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-docs": "^7.5.3",
+    "@storybook/web-components": "^7.5.3",
     "@storybook/blocks": "^7.5.3",
     "@storybook/html": "^7.5.3",
     "@storybook/html-webpack5": "^7.5.3",

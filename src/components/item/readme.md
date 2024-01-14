@@ -30,6 +30,16 @@ If the Item is of type link, the Item will be defined as an anchor tag.
 | `"slot"` | Container for the Item's content |
 
 
+## CSS Custom Properties
+
+| Name                        | Description                         |
+| --------------------------- | ----------------------------------- |
+| `--dct-item-padding-`       | padding list item content container |
+| `--dct-item-padding-bottom` | padding list item content container |
+| `--dct-item-padding-right`  | padding list item content container |
+| `--dct-item-padding-top`    | padding list item content container |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
