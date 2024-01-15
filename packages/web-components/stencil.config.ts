@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'dct-components',
@@ -24,6 +25,11 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
       copy: [{ src: '../images', dest: 'assets' }],
     },
+    reactOutputTarget({
+      componentCorePackage: '@dctjs/web-components',
+      proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
+    }),
   ],
   testing: {
     browserHeadless: 'new',

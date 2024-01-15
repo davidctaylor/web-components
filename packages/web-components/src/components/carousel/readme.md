@@ -35,6 +35,12 @@ follwowing features
 
 
 
+#### Parameters
+
+| Name        | Type               | Description |
+| ----------- | ------------------ | ----------- |
+| `direction` | `"prev" \| "next"` |             |
+
 #### Returns
 
 Type: `Promise<void>`
