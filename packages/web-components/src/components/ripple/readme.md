@@ -18,6 +18,12 @@
 
 
 
+#### Parameters
+
+| Name | Type    | Description |
+| ---- | ------- | ----------- |
+| `ev` | `Event` |             |
+
 #### Returns
 
 Type: `Promise<() => void>`
