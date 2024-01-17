@@ -1,9 +1,8 @@
 {
   "name": "@dctjs web components mono repo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
-    "build": "npx nx build-prod @dctjs/web-components && npx nx build angular-workspace",
-    "build1": "npx nx build-prod @dctjs/web-components && npx nx build angular-workspace && npx nx build @dctjs/react",
+    "build": "npx nx build-prod @dctjs/web-components && npx nx build angular-workspace && npx nx build @dctjs/react",
     "build-storybook": "npx nx build-storybook @dctjs/web-components",
     "storybook": "npx nx storybook @dctjs/web-components"
   },
