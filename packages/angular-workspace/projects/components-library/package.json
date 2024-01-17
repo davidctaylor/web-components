@@ -1,0 +1,30 @@
+{
+  "name": "@dctjs/angular",
+  "description": "Angular library wrapper for @dctjs/web-components",
+  "version": "1.0.1",
+  "author": "David Taylor",
+  "homepage": "https://github.com/davidctaylor/web-components#readme",
+  "license": "MIT",
+  "keywords": [
+    "app",
+    "components",
+    "hybrid",
+    "webapp",
+    "progressive web app",
+    "pwa",
+    "angular",
+    "stenciljs"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=15.2.0",
+    "@angular/core": ">=15.2.0",
+    "@dctjs/web-components": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "ng-update": {
+    "packageGroup": "@dctjs/web-components"
+  }
+}

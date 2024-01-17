@@ -1,6 +1,9 @@
 {
   "name": "@dctjs/react",
-  "description": "React library for @dctjs/web-components",
+  "description": "React library wrapper for @dctjs/web-components",
+  "author": "David Taylor",
+  "homepage": "https://github.com/davidctaylor/web-components#readme",
+  "license": "MIT",
   "keywords": [
     "app",
     "components",
@@ -11,7 +14,6 @@
     "react",
     "stenciljs"
   ],
-  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -24,7 +26,7 @@
     "test": "node ./__tests__/react-library.test.js",
     "tsc": "tsc -p . --outDir ./dist"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@dctjs/web-components": "*"
   },
   "devDependencies": {
@@ -35,5 +37,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "ng-update": {
+    "packageGroup": "@dctjs/web-components"
   }
 }
