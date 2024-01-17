@@ -1,7 +1,9 @@
 {
   "name": "@dctjs/web-components",
   "version": "1.0.1",
-  "description": "Basic Web Components",
+  "description": "Web Component library",
+  "author": "David Taylor",
+  "homepage": "https://github.com/davidctaylor/web-components#readme",
   "keywords": [
     "app",
     "components",
@@ -24,8 +26,6 @@
     "type": "git",
     "url": "https://github.com/davidctaylor/web-components.git"
   },
-  "author": "David Taylor",
-  "homepage": "https://github.com/davidctaylor/web-components#readme",
   "files": [
     "dist/",
     "loader/"
@@ -41,11 +41,12 @@
     "build-storybook": "storybook build --static-dir images"
   },
   "dependencies": {
-    "@stencil/core": "^4.7.0",
+    "@stencil/core": "^4.10.0",
     "@stencil/sass": "^3.0.7"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.3",
+    "@stencil/angular-output-target": "^0.8.3",
     "@stencil/react-output-target": "^0.5.3",
     "@storybook/addon-docs": "^7.5.3",
     "@storybook/addon-essentials": "^7.5.3",

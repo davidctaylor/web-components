@@ -1,13 +1,18 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { angularOutputTarget, ValueAccessorConfig } from '@stencil/angular-output-target';
 import { reactOutputTarget } from '@stencil/react-output-target';
 
+const componentCorePackage = '@dctjs/web-components';
+const angularValueAccessorBindings: ValueAccessorConfig[] = [];
+
 export const config: Config = {
+  autoprefixCss: true,
+  sourceMap: false,
   namespace: 'dct-components',
   outputTargets: [
     {
       type: 'dist',
-      isPrimaryPackageOutputTarget: true,
       esmLoaderPath: '../loader',
     },
     {
@@ -25,8 +30,15 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
       copy: [{ src: '../images', dest: 'assets' }],
     },
+    angularOutputTarget({
+      componentCorePackage,
+      directivesProxyFile: '../angular-workspace/projects/components-library/src/lib/stencil-generated/proxies.ts',
+      directivesArrayFile: '../angular-workspace/projects/components-library/src/lib/stencil-generated/index.ts',
+      outputType: 'component',
+      valueAccessorConfigs: angularValueAccessorBindings
+    }),
     reactOutputTarget({
-      componentCorePackage: '@dctjs/web-components',
+      componentCorePackage,
       proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
     }),
@@ -35,5 +47,7 @@ export const config: Config = {
     browserHeadless: 'new',
   },
   plugins: [sass()],
-  validatePrimaryPackageOutputTarget: true,
+  preamble: 'DCT Web Components - MIT License',
+  enableCache: true,
+  transformAliasedImportPaths: true,
 };
