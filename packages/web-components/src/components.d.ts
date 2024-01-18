@@ -64,7 +64,7 @@ export namespace Components {
         /**
           * The Buttons's border style. Solid, elevated or none. Default elevated, shadow style border.
          */
-        "border": ComponentBorderType;
+        "borderStyle": ComponentBorderType;
         /**
           * The Buttons's type. Default 'button'
          */
@@ -477,7 +477,7 @@ declare namespace LocalJSX {
         /**
           * The Buttons's border style. Solid, elevated or none. Default elevated, shadow style border.
          */
-        "border"?: ComponentBorderType;
+        "borderStyle"?: ComponentBorderType;
         /**
           * The Buttons's type. Default 'button'
          */

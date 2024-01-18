@@ -48,7 +48,7 @@ export class Button {
    * The Buttons's border style. Solid, elevated or none.
    * Default elevated, shadow style border.
    */
-  @Prop() border: ComponentBorderType = 'none';
+  @Prop() borderStyle: ComponentBorderType = 'none';
 
   /**
    * Button in an disabled state. Default false.
@@ -71,8 +71,8 @@ export class Button {
         class={{
           'button-container': true,
           disabled: this.disabled,
-          elevated: this.border === 'elevated',
-          outlined: this.border === 'outlined',
+          elevated: this.borderStyle === 'elevated',
+          outlined: this.borderStyle === 'outlined',
           icon: this.buttonStyle === 'icon',
         }}
       >

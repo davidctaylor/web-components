@@ -60,14 +60,14 @@ export declare interface DctAccordianController extends Components.DctAccordianC
 
 
 @ProxyCmp({
-  inputs: ['ariaLabel', 'border', 'buttonStyle', 'buttonType', 'disabled', 'ripple']
+  inputs: ['ariaLabel', 'borderStyle', 'buttonStyle', 'buttonType', 'disabled', 'ripple']
 })
 @Component({
   selector: 'dct-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'border', 'buttonStyle', 'buttonType', 'disabled', 'ripple'],
+  inputs: ['ariaLabel', 'borderStyle', 'buttonStyle', 'buttonType', 'disabled', 'ripple'],
 })
 export class DctButton {
   protected el: HTMLElement;

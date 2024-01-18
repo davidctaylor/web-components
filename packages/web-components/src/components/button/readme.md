@@ -18,7 +18,7 @@ Work in progress!!
 | Property      | Attribute      | Description                                                                                 | Type                                 | Default     |
 | ------------- | -------------- | ------------------------------------------------------------------------------------------- | ------------------------------------ | ----------- |
 | `ariaLabel`   | `aria-label`   | Optional aria label for button                                                              | `string`                             | `undefined` |
-| `border`      | `border`       | The Buttons's border style. Solid, elevated or none. Default elevated, shadow style border. | `"elevated" \| "none" \| "outlined"` | `'none'`    |
+| `borderStyle` | `border-style` | The Buttons's border style. Solid, elevated or none. Default elevated, shadow style border. | `"elevated" \| "none" \| "outlined"` | `'none'`    |
 | `buttonStyle` | `button-style` | The Buttons's type. Default 'button'                                                        | `"default" \| "icon"`                | `'default'` |
 | `buttonType`  | `button-type`  | The Buttons's type. Default 'button'                                                        | `"button" \| "reset" \| "submit"`    | `'button'`  |
 | `disabled`    | `disabled`     | Button in an disabled state. Default false.                                                 | `boolean`                            | `false`     |

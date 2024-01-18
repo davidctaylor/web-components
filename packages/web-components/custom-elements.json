@@ -62,7 +62,7 @@
           "description": "Optional aria label for button"
         },
         {
-          "name": "border",
+          "name": "border-style",
           "description": "The Buttons's border style. Solid, elevated or none.\nDefault elevated, shadow style border.",
           "values": [
             {

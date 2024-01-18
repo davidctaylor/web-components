@@ -13,14 +13,14 @@ export default {
 
 const Template = (args) => {
   return `
-    <dct-button disabled=${args.disabled} border=${args.border} ripple=${args.addRipple}>
+    <dct-button disabled=${args.disabled} border-style=${args.borderStyle} ripple=${args.addRipple}>
       <span>${args.text}</span>
     </dct-button>`;
 };
 
 const TemplateIcon = (args) => {
   return `
-    <dct-button disabled=${args.disabled} border=${args.border} ripple=${args.addRipple} button-style=icon>
+    <dct-button disabled=${args.disabled} border-style=${args.borderStyle} ripple=${args.addRipple} button-style=icon>
       <span class="material-symbols-outlined">person</span>
     </dct-button>`;
 };
@@ -28,13 +28,13 @@ const TemplateIcon = (args) => {
 export const Button = Template.bind({});
 Button.args = {
   disabled: false,
-  border: 'elevated',
+  borderStyle: 'elevated',
   text: 'press me',
 };
 
 export const ButtonIcon = TemplateIcon.bind({});
 ButtonIcon.args = {
   disabled: false,
-  border: 'elevated',
+  borderStyle: 'elevated',
   addRipple: true,
 };
