@@ -1,7 +1,7 @@
 {
   "name": "@dctjs/angular",
   "description": "Angular library wrapper for @dctjs/web-components",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "author": "David Taylor",
   "homepage": "https://github.com/davidctaylor/web-components#readme",
   "license": "MIT",

@@ -8,7 +8,7 @@ const angularValueAccessorBindings: ValueAccessorConfig[] = [];
 
 export const config: Config = {
   autoprefixCss: true,
-  sourceMap: false,
+  enableCache: true,
   namespace: 'dct-components',
   outputTargets: [
     {
@@ -48,6 +48,6 @@ export const config: Config = {
   },
   plugins: [sass()],
   preamble: 'DCT Web Components - MIT License',
-  enableCache: true,
+  sourceMap: true,
   transformAliasedImportPaths: true,
 };

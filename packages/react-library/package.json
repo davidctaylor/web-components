@@ -3,7 +3,7 @@
   "description": "React library wrapper for @dctjs/web-components",
   "author": "David Taylor",
   "homepage": "https://github.com/davidctaylor/web-components#readme",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "license": "MIT",
   "keywords": [
     "app",
@@ -27,9 +27,11 @@
     "tsc": "tsc -p . --outDir ./dist"
   },
   "peerDependencies": {
-    "@dctjs/web-components": "*"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   },
   "devDependencies": {
+    "@dctjs/web-components": "*",
     "@types/react": "^18.2.48",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -37,8 +39,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "ng-update": {
-    "packageGroup": "@dctjs/web-components"
   }
 }
+

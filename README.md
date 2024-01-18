@@ -41,9 +41,13 @@ A library of high level UI Web Components inspired by Material Design 3 and buil
   ````
   import { DctButton } from '@dctjs/react';
 
-  const DisplayButton = () => {
-    return (<DctButton border="outlined">Click me!</DctButton>);
-  }
+    const handleClick = (event: Event) => {
+      console.log(event)
+    }
+
+    const DisplayButton = () => {
+      return (<DctButton border="outlined" onDctButtonClick={handleClick}>Click me!</DctButton>);
+    }
   ````
 
 ### Javascript
