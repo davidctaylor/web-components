@@ -1,4 +1,4 @@
-# dct-card-content
+# dct-carousel
 
 <!-- Auto Generated Below -->
 
