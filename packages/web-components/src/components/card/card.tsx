@@ -46,12 +46,12 @@ export class Card {
   /**
    * Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered
    */
-  @Prop() href: string;
+  @Prop() href: string = undefined;
 
   /**
    * Ripple effect enabled for card. Defult true
    */
-  @Prop() ripple = true;
+  @Prop() ripple = false;
 
   /**
    * Applies when a href value is provided. It contains the target value to display the linked URL
@@ -63,12 +63,12 @@ export class Card {
     this._contentSlot = findSlottedElement(
       this.el,
       undefined,
-      'DCT-CARD-CONTENT'
+      'DCT-CARD-CONTENT',
     ) as HTMLDctCardContentElement;
     this._titleSlot = findSlottedElement(
       this.el,
       undefined,
-      'DCT-CARD-HEADER'
+      'DCT-CARD-HEADER',
     ) as HTMLDctCardHeaderElement;
     this._contentSlot && (this._contentSlot.disabled = this.disabled);
     this._titleSlot && (this._titleSlot.disabled = this.disabled);
@@ -100,7 +100,7 @@ export class Card {
             <slot></slot>
           </a>
         )}
-        {!this.href && <slot></slot>}
+        {this.href === undefined && <slot></slot>}
       </Host>
     );
   }

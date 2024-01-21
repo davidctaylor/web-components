@@ -1,6 +1,6 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { MockHTMLElement } from '@stencil/core/mock-doc';
-import { Button } from '../button'
+import { Button } from '../button';
 
 describe('Button', () => {
   beforeAll(() => {

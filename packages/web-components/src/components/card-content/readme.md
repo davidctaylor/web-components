@@ -11,9 +11,9 @@ from images to headlines, supporting text, buttons, and lists
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `disabled` | `disabled` |             | `boolean` | `false` |
+| Property   | Attribute  | Description                  | Type      | Default |
+| ---------- | ---------- | ---------------------------- | --------- | ------- |
+| `disabled` | `disabled` | Card is in an disabled state | `boolean` | `false` |
 
 
 ## Slots
@@ -21,16 +21,6 @@ from images to headlines, supporting text, buttons, and lists
 | Slot     | Description                |
 | -------- | -------------------------- |
 | `"slot"` | Container for card content |
-
-
-## CSS Custom Properties
-
-| Name                                        | Description                 |
-| ------------------------------------------- | --------------------------- |
-| `--dct-card-content-padding-letf`           | card content padding left   |
-| `--dct-card-content-padding-padding-bottom` | card content padding bottom |
-| `--dct-card-content-padding-padding-top`    | card content padding top    |
-| `--dct-card-content-padding-right`          | card content padding right  |
 
 
 ----------------------------------------------

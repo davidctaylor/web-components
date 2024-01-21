@@ -13,7 +13,7 @@ export class Carousel {
   /**
    *
    */
-  @Prop({ mutable: true }) disabled = false;
+  @Prop() disabled = false;
 
   @Listen('dctButtonClick')
   onDctButtonClick(event: CustomEvent) {
@@ -35,12 +35,12 @@ export class Carousel {
     this._previousEl = findSlottedElement(
       this.el,
       'previous',
-      'DCT-BUTTON'
+      'DCT-BUTTON',
     ) as HTMLDctButtonElement;
     this._nextEl = findSlottedElement(
       this.el,
       'next',
-      'DCT-BUTTON'
+      'DCT-BUTTON',
     ) as HTMLDctButtonElement;
 
     this._previousEl && this._previousEl.setAttribute('carousel-previous', '');
@@ -83,7 +83,7 @@ export class Carousel {
           (this._previousEl.disabled = !this._carouselStatus.hasPrevious);
         this._nextEl && (this._nextEl.disabled = !this._carouselStatus.hasNext);
       },
-      { signal: this._abortController.signal }
+      { signal: this._abortController.signal },
     );
   }
 }

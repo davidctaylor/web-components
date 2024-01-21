@@ -109,7 +109,7 @@
         },
         {
           "name": "ripple",
-          "description": "Ripple effect enabled for button. Defult true"
+          "description": "Ripple effect enabled for button. Defult false"
         }
       ]
     },
@@ -162,7 +162,7 @@
       "attributes": [
         {
           "name": "disabled",
-          "description": ""
+          "description": "Card is in an disabled state"
         }
       ]
     },
@@ -192,7 +192,7 @@
       "attributes": [
         {
           "name": "disabled",
-          "description": ""
+          "description": "Carousel is it a disabled state. Default false"
         },
         {
           "name": "footer-text",

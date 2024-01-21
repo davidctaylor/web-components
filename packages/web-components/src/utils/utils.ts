@@ -2,7 +2,7 @@ declare const __zone_symbol__requestAnimationFrame: any;
 declare const requestAnimationFrame: any;
 
 export const hasSlot = (el: HTMLElement, name: string): boolean => {
-  return !!el.querySelector(`[slot="${name}"]`);
+  return el.querySelector(`[slot="${name}"]`) !== null;
 };
 
 export const inSideContainer = (el: HTMLElement, child: HTMLElement) => {
@@ -32,7 +32,7 @@ export const expandContent = async (el: HTMLElement, offsetHeight: number) => {
 
 export const collapseContent = async (
   el: HTMLElement,
-  offsetHeight: number
+  offsetHeight: number,
 ) => {
   if (offsetHeight === 0) {
     return;
@@ -67,7 +67,7 @@ export const transitionEndAsync = (el: HTMLElement) => {
 
 export const transitionEnd = (
   el: HTMLElement,
-  cb: (event?: TransitionEvent) => void
+  cb: (event?: TransitionEvent) => void,
 ) => {
   const options: any = { passive: true };
   const onTransitionEndEvent = (e?: Event) => {
@@ -87,19 +87,19 @@ export const transitionEnd = (
 };
 
 export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: string) => {
-  if (!el) {
+  if (el === undefined || el === null) {
     return;
   }
 
-  const query = slotName ? `slot[name="${slotName}"]` : `slot`;
+  const query = slotName !== undefined ? `slot[name="${slotName}"]` : `slot`;
   let slot: HTMLSlotElement;
   
-  if (el.shadowRoot) { 
+  if (el.shadowRoot !== undefined && el.shadowRoot !== null) { 
     slot = el.shadowRoot.querySelector(query );
   }
-  slot = slot ? slot : el.querySelector(query);
+  slot = slot !== undefined ? slot : el.querySelector(query);
 
-  return slot ? slot 
+  return slot !== undefined && slot !== null ? slot 
     .assignedElements({ flatten: true })
     .find((el) => el.tagName === tagName) as
     | HTMLElement
@@ -108,18 +108,16 @@ export const findSlottedElement = (el: HTMLElement, slotName: string, tagName: s
 
 export const addRipple = (el: HTMLElement, ev: Event) => {
   let ripple: HTMLDctRippleElement;
-  if (el.shadowRoot) {
+  if (el.shadowRoot !== undefined) {
     ripple = el.shadowRoot.querySelector('dct-ripple');
   }
   
-  ripple = ripple ? ripple : el.querySelector('dct-ripple');
+  ripple = ripple !== undefined ? ripple : el.querySelector('dct-ripple');
   ripple && ripple.addRipple(ev).then((res) => res());
 };
 
 export const pointerCoord = (event: any): { x: number; y: number } => {
-  // get X coordinates for either a mouse click
-  // or a touch depending on the given event
-  if (event) {
+  if (event !== undefined) {
     const changedTouches = event.changedTouches;
     if (changedTouches && changedTouches.length > 0) {
       const touch = changedTouches[0];

@@ -45,16 +45,16 @@ export class Carousel {
    * Optional text to display in Carousels header element determine if
    * all carousel cards are visible
    */
-  @Prop() headerText: string;
+  @Prop() headerText: string = undefined;
 
   /**
    * Optional text to display in Carousels footer element determine if
    * all carousel cards are visible
    */
-  @Prop() footerText: string;
+  @Prop() footerText: string = undefined;
 
   /**
-   *
+   * Carousel is it a disabled state. Default false
    */
   @Prop() disabled = false;
 
@@ -73,7 +73,7 @@ export class Carousel {
 
   @Listen('resize', { target: 'window' })
   onResize() {
-    if (this._debounce) {
+    if (this._debounce !== null) {
       clearTimeout(this._debounce);
       this._debounce = null;
     }
@@ -94,19 +94,16 @@ export class Carousel {
   /**
    * Carousel change event emitter
    */
-  @Event({
-    eventName: 'carouselChange',
-    composed: true,
-    cancelable: true,
-    bubbles: true,
-  })
-  carouselChange: EventEmitter<CarouselEventType>;
+  @Event({ eventName: 'carouselChange', composed: true, cancelable: true, bubbles: true}) carouselChange: EventEmitter<CarouselEventType>;
 
   /**
    * Carousel card change event
    */
   @Event() carouselCardChange!: EventEmitter<CarouselCardEventType>;
 
+  /**
+   * Method to move from previous/next card with in the carousel. 
+   */
   @Method()
   async navigate(direction: 'prev' | 'next') {
     return this._onClickPage(direction);
@@ -164,19 +161,19 @@ export class Carousel {
           onClick={this._onClickHeading}
           class={{
             'carousel-header-footer': true,
-            footer: !isHeader || !btnText,
+            footer: !isHeader || btnText === undefined,
             'render-all': this.renderAll,
           }}
         >
           <div
             class={{
               content: true,
-              footer: !btnText,
+              footer: btnText === undefined,
             }}
           >
             {btnText && <p>{btnText}</p>}
             {isHeader && (
-              <div class={{ icon: true, footer: !btnText }}>
+              <div class={{ icon: true, footer: btnText === undefined }}>
                 <slot name="icon"></slot>
               </div>
             )}
@@ -211,7 +208,7 @@ export class Carousel {
 
   private _allCards() {
     return Array.from(
-      this.el.querySelectorAll(':scope > dct-card')
+      this.el.querySelectorAll(':scope > dct-card'),
     ) as HTMLDctCardElement[];
   }
 
@@ -227,7 +224,7 @@ export class Carousel {
 
   private _initializeCarousel() {
     this._carouselEffect.event((event: CarouselCardEventType) =>
-      this.carouselCardChange.emit(event)
+      this.carouselCardChange.emit(event),
     );
     this._carouselState.containerEl = this._contentEl;
     this._carouselState.cards = this._allCards();
@@ -243,7 +240,7 @@ export class Carousel {
       card.role = 'listitem';
       card.setAttribute(
         'aria-label',
-        `card ${idx} of ${this._carouselState.cards.length}`
+        `card ${idx} of ${this._carouselState.cards.length}`,
       );
     });
 
@@ -284,7 +281,7 @@ export class Carousel {
             (event.target as HTMLElement).hasPointerCapture(event.pointerId)
           ) {
             (event.target as HTMLElement).releasePointerCapture(
-              event.pointerId
+              event.pointerId,
             );
           }
           this._carouselState.position.active = true;
@@ -297,8 +294,9 @@ export class Carousel {
           this._carouselState.position.startY = event.pageY;
         }
       },
-      { signal: this._abortController.signal }
+      { signal: this._abortController.signal },
     );
+
     this._contentEl.addEventListener(
       'pointerup',
       (event) => {
@@ -310,8 +308,9 @@ export class Carousel {
         this._onScrollEvent();
         this._emitCarouselChange();
       },
-      { signal: this._abortController.signal }
+      { signal: this._abortController.signal },
     );
+
     this._contentEl.addEventListener(
       'pointercancel',
       (event) => {
@@ -324,8 +323,9 @@ export class Carousel {
           this._carouselState.position.previousY;
         this._onScrollEvent();
       },
-      { signal: this._abortController.signal }
+      { signal: this._abortController.signal },
     );
+    
     this._contentEl.addEventListener(
       'pointermove',
       (event) => {
@@ -337,7 +337,7 @@ export class Carousel {
         this._carouselState.position.currentY = event.pageY;
         this._onScrollEvent();
       },
-      { signal: this._abortController.signal }
+      { signal: this._abortController.signal },
     );
   }
 }

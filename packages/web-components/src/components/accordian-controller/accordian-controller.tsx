@@ -34,7 +34,7 @@ export class AccordianController {
   @Watch('disabled')
   disabledChanged() {
     this._allAccordions().forEach(
-      (accordian) => (accordian.disabled = this.disabled)
+      (accordian) => (accordian.disabled = this.disabled),
     );
   }
 
@@ -43,7 +43,7 @@ export class AccordianController {
    * the first expanded Accordian element will remain expanded all subsequent
    * Accordian's will be places in a collapsed state
    */
-  @Prop() displayMultiple = true;
+  @Prop() displayMultiple = false;
   @Watch('displayMultiple')
   displayMultipleChanged() {
     if (this.displayMultiple) {
@@ -60,12 +60,13 @@ export class AccordianController {
 
   @Listen('accordianChange')
   onAccordianChange(event: CustomEvent) {
+    console.log('XXX onAccordianChange');
     if (this.displayMultiple) {
       return;
     }
     const target = event.target as HTMLDctAccordianElement;
 
-    if (!this._activeElement) {
+    if (this._activeElement === undefined) {
       this._activeElement = target;
       return;
     }
@@ -76,7 +77,7 @@ export class AccordianController {
     }
   }
 
-  private _activeElement: HTMLDctAccordianElement;
+  private _activeElement: HTMLDctAccordianElement = undefined;
 
   componentDidLoad() {
     if (this.disabled) {
@@ -104,7 +105,7 @@ export class AccordianController {
 
   private _allAccordions() {
     return Array.from(
-      this.el.querySelectorAll(':scope > dct-accordian')
+      this.el.querySelectorAll(':scope > dct-accordian'),
     ) as HTMLDctAccordianElement[];
   }
 }

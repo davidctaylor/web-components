@@ -22,7 +22,7 @@ Work in progress!!
 | `buttonStyle` | `button-style` | The Buttons's type. Default 'button'                                                        | `"default" \| "icon"`                | `'default'` |
 | `buttonType`  | `button-type`  | The Buttons's type. Default 'button'                                                        | `"button" \| "reset" \| "submit"`    | `'button'`  |
 | `disabled`    | `disabled`     | Button in an disabled state. Default false.                                                 | `boolean`                            | `false`     |
-| `ripple`      | `ripple`       | Ripple effect enabled for button. Defult true                                               | `boolean`                            | `true`      |
+| `ripple`      | `ripple`       | Ripple effect enabled for button. Defult false                                              | `boolean`                            | `false`     |
 
 
 ## Events
@@ -37,13 +37,6 @@ Work in progress!!
 | Slot     | Description                      |
 | -------- | -------------------------------- |
 | `"slot"` | Container for the button content |
-
-
-## CSS Custom Properties
-
-| Name                  | Description   |
-| --------------------- | ------------- |
-| `--dct-button-height` | button height |
 
 
 ## Dependencies

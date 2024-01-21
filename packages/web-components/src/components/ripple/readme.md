@@ -16,7 +16,7 @@
 
 ### `addRipple(ev: Event) => Promise<() => void>`
 
-
+Add ripple effect to parent element
 
 #### Parameters
 

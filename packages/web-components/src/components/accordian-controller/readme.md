@@ -19,7 +19,7 @@ The Accordian Controller is a container for Accordion instances. It manages the 
 | Property          | Attribute          | Description                                                                                                                                                                                            | Type      | Default |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------- |
 | `disabled`        | `disabled`         | Places all child Accordian elements is into a disabled/enabled state                                                                                                                                   | `boolean` | `false` |
-| `displayMultiple` | `display-multiple` | Allows multilple Accordian elements be in an expanded state. If set to false, the first expanded Accordian element will remain expanded all subsequent Accordian's will be places in a collapsed state | `boolean` | `true`  |
+| `displayMultiple` | `display-multiple` | Allows multilple Accordian elements be in an expanded state. If set to false, the first expanded Accordian element will remain expanded all subsequent Accordian's will be places in a collapsed state | `boolean` | `false` |
 
 
 ## Slots

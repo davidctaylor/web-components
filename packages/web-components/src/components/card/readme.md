@@ -19,7 +19,7 @@ multiple components to support this structure.
 | `border`   | `border`   | The Card's border style. Solid, elevated or none. Default elevated, shadow style border.                            | `"elevated" \| "none" \| "outlined"` | `'elevated'` |
 | `disabled` | `disabled` | Card is in a disabled state. Setting this state will also set the disabled property of any child components         | `boolean`                            | `false`      |
 | `href`     | `href`     | Contains a URL or URL fragment. If this property is set, card an anchor tag will be rendered                        | `string`                             | `undefined`  |
-| `ripple`   | `ripple`   | Ripple effect enabled for card. Defult true                                                                         | `boolean`                            | `true`       |
+| `ripple`   | `ripple`   | Ripple effect enabled for card. Defult true                                                                         | `boolean`                            | `false`      |
 | `target`   | `target`   | Applies when a href value is provided. It contains the target value to display the linked URL Default value _blank; | `string`                             | `'_blank'`   |
 
 

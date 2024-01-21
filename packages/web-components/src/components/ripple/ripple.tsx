@@ -22,10 +22,16 @@ const RIPPLE_ORIGIN_SCALE = 0.5;
   shadow: true,
 })
 export class Ripple {
-  @Element() el!: HTMLElement;
+  @Element() el!: HTMLDctRippleElement;
 
+  /**
+   * 
+   */
   @Prop() unbounded = false;
 
+  /**
+   * Add ripple effect to parent element
+   */
   @Method()
   async addRipple(ev: Event) {
     return new Promise<() => void>((resolve) => {
@@ -34,7 +40,7 @@ export class Ripple {
         const { x, y } = pointerCoord(ev);
 
         const hypotenuse = Math.sqrt(
-          domRect.width * domRect.width + domRect.height * domRect.height
+          domRect.width * domRect.width + domRect.height * domRect.height,
         );
         const maxDim = Math.max(domRect.height, domRect.width);
         const maxRadius = this.unbounded ? maxDim : hypotenuse + RIPPLE_PADDING;
@@ -61,7 +67,7 @@ export class Ripple {
           elem.style.setProperty(`--scale-complete`, `${finalScale}`);
           elem.style.setProperty(
             `--translate-complete`,
-            `${moveX}px, ${moveY}px`
+            `${moveX}px, ${moveY}px`,
           );
 
           const container = this.el.shadowRoot || this.el;

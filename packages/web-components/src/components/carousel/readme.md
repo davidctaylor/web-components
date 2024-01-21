@@ -15,7 +15,7 @@ follwowing features
 
 | Property     | Attribute     | Description                                                                                               | Type      | Default     |
 | ------------ | ------------- | --------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `disabled`   | `disabled`    |                                                                                                           | `boolean` | `false`     |
+| `disabled`   | `disabled`    | Carousel is it a disabled state. Default false                                                            | `boolean` | `false`     |
 | `footerText` | `footer-text` | Optional text to display in Carousels footer element determine if all carousel cards are visible          | `string`  | `undefined` |
 | `headerText` | `header-text` | Optional text to display in Carousels header element determine if all carousel cards are visible          | `string`  | `undefined` |
 | `renderAll`  | `render-all`  | If true, the carousel is in an render all state and all Carousel cards will be displayed in a grid layout | `boolean` | `false`     |
@@ -33,7 +33,7 @@ follwowing features
 
 ### `navigate(direction: 'prev' | 'next') => Promise<void>`
 
-
+Method to move from previous/next card with in the carousel.
 
 #### Parameters
 

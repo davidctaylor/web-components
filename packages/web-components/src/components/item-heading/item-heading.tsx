@@ -23,7 +23,7 @@ export class ItemHeading {
   /**
    * If true, animate the icon elementsicons in start and end slots
    */
-  @Prop() animateIcons = true;
+  @Prop() animateIcons = false;
 
   /**
    * ItemHeading is in a disabled state
@@ -33,7 +33,7 @@ export class ItemHeading {
   /**
    * * If true, icon is in a rotated state
    */
-  @Prop({ mutable: true }) rotateIcon = false;
+  @Prop() rotateIcon = false;
   @Watch('rotateIcon')
   expandedChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {

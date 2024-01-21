@@ -50,7 +50,7 @@ export class Accordian {
   @Prop() disabled = false;
   @Watch('disabled')
   disabledChanged(newValue: boolean, oldValue: boolean) {
-    if (newValue !== oldValue && this._headingSlot) {
+    if (newValue !== oldValue && this._headingSlot !== undefined) {
       (this._headingSlot as HTMLDctItemHeadingElement).disabled = this.disabled;
     }
   }
@@ -70,14 +70,14 @@ export class Accordian {
       if (newValue) {
         expandContent(
           this._contentElement,
-          this._contentSlotElement.offsetHeight
+          this._contentSlotElement.offsetHeight,
         );
         this._headingSlot &&
           (this._headingSlot.rotateIcon = true);
       } else {
         collapseContent(
           this._contentElement,
-          this._contentSlotElement.offsetHeight
+          this._contentSlotElement.offsetHeight,
         );
         this._headingSlot &&  (this._headingSlot.rotateIcon = false);
       }
@@ -94,7 +94,7 @@ export class Accordian {
   private _contentElement!: HTMLElement;
   private _buttonElement!: HTMLButtonElement;
   private _contentSlotElement!: HTMLElement;
-  private _headingSlot: HTMLDctItemHeadingElement;
+  private _headingSlot: HTMLDctItemHeadingElement = undefined;
 
   componentWillLoad() {
     Accordian._instanceCounter += 1;
@@ -163,11 +163,11 @@ export class Accordian {
 
   private _slottedHeadingElement = () => {
     const heading: HTMLDctItemHeadingElement = findSlottedElement(this._buttonElement, 'heading', 'DCT-ITEM-HEADING') as HTMLDctItemHeadingElement;
-    if (!this._buttonElement) {
+    if (this._buttonElement === undefined) {
       return;
     }
 
-    if (!heading) {
+    if (heading === undefined) {
       return;
     }
 
@@ -177,8 +177,8 @@ export class Accordian {
     if (this.disabled) {
       (this._headingSlot as HTMLDctItemHeadingElement).disabled = true;
     }
-    this._headingSlot.classList.add();
-    if (hasStartIcon !== null) {
+
+    if (hasStartIcon !== undefined && hasStartIcon !== null) {      
       this.el.classList.add('icon-start');
     }
   };

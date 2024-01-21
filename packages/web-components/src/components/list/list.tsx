@@ -17,7 +17,7 @@ export class List {
   @Watch('disabled')
   disabledChanged() {
     this._allListItems().forEach(
-      (accordian) => (accordian.disabled = this.disabled)
+      (accordian) => (accordian.disabled = this.disabled),
     );
   }
 
@@ -52,7 +52,7 @@ export class List {
 
   private _allListItems() {
     return Array.from(
-      this.el.querySelectorAll(':scope > dct-item')
+      this.el.querySelectorAll(':scope > dct-item'),
     ) as HTMLDctItemElement[];
   }
 }

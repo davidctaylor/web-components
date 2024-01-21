@@ -1,5 +1,3 @@
-// import { action } from '@storybook/addon-actions';
-
 export default {
   // component: Accordian,
   title: 'DCTComponents/Item/ItemHeading',

@@ -1,42 +1,25 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
-      "rules": {}
-    },
-    {
-      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
-      "env": {
-        "jest": true
-      },
-      "rules": {}
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "plugin:@stencil-community/recommended"
+  ],
+  "plugins": ["@stylistic"],
+  "ignorePatterns": ["**/*.stories.*"],
+  "overrides": [{
+    "files": ["*.js", "*.jsx", "*.ts",  "*.tsx"],
+    "rules": {
+      "react/jsx-no-bind": "off",
+      "@stylistic/array-bracket-spacing": "error",
+      "@stylistic/arrow-spacing": "error",
+      "@stylistic/arrow-parens": "error",
+      "@stylistic/block-spacing": "error",
+      "@stylistic/brace-style": ["error", "1tbs"],
+      "@stylistic/comma-dangle": ["error", "always-multiline"],
+      "@stylistic/quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+      "@stylistic/semi": "error"
     }
-  ]
+  }]
 }

@@ -78,7 +78,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Ripple effect enabled for button. Defult true
+          * Ripple effect enabled for button. Defult false
          */
         "ripple": boolean;
     }
@@ -117,6 +117,9 @@ export namespace Components {
      * from images to headlines, supporting text, buttons, and lists
      */
     interface DctCardContent {
+        /**
+          * Card is in an disabled state
+         */
         "disabled": boolean;
     }
     /**
@@ -142,6 +145,9 @@ export namespace Components {
      * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
      */
     interface DctCarousel {
+        /**
+          * Carousel is it a disabled state. Default false
+         */
         "disabled": boolean;
         /**
           * Optional text to display in Carousels footer element determine if all carousel cards are visible
@@ -151,6 +157,9 @@ export namespace Components {
           * Optional text to display in Carousels header element determine if all carousel cards are visible
          */
         "headerText": string;
+        /**
+          * Method to move from previous/next card with in the carousel.
+         */
         "navigate": (direction: 'prev' | 'next') => Promise<void>;
         /**
           * If true, the carousel is in an render all state and all Carousel cards will be displayed in a grid layout
@@ -222,6 +231,9 @@ export namespace Components {
         "heading": string;
     }
     interface DctRipple {
+        /**
+          * Add ripple effect to parent element
+         */
         "addRipple": (ev: Event) => Promise<() => void>;
         "unbounded": boolean;
     }
@@ -495,7 +507,7 @@ declare namespace LocalJSX {
          */
         "onDctButtonClick"?: (event: DctButtonCustomEvent<void>) => void;
         /**
-          * Ripple effect enabled for button. Defult true
+          * Ripple effect enabled for button. Defult false
          */
         "ripple"?: boolean;
     }
@@ -534,6 +546,9 @@ declare namespace LocalJSX {
      * from images to headlines, supporting text, buttons, and lists
      */
     interface DctCardContent {
+        /**
+          * Card is in an disabled state
+         */
         "disabled"?: boolean;
     }
     /**
@@ -559,6 +574,9 @@ declare namespace LocalJSX {
      * * Optional controls on the top left or bottom right allow the Carousel to display all content using full screen  grid layout
      */
     interface DctCarousel {
+        /**
+          * Carousel is it a disabled state. Default false
+         */
         "disabled"?: boolean;
         /**
           * Optional text to display in Carousels footer element determine if all carousel cards are visible

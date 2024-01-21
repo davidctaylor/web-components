@@ -56,9 +56,9 @@ export class Button {
   @Prop({ reflect: true }) disabled = false;
 
   /**
-   * Ripple effect enabled for button. Defult true
+   * Ripple effect enabled for button. Defult false
    */
-  @Prop() ripple = true;
+  @Prop() ripple = false;
 
   /**
    * Button event emitter

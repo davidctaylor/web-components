@@ -13,7 +13,11 @@ import { h, Component, Host, Prop } from '@stencil/core';
   shadow: true,
 })
 export class CardContent {
-  @Prop({ mutable: true }) disabled = false;
+
+  /**
+   * Card is in an disabled state
+   */
+  @Prop() disabled = false;
 
   render() {
     return (

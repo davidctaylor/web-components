@@ -55,7 +55,7 @@
 :host(.accordian-container.icon-start) {
   .accordian-content {
     .accordian-content-slot {
-      padding-left: calc(1rem + common.$components-icon-width);
+      padding-left: calc(1.5rem + common.$components-icon-width);
     }
   }
 }
