@@ -12,8 +12,8 @@ A library of high level UI Web Components inspired by Material Design 3 and buil
 - Import the WebComponentsModule module into a components module file. For example to display the button component
 
   ````
-    import { WebComponentsModule } from '@dctjs/angular';
-    import { MyComponent } from './my.component';
+  import { WebComponentsModule } from '@dctjs/angular';
+  import { MyComponent } from './my.component';
     
     @NgModule({
       declarations: [MyComponent],
@@ -28,7 +28,8 @@ A library of high level UI Web Components inspired by Material Design 3 and buil
 - Update the components template to include the desired web component. For example to display the button component
 
   ````
-    <dct-button (dctButtonClick)="onClick($event)" border="outlined">Click me!</dct-button>
+    <dct-button (dctButtonClick)="onClick($event)"
+      border="outlined">Click me!</dct-button>
   ````
 
 ### React
@@ -46,7 +47,8 @@ A library of high level UI Web Components inspired by Material Design 3 and buil
     }
 
     const DisplayButton = () => {
-      return (<DctButton border="outlined" onDctButtonClick={handleClick}>Click me!</DctButton>);
+      return (<DctButton border="outlined"
+        onDctButtonClick={handleClick}>Click me!</DctButton>);
     }
   ````
 
