@@ -16,7 +16,7 @@ window.addEventListener('accordianControllerChange', handleEvent);
 const Template = (args) => {
   const accordian = (title) => `
     <dct-accordian divider=${args.accordianDivider}>
-      <dct-item-heading slot="heading">
+      <dct-item-heading slot="heading" animate-icons="true">
         <div slot="heading">${title} Accordian Heading</div>
         <span slot="end" class="material-symbols-outlined">expand_more</span>
       </dct-item-heading>

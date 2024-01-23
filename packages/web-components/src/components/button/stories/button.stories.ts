@@ -27,14 +27,15 @@ const TemplateIcon = (args) => {
 
 export const Button = Template.bind({});
 Button.args = {
-  disabled: false,
+  addRipple: true,
   borderStyle: 'elevated',
+  disabled: false,
   text: 'press me',
 };
 
 export const ButtonIcon = TemplateIcon.bind({});
 ButtonIcon.args = {
-  disabled: false,
-  borderStyle: 'elevated',
   addRipple: true,
+  borderStyle: 'elevated',
+  disabled: false,
 };

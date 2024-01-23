@@ -15,7 +15,7 @@ window.addEventListener('accordianChange', handleEvent);
 
 const Template = (args) => {
   const heading = `
-    <dct-item-heading slot="heading">
+    <dct-item-heading slot="heading" animate-icons=${args.animateicons} >
     ${
       args.startIcon
         ? `<span slot="start" class="material-symbols-outlined">${args.startIcon}</span>`
@@ -31,7 +31,7 @@ const Template = (args) => {
     </dct-item-heading>  
   `;
   return `
-  <dct-accordian animate-icons=${args.animateicons} disabled=${args.disabled}>
+  <dct-accordian disabled=${args.disabled}>
     ${heading}
     <dct-item>${args.accordianContent}</dct-item>
   </<dct-accordian>`;
