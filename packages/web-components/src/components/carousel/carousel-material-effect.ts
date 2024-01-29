@@ -21,7 +21,7 @@ export class CarouselMaterialEffect implements CarouselEffect {
         card.style.marginRight = `${carousel.cardSpacing}px`;
       });
     } else {
-      transitionEnd(carousel.cards[0], () => {
+      carousel.cards[0] && transitionEnd(carousel.cards[0], () => {
         carousel.containerEl.classList.remove('display-all');
       });
 

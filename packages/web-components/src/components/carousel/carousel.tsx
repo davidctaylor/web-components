@@ -197,7 +197,7 @@ export class Carousel {
           ref={(el) => (this._contentEl = el)}
           role="container"
         >
-          <slot></slot>
+          <slot onSlotchange={this._onSlotChange}></slot>
         </div>
 
         {this.footerText && headerFooter(false, this.footerText)}
@@ -244,7 +244,7 @@ export class Carousel {
       );
     });
 
-    this._carouselEffect.render(this._carouselState);
+    this._carouselEffect.renderAll(this._carouselState, this.renderAll);
 
     this.carouselChange.emit({
       hasNext: true,
@@ -252,6 +252,18 @@ export class Carousel {
       totalCards: this._carouselState.cards.length,
       renderAll: this.renderAll,
     });
+  }
+
+  private _onSlotChange = (event: Event) => {
+    console.log('XXX on slot change4', event);
+    if (this._debounce !== null) {
+      clearTimeout(this._debounce);
+      this._debounce = null;
+    }
+
+    this._debounce = setTimeout(() => {
+      this._initializeCarousel()
+    }, 100);
   }
 
   private _onClickHeading = () => {
@@ -275,6 +287,7 @@ export class Carousel {
       'pointerdown',
       (event) => {
         // this._contentEl.setPointerCapture(event.pointerId);
+        console.log('XXX pd:', event)
         if (event.isPrimary) {
           event.preventDefault();
           if (
@@ -301,6 +314,7 @@ export class Carousel {
       'pointerup',
       (event) => {
         event.preventDefault();
+        console.log('XXX pu:', event)
         this._carouselState.position.active = false;
         this._carouselState.position.currentX = event.pageX;
         this._carouselState.position.currentY = event.pageY;
@@ -336,6 +350,15 @@ export class Carousel {
         this._carouselState.position.currentX = event.pageX;
         this._carouselState.position.currentY = event.pageY;
         this._onScrollEvent();
+      },
+      { signal: this._abortController.signal },
+    );
+
+    this._contentEl.addEventListener(
+      'pointerleave',
+      (event) => {
+        event.preventDefault();
+        this._carouselState.position.active = false;
       },
       { signal: this._abortController.signal },
     );
