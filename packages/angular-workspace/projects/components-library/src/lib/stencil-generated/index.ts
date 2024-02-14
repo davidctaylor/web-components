@@ -7,7 +7,7 @@ export const DIRECTIVES = [
   d.DctButton,
   d.DctCard,
   d.DctCardContent,
-  d.DctCardHeader,
+  d.DctCardTitle,
   d.DctCarousel,
   d.DctCarouselControls,
   d.DctDivider,

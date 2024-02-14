@@ -60,14 +60,14 @@ export declare interface DctAccordianController extends Components.DctAccordianC
 
 
 @ProxyCmp({
-  inputs: ['ariaLabel', 'borderStyle', 'buttonStyle', 'buttonType', 'disabled', 'ripple']
+  inputs: ['ariaLabel', 'buttonColor', 'buttonStyle', 'buttonType', 'disabled', 'iconButton', 'ripple']
 })
 @Component({
   selector: 'dct-button',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabel', 'borderStyle', 'buttonStyle', 'buttonType', 'disabled', 'ripple'],
+  inputs: ['ariaLabel', 'buttonColor', 'buttonStyle', 'buttonType', 'disabled', 'iconButton', 'ripple'],
 })
 export class DctButton {
   protected el: HTMLElement;
@@ -135,13 +135,13 @@ export declare interface DctCardContent extends Components.DctCardContent {}
   inputs: ['disabled', 'overlay']
 })
 @Component({
-  selector: 'dct-card-header',
+  selector: 'dct-card-title',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'overlay'],
 })
-export class DctCardHeader {
+export class DctCardTitle {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -150,11 +150,11 @@ export class DctCardHeader {
 }
 
 
-export declare interface DctCardHeader extends Components.DctCardHeader {}
+export declare interface DctCardTitle extends Components.DctCardTitle {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'footerText', 'headerText', 'renderAll'],
+  inputs: ['disabled', 'displayAll', 'footerText', 'headerText'],
   methods: ['navigate']
 })
 @Component({
@@ -162,7 +162,7 @@ export declare interface DctCardHeader extends Components.DctCardHeader {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'footerText', 'headerText', 'renderAll'],
+  inputs: ['disabled', 'displayAll', 'footerText', 'headerText'],
 })
 export class DctCarousel {
   protected el: HTMLElement;

@@ -1,0 +1,65 @@
+// Material Design's Ripple Effect
+
+$durationScale: 225ms;
+$durationFadeIn: 75ms;
+$durationFadeOut: 150ms;
+
+:host {
+  contain: strict;
+  bottom: 0;
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  width: 100%;
+  border-radius: inherit;
+}
+
+.ripple-effect {
+  animation: $durationScale animateRipple forwards,
+    $durationFadeIn animateFadeIn forwards;
+  background-color: currentColor;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  contain: strict;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.ripple-fade-out {
+  animation: $durationFadeOut animateFadeOut forwards;
+  transform: translate(var(--translate-complete)) scale(var(--scale-complete, 1));
+}
+
+@keyframes animateRipple {
+  from {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1);
+  }
+  to {
+    transform: translate(var(--translate-complete)) scale(var(--scale-complete, 1));
+  }
+}
+
+@keyframes animateFadeIn {
+  from {
+    animation-timing-function: linear;
+    opacity: 0;
+  }
+  to {
+    opacity: 0.25;
+  }
+}
+
+@keyframes animateFadeOut {
+  from {
+    animation-timing-function: linear;
+    opacity: 0.25;
+  }
+  to {
+    opacity: 0;
+  }
+}

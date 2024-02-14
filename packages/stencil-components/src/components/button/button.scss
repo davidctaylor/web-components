@@ -1,0 +1,194 @@
+@use '../../styles' as common;
+
+:host {
+  /**
+  * @prop --dct-button-height: button height
+  */
+  --dct-button-height: 40px;
+  /**
+  * @prop --dct-button-width-icon: width of icon button
+  */
+  --dct-button-width-icon: 40px;
+}
+
+:host(.button-container) {
+  @include common.mixins-default-layout();
+
+  border-radius: 100px;
+  display: inline-block;
+  height: var(--dct-button-height);
+  width: auto;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  font-kerning: none;
+
+  button {
+    @include common.mixins-default-button();
+
+    align-items: center;
+    border-radius: 100px;
+    display: flex;
+    border-radius: inherit;
+    border-style: solid;
+    border-width: 0;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .button-content {
+      align-items: center;
+      border-radius: 100px;
+      background-color: transparent;
+      display: flex;
+      flex-flow: row nowrap;
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      text-align: center;
+      opacity: 1;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      z-index: 1;
+    }
+    .button-status {
+      border-radius: 100px;
+      border-radius: inherit;
+      position: absolute;
+      -webkit-font-smoothing: antialiased;
+      top: 1px;
+      left: 1px;
+      right: 1px;
+      bottom: 1px;
+      opacity: 1;
+    }
+  }
+
+  .icon slot[name='start'],
+  slot[name='end'] {
+    align-items: center;
+    display: flex;
+    height: 18px;
+    width: 18px;
+    justify-content: center;
+    overflow: hidden;
+
+    transition: transform common.$animate-transition-duration
+      common.$animate-transition-easing;
+  }
+  .icon slot[name='start'] {
+    margin-right: 0.5rem;
+  }
+  .icon slot[name='end'] {
+    margin-left: 0.5rem;
+  }
+}
+
+:host(.elevated) {
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  color: common.$colors-primary;
+}
+
+:host(.text) {
+  color: common.$colors-primary;
+  border-width: 0;
+}
+
+:host(.primary.filled) {
+  .button-content {
+    color: common.$colors-text-white;
+  }
+  .button-status {
+    background-color: common.$colors-primary;
+  }
+}
+:host(.secondary.filled) {
+  .button-content {
+    color: common.$colors-text-white;
+  }
+  .button-status {
+    background-color: common.$colors-secondary;
+  }
+}
+:host(.primary.filled.disabled),
+:host(.secondary.filled.disabled) {
+  .button-content {
+    color: common.$colors-disabled;
+  }
+  .button-status {
+    opacity: 0.1;
+  }
+}
+:host(.primary.filled:hover:not(.disabled)),
+:host(.secondary.filled:hover:not(.disabled)) {
+  opacity: 0.8;
+}
+
+:host(.primary.outlined),
+:host(.secondary.outlined) {
+  button {
+    border-width: 1px;
+    border-color: common.$colors-button-border-color;
+  }
+  .button-status {
+    background-color: transparent;
+  }
+}
+:host(.primary.elevated),
+:host(.primary.outlined) {
+  .button-content {
+    color: common.$colors-primary;
+  }
+}
+:host(.seconday.elevated),
+:host(.secondary.outlined) {
+  .button-content {
+    color: common.$colors-secondary;
+  }
+}
+
+:host(.primary.outlined.disabled),
+:host(.secondary.outlined.disabled) {
+  button {
+    border-color: common.$colors-disabled;
+  }
+  .button-content {
+    color: common.$colors-disabled;
+  }
+}
+
+:host(.primary.elevated:hover:not(.disabled)),
+:host(.primary.text:hover:not(.disabled)),
+:host(.primary.outlined:hover:not(.disabled)),
+:host(.secondary.outlined:hover:not(.disabled)) {
+  .button-status {
+    background-color: common.$colors-background-focus;
+  }
+}
+
+:host(.primary.elevated.disabled),
+:host(.secondary.elevated.disabled),
+:host(.primary.text.disabled),
+:host(.secondary.text.disabled) {
+  .button-content {
+    color: common.$colors-disabled;
+  }
+}
+
+:host(.icon) {
+  border-radius: 100%;
+  width: var(--dct-button-width-icon);
+  button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  ::slotted(*) {
+    font-size: 24px !important;
+  }
+}

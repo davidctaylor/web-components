@@ -1,0 +1,74 @@
+@use '../../styles' as common;
+
+:host(.item-heading) {
+  @include common.mixins-default-layout();
+  @include common.mixins-hover-event();
+  @include common.mixins-heading();
+
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+
+  .heading {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    font-weight: 500;
+    justify-content: center;
+
+    slot[name='sub-heading'] {
+      color: common.$colors-text-secondary;
+      font-size: common.$typography-font-size-small;
+      font-weight: common.$typography-font-weight-bold;
+      letter-spacing: common.$typography-letter-spacing-small;
+      line-height: common.$typography-line-height-small;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    transition: transform common.$animate-transition-duration
+      common.$animate-transition-easing;
+    &.disabled {
+      ::slotted(*) {
+        color: common.$colors-disabled !important;
+      }
+    }
+  }
+  .icon slot[name='start'],
+  slot[name='end'] {
+    align-items: center;
+    display: flex;
+    height: common.$components-icon-height;
+    width: common.$components-icon-width;
+    justify-content: center;
+    overflow: hidden;
+
+    transition: transform common.$animate-transition-duration
+      common.$animate-transition-easing;
+  }
+  .icon:first-of-type {
+    margin-right: 1rem;
+  }
+  .icon:last-of-type {
+    margin-left: 1rem;
+  }
+}
+
+:host(.animate-rotation) {
+  slot[name='start'],
+  slot[name='end'] {
+    transform: rotate(180deg);
+  }
+}
+
+:host(.disabled) {
+  color: common.$colors-disabled;
+  .heading {
+    slot[name='sub-heading'] {
+      color: common.$colors-disabled;
+    }
+  }
+}
