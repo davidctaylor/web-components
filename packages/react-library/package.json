@@ -3,7 +3,7 @@
   "description": "React library wrapper for @dctjs/web-components",
   "author": "David Taylor",
   "homepage": "https://github.com/davidctaylor/web-components#readme",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "keywords": [
     "app",

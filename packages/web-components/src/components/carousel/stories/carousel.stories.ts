@@ -50,7 +50,7 @@ const Template = (args) => {
       )}
       ${card('Carousel card 4 title only', undefined, undefined)}
       ${card(
-        'Carousel card 5 mountain road',
+        'Carousel card 5 rowers on lake',
         'Card sub-title',
         'rowers.webp'
       )}

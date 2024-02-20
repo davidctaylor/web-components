@@ -183,12 +183,27 @@
 :host(.icon) {
   border-radius: 100%;
   width: var(--dct-button-width-icon);
+
   button {
-    padding-left: 0;
-    padding-right: 0;
+    border-width: 1px;
+    border-color: common.$colors-button-border-color;
+
+    .button-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   ::slotted(*) {
     font-size: 24px !important;
+  }
+}
+
+:host(.icon.disabled) {
+  button {
+    border-color: common.$colors-disabled;
+  }
+  .button-content {
+    color: common.$colors-disabled;
   }
 }

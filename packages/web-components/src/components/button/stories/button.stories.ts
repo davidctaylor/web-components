@@ -21,21 +21,24 @@ export default {
 
 const Template = (args) => {
   return `
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <dct-button disabled=${args.disabled} button-style=${args.buttonStyle} button-style=${args.buttontyle} 
-      ripple=${args.addRipple} color=${args.color}>
-      ${args.iconStart ? `<span slot="start" class="button-icon material-symbols-outlined">more_vert</span>` : ``}
-      <span>${args.text}</span>
-      ${args.iconEnd ? `<span slot="end" class="button-icon material-symbols-outlined">more_vert</span>` : ``}
-    </dct-button></div>`;
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <dct-button disabled=${args.disabled} button-style=${args.buttonStyle} button-style=${args.buttontyle} 
+        ripple=${args.addRipple} color=${args.color}>
+        ${args.iconStart ? `<span slot="start" class="button-icon material-symbols-outlined">more_vert</span>` : ``}
+        <span>${args.text}</span>
+        ${args.iconEnd ? `<span slot="end" class="button-icon material-symbols-outlined">more_vert</span>` : ``}
+      </dct-button>
+    </div>`;
 };
 
 const TemplateIcon = (args) => {
   return `
-    <dct-button disabled=${args.disabled}button-style=${args.buttonStyle} button-type=${args.buttonType}
-      ripple=${args.addRipple} color=${args.color} icon-button=true >
-      <span class="material-symbols-outlined">person</span>
-    </dct-button>`;
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <dct-button disabled=${args.disabled} button-style=${args.buttonStyle} button-type=${args.buttonType}
+        ripple=${args.addRipple} color=${args.color} icon-button=true >
+        <span class="material-symbols-outlined">person</span>
+      </dct-button>
+    </div>`;
 };
 
 export const Button = Template.bind({});

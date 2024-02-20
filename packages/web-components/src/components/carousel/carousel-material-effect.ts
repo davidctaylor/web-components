@@ -14,6 +14,7 @@ export class CarouselMaterialEffect implements CarouselEffect {
 
   public displayAll(carousel: CarouselState, isEnabled: boolean) {
     if (isEnabled) {
+      carousel.activeIndex = 0;
       carousel.containerEl.classList.add('display-all');
       carousel.cards.forEach((card) => {
         card.style.width = `${carousel.cardWidth}px`;
@@ -23,13 +24,11 @@ export class CarouselMaterialEffect implements CarouselEffect {
         card.classList.remove('card-small');
         card.querySelector('dct-card-title')?.classList.remove('card-small');
         card.querySelector('dct-card-content')?.classList.remove('card-small');
-
       });
     } else {
-      carousel.cards[0] && transitionEnd(carousel.cards[0], () => {
-        carousel.containerEl.classList.remove('display-all');
-      });
-
+      if (carousel.cards[0]) {
+        transitionEnd(carousel.cards[0], () => carousel.containerEl.classList.remove('display-all'));
+      }
       this.render(carousel);
     }
   }
