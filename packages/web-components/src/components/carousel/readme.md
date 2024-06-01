@@ -25,7 +25,7 @@ follwowing features
 
 | Event                | Description                   | Type                                                                                                |
 | -------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------- |
-| `carouselCardChange` | Carousel card change event    | `CustomEvent<{ card: HTMLElement; visibility: "hidden" \| "visible" \| "small"; }>`                 |
+| `carouselCardChange` | Carousel card change event    | `CustomEvent<{ card: HTMLElement; visibility: "small" \| "hidden" \| "visible"; }>`                 |
 | `carouselChange`     | Carousel change event emitter | `CustomEvent<{ hasPrevious: boolean; hasNext: boolean; displayAll: boolean; totalCards: number; }>` |
 
 

@@ -22,7 +22,7 @@ import { CarouselMaterialEffect } from './carousel-material-effect';
 
 /**
  *
- * Carousel's show a collection of items that can be scrolled on and off the screen and have the
+ * Carousel's show a collection of items that can be scrolled/swiped on and off the screen and have the
  * follwowing features
  * * Contain visual items like images or video, along with optional label text
  * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
@@ -94,7 +94,13 @@ export class Carousel {
   /**
    * Carousel change event emitter
    */
-  @Event({ eventName: 'carouselChange', composed: true, cancelable: true, bubbles: true}) carouselChange: EventEmitter<CarouselEventType>;
+  @Event({
+    eventName: 'carouselChange',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  })
+  carouselChange: EventEmitter<CarouselEventType>;
 
   /**
    * Carousel card change event
@@ -102,7 +108,7 @@ export class Carousel {
   @Event() carouselCardChange!: EventEmitter<CarouselCardEventType>;
 
   /**
-   * Method to move from previous/next card with in the carousel. 
+   * Method to move from previous/next card with in the carousel.
    */
   @Method()
   async navigate(direction: 'prev' | 'next') {
@@ -208,7 +214,7 @@ export class Carousel {
 
   private _allCards() {
     return Array.from(
-      this.el.querySelectorAll(':scope > dct-card'),
+      this.el.querySelectorAll(':scope > dct-card')
     ) as HTMLDctCardElement[];
   }
 
@@ -224,7 +230,7 @@ export class Carousel {
 
   private _initializeCarousel() {
     this._carouselEffect.event((event: CarouselCardEventType) =>
-      this.carouselCardChange.emit(event),
+      this.carouselCardChange.emit(event)
     );
     this._carouselState.containerEl = this._contentEl;
     this._carouselState.cards = this._allCards();
@@ -240,7 +246,7 @@ export class Carousel {
       card.role = 'listitem';
       card.setAttribute(
         'aria-label',
-        `card ${idx} of ${this._carouselState.cards.length}`,
+        `card ${idx} of ${this._carouselState.cards.length}`
       );
     });
 
@@ -273,11 +279,11 @@ export class Carousel {
   private _onClickPage(direction: 'prev' | 'next') {
     this._carouselEffect.next(this._carouselState, direction);
     this._emitCarouselChange();
-  };
+  }
 
   private _onScrollEvent() {
     !this.displayAll && this._carouselEffect.scroll(this._carouselState);
-  };
+  }
 
   private _addEventListeners() {
     this._contentEl.addEventListener(
@@ -289,7 +295,7 @@ export class Carousel {
             (event.target as HTMLElement).hasPointerCapture(event.pointerId)
           ) {
             (event.target as HTMLElement).releasePointerCapture(
-              event.pointerId,
+              event.pointerId
             );
           }
           this._carouselState.position.active = true;
@@ -302,7 +308,7 @@ export class Carousel {
           this._carouselState.position.startY = event.pageY;
         }
       },
-      { signal: this._abortController.signal },
+      { signal: this._abortController.signal }
     );
 
     this._contentEl.addEventListener(
@@ -316,7 +322,7 @@ export class Carousel {
         this._onScrollEvent();
         this._emitCarouselChange();
       },
-      { signal: this._abortController.signal },
+      { signal: this._abortController.signal }
     );
 
     this._contentEl.addEventListener(
@@ -330,9 +336,9 @@ export class Carousel {
           this._carouselState.position.previousY;
         this._onScrollEvent();
       },
-      { signal: this._abortController.signal },
+      { signal: this._abortController.signal }
     );
-    
+
     this._contentEl.addEventListener(
       'pointermove',
       (event) => {
@@ -344,7 +350,7 @@ export class Carousel {
         this._carouselState.position.currentY = event.pageY;
         this._onScrollEvent();
       },
-      { signal: this._abortController.signal },
+      { signal: this._abortController.signal }
     );
 
     this._contentEl.addEventListener(
@@ -353,7 +359,7 @@ export class Carousel {
         event.preventDefault();
         this._carouselState.position.active = false;
       },
-      { signal: this._abortController.signal },
+      { signal: this._abortController.signal }
     );
   }
 }

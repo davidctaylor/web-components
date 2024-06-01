@@ -1,8 +1,10 @@
+import { withActions } from '@storybook/addon-actions/decorator';
+
 export default {
   title: 'DCTComponents/Button',
-  parameters: {
-    actions: {},
-  },
+  // parameters: {
+  //   actions: { argTypesRegex: 'd*' },
+  // },
   argTypes: {
     buttonStyle: {
       options: ['elevated', 'filled', 'outlined', 'text'],
@@ -17,16 +19,25 @@ export default {
       control: { type: 'radio' },
     },
   },
+  decorators: [withActions],
 };
 
 const Template = (args) => {
   return `
     <div style="display: flex; justify-content: center; align-items: center;">
-      <dct-button disabled=${args.disabled} button-style=${args.buttonStyle} button-style=${args.buttontyle} 
+      <dct-button disabled=${args.disabled} button-style=${args.buttonStyle}
         ripple=${args.addRipple} color=${args.color}>
-        ${args.iconStart ? `<span slot="start" class="button-icon material-symbols-outlined">more_vert</span>` : ``}
+        ${
+          args.iconStart
+            ? `<span slot="start" class="button-icon material-symbols-outlined">more_vert</span>`
+            : ``
+        }
         <span>${args.text}</span>
-        ${args.iconEnd ? `<span slot="end" class="button-icon material-symbols-outlined">more_vert</span>` : ``}
+        ${
+          args.iconEnd
+            ? `<span slot="end" class="button-icon material-symbols-outlined">more_vert</span>`
+            : ``
+        }
       </dct-button>
     </div>`;
 };
