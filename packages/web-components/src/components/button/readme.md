@@ -44,10 +44,12 @@ Work in progress!!
 
 ## CSS Custom Properties
 
-| Name                      | Description          |
-| ------------------------- | -------------------- |
-| `--dct-button-height`     | button height        |
-| `--dct-button-width-icon` | width of icon button |
+| Name                           | Description            |
+| ------------------------------ | ---------------------- |
+| `--dct-accordion-background`   | accordion background   |
+| `--dct-accordion-border-color` | accordion border color |
+| `--dct-button-height`          | button height          |
+| `--dct-button-width-icon`      | width of icon button   |
 
 
 ## Dependencies

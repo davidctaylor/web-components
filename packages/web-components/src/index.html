@@ -86,6 +86,40 @@
   </head>
   <body>
 
+    <dct-accordion >
+      <dct-item-heading slot="heading">
+        <span slot="start" class="material-symbols-outlined">
+        more_horiz</span
+        >
+        <div slot="heading">Controller Heading</div>
+        <div slot="sub-heading">Sub Heading</div>
+        <span slot="end" class="material-symbols-outlined">expand_more</span>
+      </dct-item-heading>
+      <div>
+        Supporting line text lorem ipsum dolor sit amet, consectetur.
+        Supporting line text lorem ipsum dolor sit amet, consectetur.
+      </div>
+      <dct-item>
+        <div>
+          Supporting line text lorem ipsum dolor sit amet, consectetur.
+          Supporting line text lorem ipsum dolor sit amet, consectetur.
+        </div>
+        <input type="test" placeholder="hello input"/>
+        <p>hello world</p>
+        <div>hello world</div>
+      </dct-item>
+
+      <dct-item>
+        <div>
+          Supporting line text lorem ipsum dolor sit amet, consectetur.
+          Supporting line text lorem ipsum dolor sit amet, consectetur.
+        </div>
+        <input type="test" placeholder="hello inoyt"/>
+        <p>hello world</p>
+        <div>hello world</div>
+      </dct-item>
+    </dct-accordion>
+
     <dct-card class="carousel-card"  href="http://google.com" ripple="false">
       <img src="/assets/mountain-road.webp"/>
       <dct-card-title overlay="true">
@@ -158,30 +192,30 @@
         </dct-card>
       </dct-carousel>
 
-      <dct-accordian-controller display-multiple="false">
-        <dct-accordian>
+      <dct-accordion-controller display-multiple="false">
+        <dct-accordion>
           <dct-item-heading slot="heading">
-            <div slot="heading">First Accordian Heading</div>
+            <div slot="heading">First Accordion Heading</div>
             <span slot="end" class="material-symbols-outlined"
               >expand_more</span
             >
           </dct-item-heading>
-          <dct-item><div>First accordian content</div></dct-item>
-        </dct-accordian>
+          <dct-item><div>First accordion content</div></dct-item>
+        </dct-accordion>
 
-        <dct-accordian>
+        <dct-accordion>
           <dct-item-heading slot="heading">
-            <div slot="heading">Second Accordian Heading</div>
+            <div slot="heading">Second Accordion Heading</div>
             <span slot="end" class="material-symbols-outlined"
               >expand_more</span
             >
           </dct-item-heading>
           <dct-item><div>Second according content</div></dct-item>
-        </dct-accordian>
-      </dct-accordian-controller>
+        </dct-accordion>
+      </dct-accordion-controller>
 
-      <dct-accordian-controller display-multiple="false">
-        <dct-accordian>
+      <dct-accordion-controller display-multiple="false">
+        <dct-accordion>
           <dct-item-heading slot="heading">
             <span slot="start" class="material-symbols-outlined">
             more_horiz</span
@@ -195,11 +229,12 @@
               Supporting line text lorem ipsum dolor sit amet, consectetur.
               Supporting line text lorem ipsum dolor sit amet, consectetur.
             </div>
+            <input type="test" placeholder="hello inoyt"/>
             <p>hello world</p>
             <div>hello world</div>
           </dct-item>
-        </dct-accordian>
-        <dct-accordian>
+        </dct-accordion>
+        <dct-accordion>
           <dct-item-heading slot="heading">
             <span slot="start" class="material-symbols-outlined">
             more_horiz</span
@@ -213,11 +248,12 @@
               Supporting line text lorem ipsum dolor sit amet, consectetur.
               Supporting line text lorem ipsum dolor sit amet, consectetur.
             </div>
+
             <p>hello world</p>
             <div>hello world</div>
           </dct-item>
-        </dct-accordian>
-      </dct-accordian-controller>
+        </dct-accordion>
+      </dct-accordion-controller>
     </div>
   </body>
 </html>

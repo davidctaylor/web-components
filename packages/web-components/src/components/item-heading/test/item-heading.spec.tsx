@@ -8,7 +8,7 @@ describe('ItemHeading', () => {
       html: `
         <dct-item-heading disabled=false>
           <span slot="start" class="material-symbols-outlined">expand_more</span>
-          <div slot="heading">Accordian heading</div>
+          <div slot="heading">Accordion heading</div>
           <div slot="sub-heading">Optional supporting text</div>
           <span slot="end" class="material-symbols-outlined">expand_more</span>
         </dct-item-heading>`,
@@ -29,7 +29,7 @@ describe('ItemHeading', () => {
         </div>
        </mock:shadow-root>
        <span class="material-symbols-outlined" slot="start">expand_more</span>
-       <div slot="heading">Accordian heading</div>
+       <div slot="heading">Accordion heading</div>
        <div slot="sub-heading">Optional supporting text</div>
        <span class="material-symbols-outlined" slot="end">expand_more</span>
       </dct-item>

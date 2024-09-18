@@ -2,65 +2,66 @@
 
 :host {
   /**
-  * @prop --dct-accordian-padding-letf: accordian content padding left
+  * @prop --dct-accordion-padding-letf: accordion content padding left
   */
-  --dct-accordian-left: 0.5rem;
+  --dct-accordion-left: 0.5rem;
   /**
-  * @prop --dct-accordian-padding-right: accordian content padding right
+  * @prop --dct-accordion-padding-right: accordion content padding right
   */
-  --dct-accordian-right: 0.5rem;
+  --dct-accordion-right: 0.5rem;
   /**
-  * @prop --dct-accordian-padding-top: accordian content padding top
+  * @prop --dct-accordion-padding-top: accordion content padding top
   */
-  --dct-accordian-top: 1rem;
+  --dct-accordion-top: 1rem;
   /**
-  * @prop --dct-accordian-padding-bottom: accordian content padding bottom
+  * @prop --dct-accordion-padding-bottom: accordion content padding bottom
   */
-  --dct-accordian-bottom: 1rem;
+  --dct-accordion-bottom: 1rem;
 }
 
-:host(.accordian-container) {
+:host(.accordion-container) {
   @include common.mixins-default-layout();
   @include common.mixins-hover-event();
   @include common.mixins-host-disabled();
   
   display: flex;
   flex-direction: column;
+  background: common.$colors-accordion-background;
 
-  .accordian-heading {
+  .accordion-heading {
     width: 100%;
     @include common.mixins-default-button();
   }
 
-  .accordian-content {
+  .accordion-content {
     overflow: hidden;
     will-change: max-height;
     width: 100%;
     transition: max-height common.$animate-transition-duration
       common.$animate-transition-easing;
 
-    .accordian-content-slot {
+    .accordion-content-slot {
       display: flex;
       overflow: auto;
       flex-direction: column;
       justify-content: center;
-      padding-left: var(--dct-accordian-padding-left);
-      padding-right: var(--dct-accordian-padding-right);
-      padding-top: var(--dct-accordian-padding-top);
-      padding-bottom: var(--dct-accordian-padding-bottom);
+      padding-left: var(--dct-accordion-padding-left);
+      padding-right: var(--dct-accordion-padding-right);
+      padding-top: var(--dct-accordion-padding-top);
+      padding-bottom: var(--dct-accordion-padding-bottom);
     }
   }
 }
 
-:host(.accordian-container.icon-start) {
-  .accordian-content {
-    .accordian-content-slot {
+:host(.accordion-container.icon-start) {
+  .accordion-content {
+    .accordion-content-slot {
       padding-left: calc(1.5rem + common.$components-icon-width);
     }
   }
 }
 
-:host(.accordian-container:focus:not(.disabled)) {
+:host(.accordion-container:focus:not(.disabled)) {
   background: common.$colors-background-focus;
   border-color: common.$colors-border-focus;
   border-bottom-style: solid;
@@ -68,7 +69,7 @@
 }
 
 :host(.collapsed) {
-  .accordian-content {
+  .accordion-content {
     max-height: 0;
   }
 }
@@ -79,7 +80,7 @@
     &.active {
       display: inline-flex;
       align-self: center;
-      border-bottom-color: common.$colors-accordian-border-color;
+      border-bottom-color: common.$colors-accordion-border-color;
       border-bottom-style: solid;
       border-bottom-width: 1px;
 
