@@ -11,13 +11,13 @@ import {
 import { collapseContent, expandContent, findSlottedElement } from '@utils/utils';
 
 /**
- * AccordianEventType
+ * AccordionEventType
  */
-export type AccordianEventType = { expaned: boolean };
+export type AccordionEventType = { expaned: boolean };
 
-export interface AccordianCustomEvent extends CustomEvent {
-  detail: AccordianEventType;
-  target: HTMLDctAccordianElement;
+export interface AccordionCustomEvent extends CustomEvent {
+  detail: AccordionEventType;
+  target: HTMLDctAccordionElement;
 }
 
 /**
@@ -25,27 +25,27 @@ export interface AccordianCustomEvent extends CustomEvent {
  * way of organizing and grouping information.
  *
  * ### Heading element
- * Accordians require the `header` slot to be populated e.g. with the `dct-heading` component allowing
- * the display of accordian title and optional icon elements. The heading record acts a button controlling
+ * Accordions require the `header` slot to be populated e.g. with the `dct-heading` component allowing
+ * the display of accordion title and optional icon elements. The heading record acts a button controlling
  * expannd and collapse events.
  *
- * @slot slot - Container for the accordian content
+ * @slot slot - Container for the accordion content
  * @slot header - Header content is placed within an button element and is used to expand or collapse the accordion item.
  */
 @Component({
-  tag: 'dct-accordian',
-  styleUrl: './accordian.scss',
+  tag: 'dct-accordion',
+  styleUrl: './accordion.scss',
   shadow: {
     delegatesFocus: true,
   },
 })
-export class Accordian {
+export class Accordion {
   private static _instanceCounter = 0;
 
-  @Element() el!: HTMLDctAccordianElement;
+  @Element() el!: HTMLDctAccordionElement;
 
   /**
-   * If true, the accordian is in a disabled state
+   * If true, the accordion is in a disabled state
    */
   @Prop() disabled = false;
   @Watch('disabled')
@@ -56,12 +56,12 @@ export class Accordian {
   }
 
   /**
-   * If set to `full` or `partial`, displays a divider or separator line for the accordian
+   * If set to `full` or `partial`, displays a divider or separator line for the accordion
    */
   @Prop() divider: 'full' | 'partial' | 'none' = 'full';
 
   /**
-   * If true, the accordian is in an expanded state.
+   * If true, the accordion is in an expanded state.
    */
   @Prop({ mutable: true }) expanded = false;
   @Watch('expanded')
@@ -85,21 +85,21 @@ export class Accordian {
   }
 
   /**
-   * Accordian expande/collapse change event emitter
+   * Accordion expande/collapse change event emitter
    */
-  @Event() accordianChange: EventEmitter<AccordianEventType>;
+  @Event() accordionChange: EventEmitter<AccordionEventType>;
 
-  private _accordianId: string;
-  private _accordianHeaderId: string;
+  private _accordionId: string;
+  private _accordionHeaderId: string;
   private _contentElement!: HTMLElement;
   private _buttonElement!: HTMLButtonElement;
   private _contentSlotElement!: HTMLElement;
   private _headingSlot: HTMLDctItemHeadingElement = undefined;
 
   componentWillLoad() {
-    Accordian._instanceCounter += 1;
-    this._accordianId = `dct-accordian-${Accordian._instanceCounter}`;
-    this._accordianHeaderId = `dct-accordian-header-${Accordian._instanceCounter}`;
+    Accordion._instanceCounter += 1;
+    this._accordionId = `dct-accordion-${Accordion._instanceCounter}`;
+    this._accordionHeaderId = `dct-accordion-header-${Accordion._instanceCounter}`;
   }
 
   componentDidLoad() {
@@ -111,33 +111,33 @@ export class Accordian {
       <Host
         role="list"
         class={{
-          'accordian-container': true,
+          'accordion-container': true,
           disabled: this.disabled,
           collapsed: !this.expanded,
         }}
       >
         <button
-          id={this._accordianHeaderId}
-          aria-controls={this._accordianId}
+          id={this._accordionHeaderId}
+          aria-controls={this._accordionId}
           aria-expanded={this.expanded}
           aria-disabled={this.disabled}
           onClick={this._onClickHeading}
           class={{
-            'accordian-heading': true,
+            'accordion-heading': true,
           }}
           ref={(el) => (this._buttonElement = el)}
         >
           <slot name="heading"></slot>
         </button>
         <div
-          id={this._accordianId}
-          class={{ 'accordian-content': true, expanded: this.expanded }}
+          id={this._accordionId}
+          class={{ 'accordion-content': true, expanded: this.expanded }}
           role="region"
-          aria-labelledby={this._accordianHeaderId}
+          aria-labelledby={this._accordionHeaderId}
           ref={(el) => (this._contentElement = el)}
         >
           <div
-            class="accordian-content-slot"
+            class="accordion-content-slot"
             ref={(el) => (this._contentSlotElement = el)}
           >
             <slot></slot>
@@ -158,7 +158,7 @@ export class Accordian {
       return;
     }
     this.expanded = !this.expanded;
-    this.accordianChange.emit({ expaned: this.expanded });
+    this.accordionChange.emit({ expaned: this.expanded });
   };
 
   private _slottedHeadingElement = () => {

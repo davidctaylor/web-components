@@ -11,29 +11,29 @@ import { Components } from '@dctjs/web-components';
   inputs: ['disabled', 'divider', 'expanded']
 })
 @Component({
-  selector: 'dct-accordian',
+  selector: 'dct-accordion',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'divider', 'expanded'],
 })
-export class DctAccordian {
+export class DctAccordion {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['accordianChange']);
+    proxyOutputs(this, this.el, ['accordionChange']);
   }
 }
 
 
-import type { AccordianEventType as IDctAccordianAccordianEventType } from '@dctjs/web-components';
+import type { AccordionEventType as IDctAccordionAccordionEventType } from '@dctjs/web-components';
 
-export declare interface DctAccordian extends Components.DctAccordian {
+export declare interface DctAccordion extends Components.DctAccordion {
   /**
-   * Accordian expande/collapse change event emitter
+   * Accordion expande/collapse change event emitter
    */
-  accordianChange: EventEmitter<CustomEvent<IDctAccordianAccordianEventType>>;
+  accordionChange: EventEmitter<CustomEvent<IDctAccordionAccordionEventType>>;
 }
 
 
@@ -41,13 +41,13 @@ export declare interface DctAccordian extends Components.DctAccordian {
   inputs: ['disabled', 'displayMultiple']
 })
 @Component({
-  selector: 'dct-accordian-controller',
+  selector: 'dct-accordion-controller',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled', 'displayMultiple'],
 })
-export class DctAccordianController {
+export class DctAccordionController {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
@@ -56,7 +56,7 @@ export class DctAccordianController {
 }
 
 
-export declare interface DctAccordianController extends Components.DctAccordianController {}
+export declare interface DctAccordionController extends Components.DctAccordionController {}
 
 
 @ProxyCmp({

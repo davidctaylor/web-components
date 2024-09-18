@@ -4,7 +4,7 @@ export type ItemType = 'content' | 'link' | 'text';
 
 /**
  * Item are elements that can contain text, links or any other native elements and should
- * be used as rows by the List or Accordian components.
+ * be used as rows by the List or Accordion components.
  *
  * If the Item is of type link, the Item will be defined as an anchor tag.
  *

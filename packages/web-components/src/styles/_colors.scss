@@ -37,4 +37,13 @@ $border-focus: var(--dct-border-color-focus, $color-primary-800);
 $button-border-color: var(--dct-button-border-color, $color-gray-200);
 $card-border-color: var(--dct-card-border-color, $color-primary-200);
 $item-border-color: var(--dct-item-border-color, $color-primary-200);
-$accordian-border-color: var(--dct-accordian-border-color, $color-primary-200);
+
+/**
+* @prop --dct-accordion-border-color: accordion border color
+*/
+$accordion-border-color: var(--dct-accordion-border-color, $color-primary-200);
+
+/**
+* @prop --dct-accordion-background: accordion background
+*/
+$accordion-background: var(--dct-accordion-background, inherit);

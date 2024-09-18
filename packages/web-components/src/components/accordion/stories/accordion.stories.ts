@@ -1,17 +1,17 @@
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'DCTComponents/Accordian',
+  title: 'DCTComponents/Accordion',
   parameters: {
     actions: {},
   },
 };
 
 const handleEvent = (e) => {
-  action('accordianChange')(e.detail);
+  action('accordionChange')(e.detail);
 };
 
-window.addEventListener('accordianChange', handleEvent);
+window.addEventListener('accordionChange', handleEvent);
 
 const Template = (args) => {
   const heading = `
@@ -31,18 +31,18 @@ const Template = (args) => {
     </dct-item-heading>  
   `;
   return `
-  <dct-accordian disabled=${args.disabled}>
+  <dct-accordion disabled=${args.disabled}>
     ${heading}
-    <dct-item>${args.accordianContent}</dct-item>
-  </<dct-accordian>`;
+    <dct-item>${args.accordionContent}</dct-item>
+  </<dct-accordion>`;
 };
 
-export const Accordian = Template.bind({});
-Accordian.args = {
-  accordianContent: '<span>Accordian content</span>',
+export const Accordion = Template.bind({});
+Accordion.args = {
+  accordionContent: '<span>Accordion content</span>',
   animateIcons: true,
   disabled: false,
-  heading: 'Accordian heading',
+  heading: 'Accordion heading',
   subHeading: 'Optional supporting text',
   startIcon: 'expand_more',
   endIcon: 'expand_more',

@@ -8,8 +8,8 @@ import type { JSX } from '@dctjs/web-components';
 import { defineCustomElements } from '@dctjs/web-components/loader';
 
 defineCustomElements();
-export const DctAccordian = /*@__PURE__*/createReactComponent<JSX.DctAccordian, HTMLDctAccordianElement>('dct-accordian');
-export const DctAccordianController = /*@__PURE__*/createReactComponent<JSX.DctAccordianController, HTMLDctAccordianControllerElement>('dct-accordian-controller');
+export const DctAccordion = /*@__PURE__*/createReactComponent<JSX.DctAccordion, HTMLDctAccordionElement>('dct-accordion');
+export const DctAccordionController = /*@__PURE__*/createReactComponent<JSX.DctAccordionController, HTMLDctAccordionControllerElement>('dct-accordion-controller');
 export const DctButton = /*@__PURE__*/createReactComponent<JSX.DctButton, HTMLDctButtonElement>('dct-button');
 export const DctCard = /*@__PURE__*/createReactComponent<JSX.DctCard, HTMLDctCardElement>('dct-card');
 export const DctCardContent = /*@__PURE__*/createReactComponent<JSX.DctCardContent, HTMLDctCardContentElement>('dct-card-content');

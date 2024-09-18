@@ -1,5 +1,5 @@
 export default {
-  // component: Accordian,
+  // component: Accordion,
   title: 'DCTComponents/Item/ItemHeading',
   parameters: {
     actions: {},
@@ -28,7 +28,7 @@ const Template = (args) => {
 
 export const ItemHeading = Template.bind({});
 ItemHeading.args = {
-  heading: 'Accordian heading',
+  heading: 'Accordion heading',
   subHeading: 'Optional supporting text',
   startIcon: 'expand_more',
   endIcon: 'expand_more',

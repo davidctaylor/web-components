@@ -2,8 +2,8 @@
 import * as d from './proxies';
 
 export const DIRECTIVES = [
-  d.DctAccordian,
-  d.DctAccordianController,
+  d.DctAccordion,
+  d.DctAccordionController,
   d.DctButton,
   d.DctCard,
   d.DctCardContent,

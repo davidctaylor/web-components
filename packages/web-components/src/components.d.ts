@@ -5,10 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { AccordianEventType } from "./components/accordian/accordian";
+import { AccordionEventType } from "./components/accordion/accordion";
 import { CarouselCardEventType, CarouselEventType, ComponentBorderType } from "./components/interfaces";
 import { ItemType } from "./components/item/item";
-export { AccordianEventType } from "./components/accordian/accordian";
+export { AccordionEventType } from "./components/accordion/accordion";
 export { CarouselCardEventType, CarouselEventType, ComponentBorderType } from "./components/interfaces";
 export { ItemType } from "./components/item/item";
 export namespace Components {
@@ -16,37 +16,37 @@ export namespace Components {
      * Accordions provide collapsible sections in your content to reduce vertical space while providing a
      * way of organizing and grouping information.
      * ### Heading element
-     * Accordians require the `header` slot to be populated e.g. with the `dct-heading` component allowing
-     * the display of accordian title and optional icon elements. The heading record acts a button controlling
+     * Accordions require the `header` slot to be populated e.g. with the `dct-heading` component allowing
+     * the display of accordion title and optional icon elements. The heading record acts a button controlling
      * expannd and collapse events.
      */
-    interface DctAccordian {
+    interface DctAccordion {
         /**
-          * If true, the accordian is in a disabled state
+          * If true, the accordion is in a disabled state
          */
         "disabled": boolean;
         /**
-          * If set to `full` or `partial`, displays a divider or separator line for the accordian
+          * If set to `full` or `partial`, displays a divider or separator line for the accordion
          */
         "divider": 'full' | 'partial' | 'none';
         /**
-          * If true, the accordian is in an expanded state.
+          * If true, the accordion is in an expanded state.
          */
         "expanded": boolean;
     }
     /**
-     * AccordianController
-     * The Accordian Controller is a container for Accordion instances. It manages the state of child Accordians allowing the following;
-     * - Accordians to be placed in a disabled
-     * - Allowing single or multiple (all) Accordians to be expanded
+     * AccordionController
+     * The Accordion Controller is a container for Accordion instances. It manages the state of child Accordions allowing the following;
+     * - Accordions to be placed in a disabled
+     * - Allowing single or multiple (all) Accordions to be expanded
      */
-    interface DctAccordianController {
+    interface DctAccordionController {
         /**
-          * Places all child Accordian elements is into a disabled/enabled state
+          * Places all child Accordion elements is into a disabled/enabled state
          */
         "disabled": boolean;
         /**
-          * Allows multilple Accordian elements be in an expanded state. If set to false, the first expanded Accordian element will remain expanded all subsequent Accordian's will be places in a collapsed state
+          * Allows multilple Accordion elements be in an expanded state. If set to false, the first expanded Accordion element will remain expanded all subsequent Accordion's will be places in a collapsed state
          */
         "displayMultiple": boolean;
     }
@@ -142,7 +142,7 @@ export namespace Components {
         "overlay": boolean;
     }
     /**
-     * Carousel's show a collection of items that can be scrolled on and off the screen and have the
+     * Carousel's show a collection of items that can be scrolled/swiped on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
@@ -168,7 +168,7 @@ export namespace Components {
         /**
           * Method to move from previous/next card with in the carousel.
          */
-        "navigate": (direction: 'prev' | 'next') => Promise<void>;
+        "navigate": (direction: "prev" | "next") => Promise<void>;
     }
     interface DctCarouselControls {
         "disabled": boolean;
@@ -181,7 +181,7 @@ export namespace Components {
     }
     /**
      * Item are elements that can contain text, links or any other native elements and should
-     * be used as rows by the List or Accordian components.
+     * be used as rows by the List or Accordion components.
      * If the Item is of type link, the Item will be defined as an anchor tag.
      */
     interface DctItem {
@@ -207,8 +207,8 @@ export namespace Components {
         "type": ItemType;
     }
     /**
-     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-     * used once at the top of a List or Accordian component.
+     * ItemHeading are elements used to describe the contents of a List or an Accordion and should only be
+     * used once at the top of a List or Accordion component.
      */
     interface DctItemHeading {
         /**
@@ -242,9 +242,9 @@ export namespace Components {
         "unbounded": boolean;
     }
 }
-export interface DctAccordianCustomEvent<T> extends CustomEvent<T> {
+export interface DctAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLDctAccordianElement;
+    target: HTMLDctAccordionElement;
 }
 export interface DctButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -255,42 +255,42 @@ export interface DctCarouselCustomEvent<T> extends CustomEvent<T> {
     target: HTMLDctCarouselElement;
 }
 declare global {
-    interface HTMLDctAccordianElementEventMap {
-        "accordianChange": AccordianEventType;
+    interface HTMLDctAccordionElementEventMap {
+        "accordionChange": AccordionEventType;
     }
     /**
      * Accordions provide collapsible sections in your content to reduce vertical space while providing a
      * way of organizing and grouping information.
      * ### Heading element
-     * Accordians require the `header` slot to be populated e.g. with the `dct-heading` component allowing
-     * the display of accordian title and optional icon elements. The heading record acts a button controlling
+     * Accordions require the `header` slot to be populated e.g. with the `dct-heading` component allowing
+     * the display of accordion title and optional icon elements. The heading record acts a button controlling
      * expannd and collapse events.
      */
-    interface HTMLDctAccordianElement extends Components.DctAccordian, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLDctAccordianElementEventMap>(type: K, listener: (this: HTMLDctAccordianElement, ev: DctAccordianCustomEvent<HTMLDctAccordianElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLDctAccordionElement extends Components.DctAccordion, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDctAccordionElementEventMap>(type: K, listener: (this: HTMLDctAccordionElement, ev: DctAccordionCustomEvent<HTMLDctAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLDctAccordianElementEventMap>(type: K, listener: (this: HTMLDctAccordianElement, ev: DctAccordianCustomEvent<HTMLDctAccordianElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDctAccordionElementEventMap>(type: K, listener: (this: HTMLDctAccordionElement, ev: DctAccordionCustomEvent<HTMLDctAccordionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLDctAccordianElement: {
-        prototype: HTMLDctAccordianElement;
-        new (): HTMLDctAccordianElement;
+    var HTMLDctAccordionElement: {
+        prototype: HTMLDctAccordionElement;
+        new (): HTMLDctAccordionElement;
     };
     /**
-     * AccordianController
-     * The Accordian Controller is a container for Accordion instances. It manages the state of child Accordians allowing the following;
-     * - Accordians to be placed in a disabled
-     * - Allowing single or multiple (all) Accordians to be expanded
+     * AccordionController
+     * The Accordion Controller is a container for Accordion instances. It manages the state of child Accordions allowing the following;
+     * - Accordions to be placed in a disabled
+     * - Allowing single or multiple (all) Accordions to be expanded
      */
-    interface HTMLDctAccordianControllerElement extends Components.DctAccordianController, HTMLStencilElement {
+    interface HTMLDctAccordionControllerElement extends Components.DctAccordionController, HTMLStencilElement {
     }
-    var HTMLDctAccordianControllerElement: {
-        prototype: HTMLDctAccordianControllerElement;
-        new (): HTMLDctAccordianControllerElement;
+    var HTMLDctAccordionControllerElement: {
+        prototype: HTMLDctAccordionControllerElement;
+        new (): HTMLDctAccordionControllerElement;
     };
     interface HTMLDctButtonElementEventMap {
         "dctButtonClick": void;
@@ -355,7 +355,7 @@ declare global {
         "carouselCardChange": CarouselCardEventType;
     }
     /**
-     * Carousel's show a collection of items that can be scrolled on and off the screen and have the
+     * Carousel's show a collection of items that can be scrolled/swiped on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
@@ -389,7 +389,7 @@ declare global {
     };
     /**
      * Item are elements that can contain text, links or any other native elements and should
-     * be used as rows by the List or Accordian components.
+     * be used as rows by the List or Accordion components.
      * If the Item is of type link, the Item will be defined as an anchor tag.
      */
     interface HTMLDctItemElement extends Components.DctItem, HTMLStencilElement {
@@ -399,8 +399,8 @@ declare global {
         new (): HTMLDctItemElement;
     };
     /**
-     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-     * used once at the top of a List or Accordian component.
+     * ItemHeading are elements used to describe the contents of a List or an Accordion and should only be
+     * used once at the top of a List or Accordion component.
      */
     interface HTMLDctItemHeadingElement extends Components.DctItemHeading, HTMLStencilElement {
     }
@@ -421,8 +421,8 @@ declare global {
         new (): HTMLDctRippleElement;
     };
     interface HTMLElementTagNameMap {
-        "dct-accordian": HTMLDctAccordianElement;
-        "dct-accordian-controller": HTMLDctAccordianControllerElement;
+        "dct-accordion": HTMLDctAccordionElement;
+        "dct-accordion-controller": HTMLDctAccordionControllerElement;
         "dct-button": HTMLDctButtonElement;
         "dct-card": HTMLDctCardElement;
         "dct-card-content": HTMLDctCardContentElement;
@@ -441,41 +441,41 @@ declare namespace LocalJSX {
      * Accordions provide collapsible sections in your content to reduce vertical space while providing a
      * way of organizing and grouping information.
      * ### Heading element
-     * Accordians require the `header` slot to be populated e.g. with the `dct-heading` component allowing
-     * the display of accordian title and optional icon elements. The heading record acts a button controlling
+     * Accordions require the `header` slot to be populated e.g. with the `dct-heading` component allowing
+     * the display of accordion title and optional icon elements. The heading record acts a button controlling
      * expannd and collapse events.
      */
-    interface DctAccordian {
+    interface DctAccordion {
         /**
-          * If true, the accordian is in a disabled state
+          * If true, the accordion is in a disabled state
          */
         "disabled"?: boolean;
         /**
-          * If set to `full` or `partial`, displays a divider or separator line for the accordian
+          * If set to `full` or `partial`, displays a divider or separator line for the accordion
          */
         "divider"?: 'full' | 'partial' | 'none';
         /**
-          * If true, the accordian is in an expanded state.
+          * If true, the accordion is in an expanded state.
          */
         "expanded"?: boolean;
         /**
-          * Accordian expande/collapse change event emitter
+          * Accordion expande/collapse change event emitter
          */
-        "onAccordianChange"?: (event: DctAccordianCustomEvent<AccordianEventType>) => void;
+        "onAccordionChange"?: (event: DctAccordionCustomEvent<AccordionEventType>) => void;
     }
     /**
-     * AccordianController
-     * The Accordian Controller is a container for Accordion instances. It manages the state of child Accordians allowing the following;
-     * - Accordians to be placed in a disabled
-     * - Allowing single or multiple (all) Accordians to be expanded
+     * AccordionController
+     * The Accordion Controller is a container for Accordion instances. It manages the state of child Accordions allowing the following;
+     * - Accordions to be placed in a disabled
+     * - Allowing single or multiple (all) Accordions to be expanded
      */
-    interface DctAccordianController {
+    interface DctAccordionController {
         /**
-          * Places all child Accordian elements is into a disabled/enabled state
+          * Places all child Accordion elements is into a disabled/enabled state
          */
         "disabled"?: boolean;
         /**
-          * Allows multilple Accordian elements be in an expanded state. If set to false, the first expanded Accordian element will remain expanded all subsequent Accordian's will be places in a collapsed state
+          * Allows multilple Accordion elements be in an expanded state. If set to false, the first expanded Accordion element will remain expanded all subsequent Accordion's will be places in a collapsed state
          */
         "displayMultiple"?: boolean;
     }
@@ -575,7 +575,7 @@ declare namespace LocalJSX {
         "overlay"?: boolean;
     }
     /**
-     * Carousel's show a collection of items that can be scrolled on and off the screen and have the
+     * Carousel's show a collection of items that can be scrolled/swiped on and off the screen and have the
      * follwowing features
      * * Contain visual items like images or video, along with optional label text
      * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
@@ -618,7 +618,7 @@ declare namespace LocalJSX {
     }
     /**
      * Item are elements that can contain text, links or any other native elements and should
-     * be used as rows by the List or Accordian components.
+     * be used as rows by the List or Accordion components.
      * If the Item is of type link, the Item will be defined as an anchor tag.
      */
     interface DctItem {
@@ -644,8 +644,8 @@ declare namespace LocalJSX {
         "type"?: ItemType;
     }
     /**
-     * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-     * used once at the top of a List or Accordian component.
+     * ItemHeading are elements used to describe the contents of a List or an Accordion and should only be
+     * used once at the top of a List or Accordion component.
      */
     interface DctItemHeading {
         /**
@@ -675,8 +675,8 @@ declare namespace LocalJSX {
         "unbounded"?: boolean;
     }
     interface IntrinsicElements {
-        "dct-accordian": DctAccordian;
-        "dct-accordian-controller": DctAccordianController;
+        "dct-accordion": DctAccordion;
+        "dct-accordion-controller": DctAccordionController;
         "dct-button": DctButton;
         "dct-card": DctCard;
         "dct-card-content": DctCardContent;
@@ -698,18 +698,18 @@ declare module "@stencil/core" {
              * Accordions provide collapsible sections in your content to reduce vertical space while providing a
              * way of organizing and grouping information.
              * ### Heading element
-             * Accordians require the `header` slot to be populated e.g. with the `dct-heading` component allowing
-             * the display of accordian title and optional icon elements. The heading record acts a button controlling
+             * Accordions require the `header` slot to be populated e.g. with the `dct-heading` component allowing
+             * the display of accordion title and optional icon elements. The heading record acts a button controlling
              * expannd and collapse events.
              */
-            "dct-accordian": LocalJSX.DctAccordian & JSXBase.HTMLAttributes<HTMLDctAccordianElement>;
+            "dct-accordion": LocalJSX.DctAccordion & JSXBase.HTMLAttributes<HTMLDctAccordionElement>;
             /**
-             * AccordianController
-             * The Accordian Controller is a container for Accordion instances. It manages the state of child Accordians allowing the following;
-             * - Accordians to be placed in a disabled
-             * - Allowing single or multiple (all) Accordians to be expanded
+             * AccordionController
+             * The Accordion Controller is a container for Accordion instances. It manages the state of child Accordions allowing the following;
+             * - Accordions to be placed in a disabled
+             * - Allowing single or multiple (all) Accordions to be expanded
              */
-            "dct-accordian-controller": LocalJSX.DctAccordianController & JSXBase.HTMLAttributes<HTMLDctAccordianControllerElement>;
+            "dct-accordion-controller": LocalJSX.DctAccordionController & JSXBase.HTMLAttributes<HTMLDctAccordionControllerElement>;
             /**
              * Button
              * Basic button component with optional ripple effect.
@@ -738,7 +738,7 @@ declare module "@stencil/core" {
              */
             "dct-card-title": LocalJSX.DctCardTitle & JSXBase.HTMLAttributes<HTMLDctCardTitleElement>;
             /**
-             * Carousel's show a collection of items that can be scrolled on and off the screen and have the
+             * Carousel's show a collection of items that can be scrolled/swiped on and off the screen and have the
              * follwowing features
              * * Contain visual items like images or video, along with optional label text
              * * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
@@ -749,13 +749,13 @@ declare module "@stencil/core" {
             "dct-divider": LocalJSX.DctDivider & JSXBase.HTMLAttributes<HTMLDctDividerElement>;
             /**
              * Item are elements that can contain text, links or any other native elements and should
-             * be used as rows by the List or Accordian components.
+             * be used as rows by the List or Accordion components.
              * If the Item is of type link, the Item will be defined as an anchor tag.
              */
             "dct-item": LocalJSX.DctItem & JSXBase.HTMLAttributes<HTMLDctItemElement>;
             /**
-             * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
-             * used once at the top of a List or Accordian component.
+             * ItemHeading are elements used to describe the contents of a List or an Accordion and should only be
+             * used once at the top of a List or Accordion component.
              */
             "dct-item-heading": LocalJSX.DctItemHeading & JSXBase.HTMLAttributes<HTMLDctItemHeadingElement>;
             "dct-list": LocalJSX.DctList & JSXBase.HTMLAttributes<HTMLDctListElement>;

@@ -17,7 +17,7 @@ export class List {
   @Watch('disabled')
   disabledChanged() {
     this._allListItems().forEach(
-      (accordian) => (accordian.disabled = this.disabled),
+      (accordion) => (accordion.disabled = this.disabled),
     );
   }
 

@@ -8,7 +8,7 @@
 ## Overview
 
 Item are elements that can contain text, links or any other native elements and should
-be used as rows by the List or Accordian components.
+be used as rows by the List or Accordion components.
 
 If the Item is of type link, the Item will be defined as an anchor tag.
 
@@ -32,12 +32,14 @@ If the Item is of type link, the Item will be defined as an anchor tag.
 
 ## CSS Custom Properties
 
-| Name                        | Description                         |
-| --------------------------- | ----------------------------------- |
-| `--dct-item-padding-`       | padding list item content container |
-| `--dct-item-padding-bottom` | padding list item content container |
-| `--dct-item-padding-right`  | padding list item content container |
-| `--dct-item-padding-top`    | padding list item content container |
+| Name                           | Description                         |
+| ------------------------------ | ----------------------------------- |
+| `--dct-accordion-background`   | accordion background                |
+| `--dct-accordion-border-color` | accordion border color              |
+| `--dct-item-padding-`          | padding list item content container |
+| `--dct-item-padding-bottom`    | padding list item content container |
+| `--dct-item-padding-right`     | padding list item content container |
+| `--dct-item-padding-top`       | padding list item content container |
 
 
 ----------------------------------------------

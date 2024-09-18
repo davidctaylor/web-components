@@ -4,8 +4,8 @@ import { hasSlot } from '@utils/utils';
 export type ListItemType = 'link' | 'text';
 
 /**
- * ItemHeading are elements used to describe the contents of a List or an Accordian and should only be
- * used once at the top of a List or Accordian component.
+ * ItemHeading are elements used to describe the contents of a List or an Accordion and should only be
+ * used once at the top of a List or Accordion component.
  *
  *  @slot start - Container for the optional left side icon
  *  @slot heading - Container for optional heading content

@@ -5,7 +5,7 @@
 
 ## Overview
 
-Carousel's show a collection of items that can be scrolled on and off the screen and have the
+Carousel's show a collection of items that can be scrolled/swiped on and off the screen and have the
 follwowing features
 * Contain visual items like images or video, along with optional label text
 * Items change size as they move through the carousel with small leading/trailing items indicating that there is more content available
@@ -31,7 +31,7 @@ follwowing features
 
 ## Methods
 
-### `navigate(direction: 'prev' | 'next') => Promise<void>`
+### `navigate(direction: "prev" | "next") => Promise<void>`
 
 Method to move from previous/next card with in the carousel.
 
@@ -54,6 +54,14 @@ Type: `Promise<void>`
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | `"icon"` | Header content is placed within an button element and is used to expand or collapse the accordion item. |
 | `"slot"` | Container for the Carousel's content                                                                    |
+
+
+## CSS Custom Properties
+
+| Name                           | Description            |
+| ------------------------------ | ---------------------- |
+| `--dct-accordion-background`   | accordion background   |
+| `--dct-accordion-border-color` | accordion border color |
 
 
 ----------------------------------------------

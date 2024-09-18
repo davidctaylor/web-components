@@ -30,6 +30,14 @@ multiple components to support this structure.
 | `"slot"` | Container for the Card's title and content |
 
 
+## CSS Custom Properties
+
+| Name                           | Description            |
+| ------------------------------ | ---------------------- |
+| `--dct-accordion-background`   | accordion background   |
+| `--dct-accordion-border-color` | accordion border color |
+
+
 ## Dependencies
 
 ### Depends on

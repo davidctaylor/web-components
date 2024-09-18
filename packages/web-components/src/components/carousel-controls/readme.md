@@ -14,6 +14,8 @@
 
 | Name                                      | Description                 |
 | ----------------------------------------- | --------------------------- |
+| `--dct-accordion-background`              | accordion background        |
+| `--dct-accordion-border-color`            | accordion border color      |
 | `--dct-card-title-padding-left`           | card content padding left   |
 | `--dct-card-title-padding-padding-bottom` | card content padding bottom |
 | `--dct-card-title-padding-padding-top`    | card content padding top    |
