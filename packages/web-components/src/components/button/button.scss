@@ -33,11 +33,14 @@
     border-radius: inherit;
     border-style: solid;
     border-width: 0;
+    box-sizing: border-box;;
     flex-shrink: 0;
     justify-content: center;
-    width: 100%;
+    width: auto;
     height: 100%;
     position: relative;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 
     .button-content {
       align-items: center;
@@ -51,8 +54,6 @@
       justify-content: center;
       text-align: center;
       opacity: 1;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
       z-index: 1;
     }
     .button-status {

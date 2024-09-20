@@ -13,7 +13,7 @@ import { collapseContent, expandContent, findSlottedElement } from '@utils/utils
 /**
  * AccordionEventType
  */
-export type AccordionEventType = { expaned: boolean };
+export type AccordionEventType = { expanded: boolean };
 
 export interface AccordionCustomEvent extends CustomEvent {
   detail: AccordionEventType;
@@ -158,7 +158,7 @@ export class Accordion {
       return;
     }
     this.expanded = !this.expanded;
-    this.accordionChange.emit({ expaned: this.expanded });
+    this.accordionChange.emit({ expanded: this.expanded });
   };
 
   private _slottedHeadingElement = () => {

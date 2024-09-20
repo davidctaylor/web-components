@@ -14,7 +14,7 @@ export default {
       options: ['button', 'reset', 'submit'],
       control: { type: 'radio' },
     },
-    color: {
+    buttonColor: {
       options: ['primary', 'secondary'],
       control: { type: 'radio' },
     },
@@ -26,7 +26,7 @@ const Template = (args) => {
   return `
     <div style="display: flex; justify-content: center; align-items: center;">
       <dct-button disabled=${args.disabled} button-style=${args.buttonStyle}
-        ripple=${args.addRipple} color=${args.color}>
+        ripple=${args.addRipple} button-color=${args.buttonColor}>
         ${
           args.iconStart
             ? `<span slot="start" class="button-icon material-symbols-outlined">more_vert</span>`
@@ -46,7 +46,7 @@ const TemplateIcon = (args) => {
   return `
     <div style="display: flex; justify-content: center; align-items: center;">
       <dct-button disabled=${args.disabled} button-style=${args.buttonStyle} button-type=${args.buttonType}
-        ripple=${args.addRipple} color=${args.color} icon-button=true >
+        ripple=${args.addRipple} button-color=${args.buttonColor} icon-button=true >
         <span class="material-symbols-outlined">person</span>
       </dct-button>
     </div>`;
@@ -57,7 +57,7 @@ Button.args = {
   addRipple: true,
   buttonStyle: 'outlined',
   buttonType: 'button',
-  color: 'primary',
+  buttonColor: 'primary',
   disabled: false,
   text: 'press me',
   iconStart: true,
@@ -69,6 +69,6 @@ ButtonIcon.args = {
   addRipple: true,
   buttonStyle: 'outline',
   buttonType: 'button',
-  color: 'primary',
+  buttonColor: 'primary',
   disabled: false,
 };
