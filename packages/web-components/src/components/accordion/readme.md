@@ -24,9 +24,9 @@ expannd and collapse events.
 
 ## Events
 
-| Event             | Description                                     | Type                                 |
-| ----------------- | ----------------------------------------------- | ------------------------------------ |
-| `accordionChange` | Accordion expande/collapse change event emitter | `CustomEvent<{ expaned: boolean; }>` |
+| Event             | Description                                     | Type                                  |
+| ----------------- | ----------------------------------------------- | ------------------------------------- |
+| `accordionChange` | Accordion expande/collapse change event emitter | `CustomEvent<{ expanded: boolean; }>` |
 
 
 ## Slots

@@ -56,7 +56,7 @@
 :host(.accordion-container.icon-start) {
   .accordion-content {
     .accordion-content-slot {
-      padding-left: calc(1.5rem + common.$components-icon-width);
+      // padding-left: calc(1.5rem + common.$components-icon-width);
     }
   }
 }
