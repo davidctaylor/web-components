@@ -188,11 +188,8 @@
   button {
     border-width: 1px;
     border-color: common.$colors-button-border-color;
-
-    .button-content {
-      padding-left: 0;
-      padding-right: 0;
-    }
+    padding-left: 0;
+    padding-right: 0
   }
 
   ::slotted(*) {
